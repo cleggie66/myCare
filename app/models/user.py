@@ -11,8 +11,16 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
+    DOB = db.Column(db.Date, nullable=False)
+    blood_type = db.Column(db.String)
+    profile_picture = db.Column(db.String)
+
+    # RELATIONSHIPS
+    appointments = db.relationship("Appointment", back_populates="user", cascade="all,delete")
 
     @property
     def password(self):
@@ -29,5 +37,23 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'DOB': self.DOB,
+            'blood_type': self.blood_type,
+            'profile_picture': self.profile_picture,
+            'appointments': [appointment.to_dict_simple() for appointment in self.appointments]
+        }
+    
+    def to_dict_simple(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'DOB': self.DOB,
+            'blood_type': self.blood_type,
+            'profile_picture': self.profile_picture
         }
