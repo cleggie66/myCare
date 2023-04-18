@@ -17,7 +17,7 @@ class Hospital(db.Model):
         lng = db.Column(db.Integer)
 
         # RELATIONSHIPS
-        
+
         physicians = db.relationship("Physician", back_populates="hospital")
         appointments = db.relationship("Appointment", back_populates="hospital", cascade="all,delete")
 
@@ -32,8 +32,8 @@ class Hospital(db.Model):
                 "country": self.country,
                 "lat": self.lat,
                 "lng": self.lng,
-                "physicians": self.physicians.to_dict_simple(),
-                "appointments": self.appointments.to_dict_simple()
+                "physicians": [physician.to_dict_simple() for physician in self.physicians],
+                "appointments": [appointment.to_dict_simple() for appointment in self.appointments],
             }
         
         def to_dict_simple(self):
