@@ -16,9 +16,12 @@ class Hospital(db.Model):
         lat = db.Column(db.Integer)
         lng = db.Column(db.Integer)
 
-        # Relationships
+        # RELATIONSHIPS
+        
         physicians = db.relationship("Physician", back_populates="hospital")
         appointments = db.relationship("Appointment", back_populates="hospital", cascade="all,delete")
+
+        # METHODS
 
         def to_dict(self):
             return {
