@@ -7,21 +7,21 @@ class MedicalSpeciality(db.Model):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-        id = db.Column(db.Integer, primary_key=True)
-        name = db.Column(db.String(100), nullable=False)
-        description = db.Column(db.String)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String)
 
-        # RELATIONSHIPS
+    # RELATIONSHIPS
 
-        physicians = db.relationship("Physician", back_populates="medical_speciality")
+    physicians = db.relationship("Physician", back_populates="medical_speciality")
 
-        # METHODS
+    # METHODS
 
-        def to_dict(self):
-            return {
-                "id": self.id,
-                "name": self.name,
-                "description": self.description,
-                "physicians": [physician.to_dict_simple() for physician in self.physicians]
-            }
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "physicians": [physician.to_dict_simple() for physician in self.physicians]
+        }
 
