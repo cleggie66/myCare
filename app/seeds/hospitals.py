@@ -1,6 +1,5 @@
 from app.models import db, Hospital, environment, SCHEMA
 from sqlalchemy.sql import text
-from datetime import datetime
 
 
 def seed_hospitals():
