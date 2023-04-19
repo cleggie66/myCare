@@ -13,8 +13,8 @@ class Hospital(db.Model):
     city = db.Column(db.String(100))
     state = db.Column(db.String(100))
     country = db.Column(db.String(100))
-    lat = db.Column(db.Integer)
-    lng = db.Column(db.Integer)
+    lat = db.Column(db.Numeric)
+    lng = db.Column(db.Numeric)
 
     # RELATIONSHIPS
 
