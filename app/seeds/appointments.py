@@ -19,8 +19,7 @@ def seed_appointments():
 
 def undo_appointments():
     if environment == "production":
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.appointments RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.appointments RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM appointments"))
 
