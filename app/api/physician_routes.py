@@ -95,3 +95,24 @@ def update_physician(physician_id):
         db.session.commit()
         return physician.to_dict()
     return {"Message": "Invalid Data"}
+
+
+# -----------  DELETE  --------------
+# Deletes a physician
+
+@physician_routes.route("/<physician_id>", methods=["DELETE"])
+@login_required
+def delete_physician(physician_id):
+    physician = Physician.query.get(physician_id)
+
+    if not physician:
+        return {
+            "message": "Physician could not be found",
+            "status_code": 404
+        }, 404
+    
+    db.session.delete(physician)
+    db.session.commit()
+    return {"Message": "Physician successfully deleted"}
+
+    
