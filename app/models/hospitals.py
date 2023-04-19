@@ -19,8 +19,7 @@ class Hospital(db.Model):
     # RELATIONSHIPS
 
     physicians = db.relationship("Physician", back_populates="hospital")
-    appointments = db.relationship(
-        "Appointment", back_populates="hospital", cascade="all,delete")
+    appointments = db.relationship("Appointment", back_populates="hospital", cascade="all,delete")
 
     # METHODS
 

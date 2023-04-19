@@ -1,5 +1,10 @@
 from flask.cli import AppGroup
-from .users import seed_appointments, undo_appointments, seed_hospitals, undo_hospitals, seed_medical_specialities, undo_medical_specialities, seed_physicians, undo_physicians, seed_users, undo_users
+from .appointments import seed_appointments, undo_appointments 
+from .hospitals import seed_hospitals, undo_hospitals
+from .medical_specialities import seed_medical_specialities, undo_medical_specialities
+from .physicians import seed_physicians, undo_physicians
+from .users import seed_users, undo_users
+
 
 from app.models.db import db, environment, SCHEMA
 

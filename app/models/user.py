@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String)
 
     # RELATIONSHIPS
-    appointments = db.relationship("Appointment", back_populates="user", cascade="all,delete")
+    appointments = db.relationship("Appointment", back_populates="patient", cascade="all,delete")
 
     @property
     def password(self):
