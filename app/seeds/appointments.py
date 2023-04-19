@@ -24,3 +24,4 @@ def undo_appointments():
         db.session.execute(text("DELETE FROM appointments"))
 
     db.session.commit()
+
