@@ -21,7 +21,7 @@ def get_all_physicians():
             "status_code": 404
         }, 404
 
-    return {"Physicians": [physician.to_dict() for physician in physicians]}
+    return {"physicians": [physician.to_dict() for physician in physicians]}
 
 
 # -----------  GET  --------------
