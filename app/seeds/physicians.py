@@ -13,7 +13,6 @@ def seed_physicians():
         first_name="Jennifer", last_name="Melfi", picture="https://www.magicalquote.com/wp-content/uploads/2020/04/Jennifer-Melfi.jpg", hospital_id=1, medical_speciality_id=3, medical_education="M.D.", accepts_insurance=True)
     
     
-    
     db.session.add(doc1)
     db.session.add(doc2)
     db.session.add(doc3)
