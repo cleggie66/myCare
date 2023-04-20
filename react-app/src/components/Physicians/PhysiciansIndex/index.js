@@ -36,6 +36,7 @@ const PhysiciansIndex = () => {
                     )
                 })}
             </div>
+            <button>Add a Physician</button>
         </>
     )
 }
