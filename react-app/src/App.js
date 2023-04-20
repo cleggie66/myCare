@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
 import PhysicianForm from "./components/Physicians/PhysicianForm";
+import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhysicianForm";
+import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +27,10 @@ function App() {
             <PhysiciansIndex />
           </Route>
           <Route path="/physician/new">
-            <PhysicianForm />
+            <CreatePhysicianForm />
+          </Route>
+          <Route path="/physician/:physicianId/update">
+            <UpdatePhysicianForm />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

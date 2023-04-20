@@ -4,16 +4,16 @@ import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
 import { createPhysicianThunk } from "../../../store/physicians";
 
-function PhysicianForm() {
+function PhysicianForm({ physician, formType }) {
   const dispatch = useDispatch();
   const history = useHistory()
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [picture, setPicture] = useState("");
-  const [hospitalId, setHospitalId] = useState(1);
-  const [medicalSpecialityId, setMedicalSpecialityId] = useState(1);
-  const [medicalEducation, setMedicalEducation] = useState("");
-  const [acceptsInsurance, setAcceptsInsurance] = useState(true);
+  const [firstName, setFirstName] = useState(physician.firstName);
+  const [lastName, setLastName] = useState(physician.lastName);
+  const [picture, setPicture] = useState(physician.picture);
+  const [hospitalId, setHospitalId] = useState(physician.hospitalId);
+  const [medicalSpecialityId, setMedicalSpecialityId] = useState(physician.medicalSpecialityId);
+  const [medicalEducation, setMedicalEducation] = useState(physician.medicalEducation);
+  const [acceptsInsurance, setAcceptsInsurance] = useState(physician.acceptsInsurance);
   const [errors, setErrors] = useState([]);
 
 
@@ -99,7 +99,7 @@ function PhysicianForm() {
             onChange={(e) => setAcceptsInsurance(e.target.value)}
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">{formType}</button>
       </form>
     </>
   );
