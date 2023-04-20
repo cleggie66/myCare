@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
+import PhysicianForm from "./components/Physicians/PhysicianForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
         <Switch>
           <Route path="/home" >
             <PhysiciansIndex />
+          </Route>
+          <Route path="/physician/new">
+            <PhysicianForm />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
