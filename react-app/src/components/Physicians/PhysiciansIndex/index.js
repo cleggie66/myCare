@@ -2,10 +2,12 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setAllPhysiciansThunk } from "../../../store/physicians"
 import "./PhysiciansIndex.css"
+import { Redirect, useHistory } from "react-router-dom"
 
 
 const PhysiciansIndex = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(setAllPhysiciansThunk())
@@ -36,7 +38,9 @@ const PhysiciansIndex = () => {
                     )
                 })}
             </div>
-            <button>Add a Physician</button>
+            <button
+                onClick={() => history.push("/physician/new")}
+            >Add a Physician</button>
         </>
     )
 }

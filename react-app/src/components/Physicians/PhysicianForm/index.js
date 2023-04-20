@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
+import { createPhysicianThunk } from "../../../store/physicians";
 
 function PhysicianForm() {
   const dispatch = useDispatch();
+  const history = useHistory()
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [picture, setPicture] = useState("");
@@ -18,9 +20,20 @@ function PhysicianForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = await dispatch()
+    const physicianData = {
+      first_name: firstName,
+      last_name: lastName,
+      picture: picture,
+      hospital_id: hospitalId,
+      medical_speciality_id: medicalSpecialityId,
+      medical_education: medicalEducation,
+      accepts_insurance: acceptsInsurance
+    }
 
+    await dispatch(createPhysicianThunk(physicianData))
 
+    return history.push("/");
+  
   };
 
   return (
