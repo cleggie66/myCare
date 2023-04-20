@@ -24,4 +24,11 @@ class MedicalSpeciality(db.Model):
             "description": self.description,
             "physicians": [physician.to_dict_simple() for physician in self.physicians]
         }
+    
+    def to_dict_simple(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description
+        }
 
