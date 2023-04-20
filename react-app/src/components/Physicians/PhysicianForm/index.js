@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
-import { createPhysicianThunk } from "../../../store/physicians";
+import { createPhysicianThunk, updatePhysician, updatePhysicianThunk } from "../../../store/physicians";
 
 function PhysicianForm({ physician, formType }) {
   const dispatch = useDispatch();
   const history = useHistory()
+  let physicianId;
+  if (physician.id) physicianId = physician.id
   const [firstName, setFirstName] = useState(physician.firstName);
   const [lastName, setLastName] = useState(physician.lastName);
   const [picture, setPicture] = useState(physician.picture);
@@ -21,6 +23,7 @@ function PhysicianForm({ physician, formType }) {
     e.preventDefault();
 
     const physicianData = {
+      id: physicianId,
       first_name: firstName,
       last_name: lastName,
       picture: picture,
@@ -30,7 +33,13 @@ function PhysicianForm({ physician, formType }) {
       accepts_insurance: acceptsInsurance
     }
 
-    await dispatch(createPhysicianThunk(physicianData))
+    if (formType === "Create Physician") {
+      await dispatch(createPhysicianThunk(physicianData))
+    }
+
+    if (formType === "Update Physician") {
+      await dispatch(updatePhysicianThunk(physicianData))
+    }
 
     return history.push("/");
   
@@ -38,7 +47,7 @@ function PhysicianForm({ physician, formType }) {
 
   return (
     <>
-      <h1>Create Physician</h1>
+      <h1>{formType}</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}

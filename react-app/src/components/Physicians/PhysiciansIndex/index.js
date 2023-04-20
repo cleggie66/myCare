@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setAllPhysiciansThunk } from "../../../store/physicians"
+import { deletePhysicianThunk, setAllPhysiciansThunk } from "../../../store/physicians"
 import "./PhysiciansIndex.css"
 import { Redirect, useHistory } from "react-router-dom"
 
@@ -35,8 +35,19 @@ const PhysiciansIndex = () => {
                                 <button>Book an Appointment</button>
                             </div>
                             <div>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button
+                                    onClick={() => history.push(`/physician/${physician.id}/update`)}
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        dispatch(deletePhysicianThunk(physician))
+                                        return history.push("/home")
+                                    }}
+                                >
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     )
@@ -44,7 +55,9 @@ const PhysiciansIndex = () => {
             </div>
             <button
                 onClick={() => history.push("/physician/new")}
-            >Add a Physician</button>
+            >
+                Add a Physician
+            </button>
         </>
     )
 }
