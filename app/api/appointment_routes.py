@@ -5,6 +5,14 @@ from app.models import Appointment, User, db
 
 appointment_routes = Blueprint('appointments', __name__)
 
+# -----------  POST  --------------
+# Creates a new appointment
+
+@appointment_routes.route("", methods={"POST"})
+@login_required
+def create_appointment(physician_id):
+    appointment = Appointment()
+
 
 # TODO: Might want to nix this route for security reasons, keeping it for now
 # -----------  GET  --------------

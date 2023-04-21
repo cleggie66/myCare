@@ -7,6 +7,31 @@ from app.forms import PhysicianForm
 physician_routes = Blueprint('physicians', __name__)
 
 
+
+# -----------  POST  --------------
+# Creates a new physician
+
+@physician_routes.route("", methods=["POST"])
+@login_required
+def create_physician():
+    form = PhysicianForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_physician = Physician(
+            first_name=form.data["first_name"],
+            last_name=form.data["last_name"],
+            picture=form.data["picture"],
+            hospital_id=form.data["hospital_id"],
+            medical_speciality_id=form.data["medical_speciality_id"],
+            medical_education=form.data["medical_education"],
+            accepts_insurance=form.data["accepts_insurance"]
+        )
+        db.session.add(new_physician)
+        db.session.commit()
+        return new_physician.to_dict()
+    return {"Message": "Invalid Data"}
+
+
 # -----------  GET  --------------
 # Returns all physicians
 
@@ -39,30 +64,6 @@ def get_physician(physician_id):
         }, 404
 
     return physician.to_dict()
-
-
-# -----------  POST  --------------
-# Creates a new physician
-
-@physician_routes.route("", methods=["POST"])
-@login_required
-def create_physician():
-    form = PhysicianForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_physician = Physician(
-            first_name=form.data["first_name"],
-            last_name=form.data["last_name"],
-            picture=form.data["picture"],
-            hospital_id=form.data["hospital_id"],
-            medical_speciality_id=form.data["medical_speciality_id"],
-            medical_education=form.data["medical_education"],
-            accepts_insurance=form.data["accepts_insurance"]
-        )
-        db.session.add(new_physician)
-        db.session.commit()
-        return new_physician.to_dict()
-    return {"Message": "Invalid Data"}
 
 
 # -----------  PUT  --------------
