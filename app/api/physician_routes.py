@@ -27,7 +27,7 @@ def get_all_physicians():
 # -----------  GET  --------------
 # Returns physician from id
 
-@physician_routes.route("/<physician_id>")
+@physician_routes.route("/<int:physician_id>")
 @login_required
 def get_physician(physician_id):
     physician = Physician.query.get(physician_id)
@@ -68,7 +68,7 @@ def create_physician():
 # -----------  PUT  --------------
 # Updates a physician
 
-@physician_routes.route("/<physician_id>", methods=["PUT"])
+@physician_routes.route("/<int:physician_id>", methods=["PUT"])
 @login_required
 def update_physician(physician_id):
     physician = Physician.query.get(physician_id)
@@ -100,7 +100,7 @@ def update_physician(physician_id):
 # -----------  DELETE  --------------
 # Deletes a physician
 
-@physician_routes.route("/<physician_id>", methods=["DELETE"])
+@physician_routes.route("/<int:physician_id>", methods=["DELETE"])
 @login_required
 def delete_physician(physician_id):
     physician = Physician.query.get(physician_id)
