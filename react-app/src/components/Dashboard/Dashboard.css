@@ -1,0 +1,9 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-bar {
+    width: 100px;
+    background-color: #615A99;
+}

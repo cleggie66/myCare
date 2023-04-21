@@ -1,11 +1,16 @@
 import PhysiciansIndex from "../Physicians/PhysiciansIndex"
+import "./Dashboard.css"
 
 const Dashboard = () => {
 
     return (
         <>
-            <h1>Dashboard</h1>
-            <PhysiciansIndex />
+            <div className="dashboard">
+                <div className="side-bar">
+
+                </div>
+                <PhysiciansIndex />
+            </div>
         </>
     )
 }

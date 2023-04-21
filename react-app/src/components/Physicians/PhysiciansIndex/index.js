@@ -21,7 +21,6 @@ const PhysiciansIndex = () => {
 
     return (
         <>
-            <h1>Physicians Index</h1>
             <div className="physician-cards-index">
                 {physicians.map((physician) => {
                     return (
