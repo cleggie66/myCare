@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
-import { createPhysicianThunk } from "../../../store/physicians";
+import { createPhysicianThunk, updatePhysician, updatePhysicianThunk } from "../../../store/physicians";
 
-function PhysicianForm() {
+function PhysicianForm({ physician, formType }) {
   const dispatch = useDispatch();
   const history = useHistory()
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [picture, setPicture] = useState("");
-  const [hospitalId, setHospitalId] = useState(1);
-  const [medicalSpecialityId, setMedicalSpecialityId] = useState(1);
-  const [medicalEducation, setMedicalEducation] = useState("");
-  const [acceptsInsurance, setAcceptsInsurance] = useState(true);
+  let physicianId;
+  if (physician.id) physicianId = physician.id
+  const [firstName, setFirstName] = useState(physician.firstName);
+  const [lastName, setLastName] = useState(physician.lastName);
+  const [picture, setPicture] = useState(physician.picture);
+  const [hospitalId, setHospitalId] = useState(physician.hospitalId);
+  const [medicalSpecialityId, setMedicalSpecialityId] = useState(physician.medicalSpecialityId);
+  const [medicalEducation, setMedicalEducation] = useState(physician.medicalEducation);
+  const [acceptsInsurance, setAcceptsInsurance] = useState(physician.acceptsInsurance);
   const [errors, setErrors] = useState([]);
 
 
@@ -21,6 +23,7 @@ function PhysicianForm() {
     e.preventDefault();
 
     const physicianData = {
+      id: physicianId,
       first_name: firstName,
       last_name: lastName,
       picture: picture,
@@ -30,15 +33,21 @@ function PhysicianForm() {
       accepts_insurance: acceptsInsurance
     }
 
-    await dispatch(createPhysicianThunk(physicianData))
+    if (formType === "Create Physician") {
+      await dispatch(createPhysicianThunk(physicianData))
+    }
 
-    return history.push("/");
+    if (formType === "Update Physician") {
+      await dispatch(updatePhysicianThunk(physicianData))
+    }
+
+    return history.push("/dashboard");
   
   };
 
   return (
     <>
-      <h1>Create Physician</h1>
+      <h1>{formType}</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -99,7 +108,7 @@ function PhysicianForm() {
             onChange={(e) => setAcceptsInsurance(e.target.value)}
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">{formType}</button>
       </form>
     </>
   );

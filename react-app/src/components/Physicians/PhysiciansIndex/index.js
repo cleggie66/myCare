@@ -1,8 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setAllPhysiciansThunk } from "../../../store/physicians"
+import { deletePhysicianThunk, setAllPhysiciansThunk } from "../../../store/physicians"
 import "./PhysiciansIndex.css"
 import { Redirect, useHistory } from "react-router-dom"
+import OpenModalButton from "../../OpenModalButton"
+import DeletePhysicianModal from "../DeletePhysicianModal"
 
 
 const PhysiciansIndex = () => {
@@ -19,7 +21,6 @@ const PhysiciansIndex = () => {
 
     return (
         <>
-            <h1>Physicians Index</h1>
             <div className="physician-cards-index">
                 {physicians.map((physician) => {
                     return (
@@ -34,13 +35,26 @@ const PhysiciansIndex = () => {
                                 <button>Add to MyCare team</button>
                                 <button>Book an Appointment</button>
                             </div>
+                            <div>
+                                <button
+                                    onClick={() => history.push(`/physician/${physician.id}/update`)}
+                                >
+                                    Edit
+                                </button>
+                                <OpenModalButton
+                                    buttonText="Delete"
+                                    modalComponent={<DeletePhysicianModal physician={physician}/>}
+                                />
+                            </div>
                         </div>
                     )
                 })}
             </div>
             <button
                 onClick={() => history.push("/physician/new")}
-            >Add a Physician</button>
+            >
+                Add a Physician
+            </button>
         </>
     )
 }
