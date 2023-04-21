@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { deletePhysicianThunk, setAllPhysiciansThunk } from "../../../store/physicians"
 import "./PhysiciansIndex.css"
 import { Redirect, useHistory } from "react-router-dom"
+import OpenModalButton from "../../OpenModalButton"
+import DeletePhysicianModal from "../DeletePhysicianModal"
 
 
 const PhysiciansIndex = () => {
@@ -40,14 +42,10 @@ const PhysiciansIndex = () => {
                                 >
                                     Edit
                                 </button>
-                                <button
-                                    onClick={() => {
-                                        dispatch(deletePhysicianThunk(physician))
-                                        return history.push("/home")
-                                    }}
-                                >
-                                    Delete
-                                </button>
+                                <OpenModalButton
+                                    buttonText="Delete"
+                                    modalComponent={<DeletePhysicianModal physician={physician}/>}
+                                />
                             </div>
                         </div>
                     )

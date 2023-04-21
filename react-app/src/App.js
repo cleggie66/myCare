@@ -9,6 +9,7 @@ import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
 import PhysicianForm from "./components/Physicians/PhysicianForm";
 import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhysicianForm";
 import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ function App() {
       {console.log(isLoaded)}
       {isLoaded && (
         <Switch>
-          <Route path="/home" >
-            <PhysiciansIndex />
+          <Route path="/dashboard" >
+            <Dashboard />
           </Route>
           <Route path="/physician/new">
             <CreatePhysicianForm />

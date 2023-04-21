@@ -41,7 +41,7 @@ function PhysicianForm({ physician, formType }) {
       await dispatch(updatePhysicianThunk(physicianData))
     }
 
-    return history.push("/");
+    return history.push("/dashboard");
   
   };
 
