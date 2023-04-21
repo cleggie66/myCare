@@ -83,7 +83,6 @@ def update_physician(physician_id):
     form = PhysicianForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # TODO: Look into refactoring this code:
     if form.validate_on_submit():
         physician.first_name=form.data["first_name"]
         physician.last_name=form.data["last_name"]
