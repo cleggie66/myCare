@@ -33,4 +33,4 @@ def get_all_user_appointments():
     user = User.query.filter(User.id == current_user.id).first()
     return {"appointments": [appointment.to_dict() for appointment in user.appointments]}
 
-    
+
