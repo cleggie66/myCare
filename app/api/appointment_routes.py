@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import Appointment, User, db
+from app.forms import AppointmentForm
 
 
 appointment_routes = Blueprint('appointments', __name__)
@@ -8,10 +9,24 @@ appointment_routes = Blueprint('appointments', __name__)
 # -----------  POST  --------------
 # Creates a new appointment
 
-@appointment_routes.route("", methods={"POST"})
+@appointment_routes.route("", methods=["POST"])
 @login_required
-def create_appointment(physician_id):
-    appointment = Appointment()
+def create_appointment():
+    form = AppointmentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_appointment = Appointment(
+            patient_id=form.data["patient_id"],
+            physician_id=form.data["physician_id"],
+            hospital_id=form.data["hospital_id"],
+            reason_for_visit=form.data["reason_for_visit"],
+            start_time=form.data["start_time"],
+            end_time=form.data["end_time"]
+        )
+        db.session.add(new_appointment)
+        db.session.commit()
+        return new_appointment.to_dict()
+    return {"Message": "Invalid Data"}
 
 
 # TODO: Might want to nix this route for security reasons, keeping it for now
