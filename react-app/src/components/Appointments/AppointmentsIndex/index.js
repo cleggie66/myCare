@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
-
+import "./AppointmentsIndex.css"
 
 
 const AppointmentsIndex = () => {
@@ -26,10 +26,13 @@ const AppointmentsIndex = () => {
                         <div className="appointment-card" key={appointment.id}>
                             <h2>{`${appointment.patient.first_name} ${appointment.patient.last_name}`}</h2>
                             <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
+                            <button>Edit</button>
+                            <button>Delete</button>
                         </div>
                     )
                 })}
             </div>
+            <button>Add an Appointment</button>
         </>
     )
 

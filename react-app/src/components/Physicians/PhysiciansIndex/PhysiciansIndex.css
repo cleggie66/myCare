@@ -32,12 +32,3 @@
     object-fit: cover;
     background-color: white;
 }
-
-.physician-card-background {
-    top: 10px;
-    position: static;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    z-index: -1;
-}
