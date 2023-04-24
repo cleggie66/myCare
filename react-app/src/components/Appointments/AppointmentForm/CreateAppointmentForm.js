@@ -5,7 +5,6 @@ import AppointmentForm from "."
 const CreateAppointmentForm = () => {
 
     const appointment = {
-        patientId: 0,
         physicianId: 0,
         hospitalId: 0,
         reasonForVisit: "",

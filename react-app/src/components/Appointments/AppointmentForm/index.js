@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { createAppointmentThunk, updateAppointmentThunk } from "../../../store/appointments";
 
 
 
@@ -10,7 +11,6 @@ const AppointmentForm = ({ appointment, formType }) => {
     let appointmentId;
     if (appointment.id) appointmentId = appointment.id;
 
-    const [patientId, setPatientId] = useState(appointment.patientId);
     const [physicianId, setPhysicianId] = useState(appointment.physicianId);
     const [hospitalId, setHospitalId] = useState(appointment.hospitalId);
     const [reasonForVisit, setReasonForVisit] = useState(appointment.reasonForVisit);
@@ -19,12 +19,27 @@ const AppointmentForm = ({ appointment, formType }) => {
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         const appointmentData = {
             id: appointmentId,
-        }
-    }
+            physician_id: physicianId,
+            hospital_id: hospitalId,
+            reason_for_visit: reasonForVisit,
+            start_time: startTime,
+            end_time: endTime
+        };
+
+        if (formType === "Create Appointment") {
+            await dispatch(createAppointmentThunk(appointmentData))
+        };
+
+        if (formType === "Update Appointment") {
+            await dispatch(updateAppointmentThunk(appointmentData))
+        };
+
+        return history.push("/dashboard");
+    };
 
     return (
         <>
@@ -37,7 +52,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                     Physician Id
                 </label>
                 <input
-                    type="text"
+                    type="number"
                     value={physicianId}
                     onChange={(e) => setPhysicianId(e.target.value)}
                 />
@@ -45,7 +60,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                     Hospital Id
                 </label>
                 <input
-                    type="text"
+                    type="number"
                     value={hospitalId}
                     onChange={(e) => setHospitalId(e.target.value)}
                 />

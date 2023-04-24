@@ -31,8 +31,8 @@ const AppointmentsIndex = () => {
                             <h3>{appointment.hospital.address}</h3>
                             <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
                             <h3>{appointment.reason_for_visit}</h3>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash-can"></i>
                         </div>
                     )
                 })}

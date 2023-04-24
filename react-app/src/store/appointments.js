@@ -40,12 +40,15 @@ export const deleteAppointment = (appointment) => {
 // THUNKS
 export const createAppointmentThunk = (appointmentData) => async (dispatch) => {
     try {
+        console.log("DATA", appointmentData)
+        console.log("DATA2", JSON.stringify(appointmentData))
         const response = await fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(appointmentData)
         })
         const appointment = await response.json()
+        console.log("APP", appointment)
         dispatch(createAppointment(appointment))
         return appointment
     } catch (error) {
@@ -58,6 +61,13 @@ export const setAppointmentsThunk = () => async(dispatch) => {
     const appointments = normalizer(data.appointments);
     dispatch(setAppointments(appointments));
     return appointments;
+}
+export const updateAppointmentThunk = (appointmentData) => async (dispatch) => {
+    try {
+        const response = await fetch("/")
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 //REDUCER

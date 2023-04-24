@@ -44,7 +44,6 @@ const PhysicianForm = ({ physician, formType }) => {
     }
 
     return history.push("/dashboard");
-
   };
 
   return (

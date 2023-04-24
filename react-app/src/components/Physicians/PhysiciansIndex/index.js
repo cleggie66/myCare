@@ -36,13 +36,11 @@ const PhysiciansIndex = () => {
                                 <button>Book an Appointment</button>
                             </div>
                             <div>
-                                <button
+                                <i class="fa-solid fa-pen-to-square"
                                     onClick={() => history.push(`/physician/${physician.id}/update`)}
-                                >
-                                    Edit
-                                </button>
+                                />
                                 <OpenModalButton
-                                    buttonText="Delete"
+                                    buttonText={<i class="fa-solid fa-trash-can"></i>}
                                     modalComponent={<DeletePhysicianModal physician={physician}/>}
                                 />
                             </div>
