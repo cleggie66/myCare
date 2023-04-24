@@ -1,3 +1,4 @@
+import AppointmentsIndex from "../Appointments/AppointmentsIndex"
 import PhysiciansIndex from "../Physicians/PhysiciansIndex"
 import "./Dashboard.css"
 
@@ -9,7 +10,10 @@ const Dashboard = () => {
                 <div className="side-bar">
 
                 </div>
-                <PhysiciansIndex />
+                <div className="dashboard-content">
+                    <PhysiciansIndex />
+                    <AppointmentsIndex />
+                </div>
             </div>
         </>
     )

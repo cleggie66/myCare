@@ -7,39 +7,6 @@ from app.forms import PhysicianForm
 physician_routes = Blueprint('physicians', __name__)
 
 
-# -----------  GET  --------------
-# Returns all physicians
-
-@physician_routes.route("")
-@login_required
-def get_all_physicians():
-    physicians = Physician.query.all()
-
-    if not physicians:
-        return {
-            "message": "Physicians could not be found",
-            "status_code": 404
-        }, 404
-
-    return {"physicians": [physician.to_dict() for physician in physicians]}
-
-
-# -----------  GET  --------------
-# Returns physician from id
-
-@physician_routes.route("/<physician_id>")
-@login_required
-def get_physician(physician_id):
-    physician = Physician.query.get(physician_id)
-
-    if not physician:
-        return {
-            "message": "Physician could not be found",
-            "status_code": 404
-        }, 404
-
-    return physician.to_dict()
-
 
 # -----------  POST  --------------
 # Creates a new physician
@@ -65,10 +32,44 @@ def create_physician():
     return {"Message": "Invalid Data"}
 
 
+# -----------  GET  --------------
+# Returns all physicians
+
+@physician_routes.route("")
+@login_required
+def get_all_physicians():
+    physicians = Physician.query.all()
+
+    if not physicians:
+        return {
+            "message": "Physicians could not be found",
+            "status_code": 404
+        }, 404
+
+    return {"physicians": [physician.to_dict() for physician in physicians]}
+
+
+# -----------  GET  --------------
+# Returns physician from id
+
+@physician_routes.route("/<int:physician_id>")
+@login_required
+def get_physician(physician_id):
+    physician = Physician.query.get(physician_id)
+
+    if not physician:
+        return {
+            "message": "Physician could not be found",
+            "status_code": 404
+        }, 404
+
+    return physician.to_dict()
+
+
 # -----------  PUT  --------------
 # Updates a physician
 
-@physician_routes.route("/<physician_id>", methods=["PUT"])
+@physician_routes.route("/<int:physician_id>", methods=["PUT"])
 @login_required
 def update_physician(physician_id):
     physician = Physician.query.get(physician_id)
@@ -82,7 +83,6 @@ def update_physician(physician_id):
     form = PhysicianForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # TODO: Look into refactoring this code:
     if form.validate_on_submit():
         physician.first_name=form.data["first_name"]
         physician.last_name=form.data["last_name"]
@@ -100,7 +100,7 @@ def update_physician(physician_id):
 # -----------  DELETE  --------------
 # Deletes a physician
 
-@physician_routes.route("/<physician_id>", methods=["DELETE"])
+@physician_routes.route("/<int:physician_id>", methods=["DELETE"])
 @login_required
 def delete_physician(physician_id):
     physician = Physician.query.get(physician_id)

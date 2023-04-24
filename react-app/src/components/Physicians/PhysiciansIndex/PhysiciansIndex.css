@@ -5,6 +5,7 @@
 }
 
 .physician-card {
+    height: 300px;
     flex-shrink: 1;
     flex-grow: 2;
     flex-basis: 50px;

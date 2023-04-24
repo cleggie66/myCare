@@ -119,7 +119,7 @@ export default function reducer(state = {}, action) {
                 allPhysicians: { ...state.allPhysicians },
                 activePhysician: { ...state.activePhysician }
             }
-            delete newState[action.physician.id]
+            delete newState.allPhysicians[action.physician.id]
             return newState
         default:
             return state
