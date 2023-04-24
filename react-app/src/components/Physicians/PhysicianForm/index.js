@@ -7,9 +7,10 @@ import "./PhysicianForm.css"
 
 const PhysicianForm = ({ physician, formType }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   let physicianId;
-  if (physician.id) physicianId = physician.id
+  if (physician.id) physicianId = physician.id;
+
   const [firstName, setFirstName] = useState(physician.firstName);
   const [lastName, setLastName] = useState(physician.lastName);
   const [picture, setPicture] = useState(physician.picture);
