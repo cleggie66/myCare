@@ -9,12 +9,14 @@ const UpdateAppointmentForm = () => {
     const { appointmentId } = useParams()
 
     const appointmentsState = useSelector(state => state.appointments)
+    const appointmentData = appointmentsState[appointmentId]
     const appointment = {
-        physicianId: 0,
-        hospitalId: 0,
-        reasonForVisit: "",
-        startTime: "2019-05-15 17:08:11",
-        endTime: "2019-05-15 17:08:11",
+        id: appointmentData.id,
+        physicianId: appointmentData.physician_id,
+        hospitalId: appointmentData.hospital_id,
+        reasonForVisit: appointmentData.reason_for_visit,
+        startTime: appointmentData.start_time,
+        endTime: appointmentData.end_time
     }
 
     return (

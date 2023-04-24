@@ -63,12 +63,14 @@ export const setAppointmentsThunk = () => async(dispatch) => {
 };
 export const updateAppointmentThunk = (appointmentData) => async (dispatch) => {
     try {
+        console.log("IN THUNK", appointmentData)
         const response = await fetch(`/api/appointments/${appointmentData.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(appointmentData)
         })
         const appointment = await response.json()
+        console.log("APPOINTMENT", appointment)
         dispatch(updateAppointment(appointment))
         return appointment
     } catch (error) {

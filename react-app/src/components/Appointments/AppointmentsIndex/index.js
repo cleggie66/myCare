@@ -34,7 +34,9 @@ const AppointmentsIndex = () => {
                             <h3>{appointment.hospital.address}</h3>
                             <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
                             <h3>{appointment.reason_for_visit}</h3>
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-pen-to-square"
+                                onClick={() => history.push(`/appointment/${appointment.id}/update`)}
+                            />
                             <OpenModalButton
                                 buttonText={<i class="fa-solid fa-trash-can"></i>}
                                 modalComponent={<DeleteAppointmentModal appointment={appointment} />}
