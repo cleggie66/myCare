@@ -10,6 +10,7 @@ import PhysicianForm from "./components/Physicians/PhysicianForm";
 import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhysicianForm";
 import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
 import Dashboard from "./components/Dashboard";
+import CreateAppointmentForm from "./components/Appointments/AppointmentForm/CreateAppointmentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
         <Switch>
           <Route path="/dashboard" >
             <Dashboard />
+          </Route>
+          <Route path="/appointment/new">
+            <CreateAppointmentForm />
           </Route>
           <Route path="/physician/new">
             <CreatePhysicianForm />

@@ -24,15 +24,22 @@ const AppointmentsIndex = () => {
                 {appointments.map((appointment) => {
                     return (
                         <div className="appointment-card" key={appointment.id}>
-                            <h2>{`${appointment.patient.first_name} ${appointment.patient.last_name}`}</h2>
+                            <div className="appointment-card-date">
+                                <h3>{appointment.start_time}</h3>
+                            </div>
+                            <h2>{appointment.hospital.name}</h2>
+                            <h3>{appointment.hospital.address}</h3>
                             <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
+                            <h3>{appointment.reason_for_visit}</h3>
                             <button>Edit</button>
                             <button>Delete</button>
                         </div>
                     )
                 })}
             </div>
-            <button>Add an Appointment</button>
+            <button
+                onClick={() => history.push("/appointment/new")}
+            >Add an Appointment</button>
         </>
     )
 
