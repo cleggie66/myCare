@@ -77,11 +77,12 @@ def update_appointment(appointment_id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        appointment.patient_id=form.data["patient_id"],
-        appointment.physician_id=form.data["physician_id"],
-        appointment.hospital_id=form.data["hospital_id"],
-        appointment.reason_for_visit=form.data["reason_for_visit"],
-        appointment.start_time=datetime.strptime(form.data["start_time"], "%Y-%m-%d %H:%M:%S"),
+
+        appointment.patient_id=form.data["patient_id"]
+        appointment.physician_id=form.data["physician_id"]
+        appointment.hospital_id=form.data["hospital_id"]
+        appointment.reason_for_visit=form.data["reason_for_visit"]
+        appointment.start_time=datetime.strptime(form.data["start_time"], "%Y-%m-%d %H:%M:%S")
         appointment.end_time=datetime.strptime(form.data["end_time"], "%Y-%m-%d %H:%M:%S")
 
         db.session.commit()
