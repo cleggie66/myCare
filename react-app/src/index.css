@@ -21,3 +21,9 @@ button:hover {
     background-color: #615A99;
     color: white;
 }
+
+button:disabled {
+    background-color: #e8e8e8;
+    color: #b0b0b0;
+    cursor: default;
+}
