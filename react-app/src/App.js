@@ -41,7 +41,7 @@ function App() {
           <Route path="/physician/:physicianId/update">
             <UpdatePhysicianForm />
           </Route>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">

@@ -10,6 +10,7 @@ const UpdateAppointmentForm = () => {
 
     const appointmentsState = useSelector(state => state.appointments)
     const appointmentData = appointmentsState[appointmentId]
+    console.log(appointmentData.start_time)
     const appointment = {
         id: appointmentData.id,
         physicianId: appointmentData.physician_id,

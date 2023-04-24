@@ -5,11 +5,11 @@ from datetime import datetime
 
 def seed_appointments():
     appointment1 = Appointment(
-        patient_id=3, physician_id=1, hospital_id=1, reason_for_visit="sore throat", start_time=datetime(2019, 5, 15, 17, 8), end_time=datetime(2019, 5, 15, 18, 8))
+        patient_id=3, physician_id=1, hospital_id=1, reason_for_visit="sore throat", start_time="2023-05-15T21:12", end_time="2023-05-15T22:12")
     appointment2 = Appointment(
-        patient_id=2, physician_id=2, hospital_id=2, reason_for_visit="flu symptoms", start_time=datetime(2019, 6, 2, 19, 36), end_time=datetime(2019, 6, 2, 20, 36))
+        patient_id=2, physician_id=2, hospital_id=2, reason_for_visit="flu symptoms", start_time="2023-06-16T21:12", end_time="2023-06-16T22:12")
     appointment3 = Appointment(
-        patient_id=1, physician_id=3, hospital_id=3, reason_for_visit="ear ache", start_time=datetime(2019, 7, 10, 17, 3), end_time=datetime(2019, 7, 10, 18, 3))
+        patient_id=1, physician_id=3, hospital_id=3, reason_for_visit="ear ache", start_time="2023-07-15T21:12", end_time="2023-07-15T22:12")
 
     db.session.add(appointment1)
     db.session.add(appointment2)

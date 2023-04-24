@@ -30,6 +30,8 @@ const AppointmentForm = ({ appointment, formType }) => {
             end_time: endTime
         };
 
+        console.log(appointmentData)
+
         if (formType === "Create Appointment") {
             await dispatch(createAppointmentThunk(appointmentData))
         };
@@ -76,7 +78,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                     Start Time
                 </label>
                 <input
-                    type="text"
+                    type="datetime-local"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
                 />
@@ -84,7 +86,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                     End Time
                 </label>
                 <input
-                    type="text"
+                    type="datetime-local"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
                 />
