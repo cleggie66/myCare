@@ -1,0 +1,14 @@
+.appointment-cards-index {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.appointment-card {
+    width: 600px;
+    flex-shrink: 1;
+    flex-grow: 2;
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 10px;
+    margin: 5px;
+}

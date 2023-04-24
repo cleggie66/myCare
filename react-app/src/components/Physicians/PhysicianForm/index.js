@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
-import { createPhysicianThunk, updatePhysician, updatePhysicianThunk } from "../../../store/physicians";
+import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
+import "./PhysicianForm.css"
 
-function PhysicianForm({ physician, formType }) {
+const PhysicianForm = ({ physician, formType }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   let physicianId;
-  if (physician.id) physicianId = physician.id
+  if (physician.id) physicianId = physician.id;
+
   const [firstName, setFirstName] = useState(physician.firstName);
   const [lastName, setLastName] = useState(physician.lastName);
   const [picture, setPicture] = useState(physician.picture);
@@ -42,72 +44,72 @@ function PhysicianForm({ physician, formType }) {
     }
 
     return history.push("/dashboard");
-  
+
   };
 
   return (
     <>
-      <h1>{formType}</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="physician-form">
+        <h2>{formType}</h2>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
           First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
         </label>
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
         <label>
           Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
         </label>
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
         <label>
           Picture URL
-          <input
-            type="text"
-            value={picture}
-            onChange={(e) => setPicture(e.target.value)}
-          />
         </label>
+        <input
+          type="text"
+          value={picture}
+          onChange={(e) => setPicture(e.target.value)}
+        />
         <label>
           Hospital ID
-          <input
-            type="number"
-            value={hospitalId}
-            onChange={(e) => setHospitalId(e.target.value)}
-          />
         </label>
+        <input
+          type="number"
+          value={hospitalId}
+          onChange={(e) => setHospitalId(e.target.value)}
+        />
         <label>
           Medical Speciality Id
-          <input
-            type="number"
-            value={medicalSpecialityId}
-            onChange={(e) => setMedicalSpecialityId(e.target.value)}
-          />
         </label>
+        <input
+          type="number"
+          value={medicalSpecialityId}
+          onChange={(e) => setMedicalSpecialityId(e.target.value)}
+        />
         <label>
           Medical Education
-          <input
-            type="text"
-            value={medicalEducation}
-            onChange={(e) => setMedicalEducation(e.target.value)}
-          />
         </label>
+        <input
+          type="text"
+          value={medicalEducation}
+          onChange={(e) => setMedicalEducation(e.target.value)}
+        />
         <label>
           Accepts Insurance?
-          <input
-            type="radio"
-            value={acceptsInsurance}
-            onChange={(e) => setAcceptsInsurance(e.target.value)}
-          />
         </label>
+        <input
+          type="radio"
+          value={acceptsInsurance}
+          onChange={(e) => setAcceptsInsurance(e.target.value)}
+        />
         <button type="submit">{formType}</button>
       </form>
     </>
