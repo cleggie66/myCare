@@ -21,25 +21,19 @@ const PhysicianForm = ({ physician, formType }) => {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false)
 
-  const handleInputErrors = () => {
+  useEffect(() => {
     const errorsObj = {};
     if (firstName.length === 0) {
       errorsObj.firstName = "First Name is required";
-    }
+    };
     if (lastName.length === 0) {
       errorsObj.lastName = "Last Name is required";
-    }
-    if (medicalEducation.length === 0) {
+    };
+    if (medicalEducation === 0) {
       errorsObj.medicalEducation = "Medical Education is required";
-    }
-
+    };
     setErrors(errorsObj);
-  };
-
-  useEffect(() => {
-    handleInputErrors();
   }, [firstName, lastName, medicalEducation]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,11 +54,11 @@ const PhysicianForm = ({ physician, formType }) => {
       if (formType === "Create Physician") {
         await dispatch(createPhysicianThunk(physicianData))
       }
-  
+
       if (formType === "Update Physician") {
         await dispatch(updatePhysicianThunk(physicianData))
       }
-      
+
       return history.push("/dashboard");
     }
 
@@ -148,8 +142,8 @@ const PhysicianForm = ({ physician, formType }) => {
         </form>
       </div>
       <button
-      type="submit"
-      form="physician-form"
+        type="submit"
+        form="physician-form"
         disabled={hasSubmitted && Object.values(errors).length !== 0}
       >{formType}</button>
     </div>

@@ -1,28 +1,17 @@
-.physician-form-page {
+.appointment-form-page {
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.physician-form-container {
+.appointment-form-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.physician-form-preview {
-    width: 300px;
-    background-color: #f7f7f7;
-    border: 3px solid #e4e4e4;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.physician-form {
+.appointment-form {
     display: flex;
     width: 300px;
     flex-direction: column;

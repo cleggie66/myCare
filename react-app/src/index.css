@@ -28,6 +28,17 @@ button:disabled {
     cursor: default;
 }
 
+label {
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    background-color: #EAEAEA;
+    padding: 3px;
+    border-radius: 5px;
+}
+
 .error {
     color: red;
     font-style: italic;
