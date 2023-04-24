@@ -103,6 +103,7 @@ const PhysicianForm = ({ physician, formType }) => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
+          {hasSubmitted && (<p className="error">{errors.lastName}</p>)}
           <label>
             Picture URL
           </label>
@@ -135,6 +136,7 @@ const PhysicianForm = ({ physician, formType }) => {
             value={medicalEducation}
             onChange={(e) => setMedicalEducation(e.target.value)}
           />
+          {hasSubmitted && (<p className="error">{errors.medicalEducation}</p>)}
           <label>
             Accepts Insurance?
           </label>

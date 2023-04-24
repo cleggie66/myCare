@@ -27,3 +27,8 @@ button:disabled {
     color: #b0b0b0;
     cursor: default;
 }
+
+.error {
+    color: red;
+    font-style: italic;
+}

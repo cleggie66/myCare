@@ -47,7 +47,7 @@ const AppointmentsIndex = () => {
             </div>
             <button
                 onClick={() => history.push("/appointment/new")}
-            >Add an Appointment</button>
+            >Make an Appointment</button>
         </>
     )
 
