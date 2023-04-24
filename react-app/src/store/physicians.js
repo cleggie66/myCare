@@ -69,7 +69,6 @@ export const setAllPhysiciansThunk = () => async (dispatch) => {
     return physicians;
 };
 export const updatePhysicianThunk = (physicianData) => async (dispatch) => {
-    console.log(physicianData)
     try {
         const response = await fetch(`/api/physicians/${physicianData.id}`, {
             method: "PUT",
@@ -90,6 +89,7 @@ export const deletePhysicianThunk = (physicianData) => async (dispatch) => {
     if (response.ok) {
         dispatch(deletePhysician(physicianData))
     }
+    return response
 };
 
 

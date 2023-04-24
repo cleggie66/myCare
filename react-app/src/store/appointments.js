@@ -48,26 +48,42 @@ export const createAppointmentThunk = (appointmentData) => async (dispatch) => {
             body: JSON.stringify(appointmentData)
         })
         const appointment = await response.json()
-        console.log("APP", appointment)
         dispatch(createAppointment(appointment))
         return appointment
     } catch (error) {
         console.log(error)
     }
-}
+};
 export const setAppointmentsThunk = () => async(dispatch) => {
     const response = await fetch("/api/appointments");
     const data = await response.json();
     const appointments = normalizer(data.appointments);
     dispatch(setAppointments(appointments));
     return appointments;
-}
+};
 export const updateAppointmentThunk = (appointmentData) => async (dispatch) => {
     try {
-        const response = await fetch("/")
+        const response = await fetch(`/api/appointments/${appointmentData.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(appointmentData)
+        })
+        const appointment = await response.json()
+        dispatch(updateAppointment(appointment))
+        return appointment
     } catch (error) {
         console.log(error)
     }
+};
+export const deleteAppointmentThunk = (appointmentData) => async (dispatch) => {
+    const response = await fetch(`/api/appointments/${appointmentData.id}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        dispatch(deleteAppointment(appointmentData))
+    }
+    return response
+    
 }
 
 //REDUCER

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
 import "./AppointmentsIndex.css"
+import OpenModalButton from "../../OpenModalButton"
+import DeleteAppointmentModal from "../DeleteAppointmentModal"
 
 
 const AppointmentsIndex = () => {
@@ -16,6 +18,7 @@ const AppointmentsIndex = () => {
     const appointmentsState = useSelector(state => state.appointments)
     if (!appointmentsState) return <h1>LOADING...</h1>
     const appointments = Object.values(appointmentsState)
+
 
     return (
         <>
@@ -32,7 +35,10 @@ const AppointmentsIndex = () => {
                             <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
                             <h3>{appointment.reason_for_visit}</h3>
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash-can"></i>
+                            <OpenModalButton
+                                buttonText={<i class="fa-solid fa-trash-can"></i>}
+                                modalComponent={<DeleteAppointmentModal appointment={appointment} />}
+                            />
                         </div>
                     )
                 })}
