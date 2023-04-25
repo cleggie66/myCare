@@ -87,7 +87,6 @@ const WelcomePage = () => {
                     modalComponent={<SignupFormModal />}
                     buttonText="Sign Up"
                 />
-
             </div>
         </div>
     )
