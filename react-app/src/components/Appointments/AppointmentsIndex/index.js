@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
 import "./AppointmentsIndex.css"
+import AppointmentCard from "./AppointmentCard"
 
 
 const AppointmentsIndex = () => {
@@ -17,29 +18,18 @@ const AppointmentsIndex = () => {
     if (!appointmentsState) return <h1>LOADING...</h1>
     const appointments = Object.values(appointmentsState)
 
+
     return (
         <>
             <h2>Appointments</h2>
             <div className="appointment-cards-index">
                 {appointments.map((appointment) => {
-                    return (
-                        <div className="appointment-card" key={appointment.id}>
-                            <div className="appointment-card-date">
-                                <h3>{appointment.start_time}</h3>
-                            </div>
-                            <h2>{appointment.hospital.name}</h2>
-                            <h3>{appointment.hospital.address}</h3>
-                            <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
-                            <h3>{appointment.reason_for_visit}</h3>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </div>
-                    )
+                    return <AppointmentCard appointment={appointment}/>
                 })}
             </div>
             <button
                 onClick={() => history.push("/appointment/new")}
-            >Add an Appointment</button>
+            >Book an Appointment</button>
         </>
     )
 

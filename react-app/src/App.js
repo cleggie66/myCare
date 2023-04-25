@@ -11,6 +11,7 @@ import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhy
 import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
 import Dashboard from "./components/Dashboard";
 import CreateAppointmentForm from "./components/Appointments/AppointmentForm/CreateAppointmentForm";
+import UpdateAppointmentForm from "./components/Appointments/AppointmentForm/UpdateAppointmentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,13 +32,16 @@ function App() {
           <Route path="/appointment/new">
             <CreateAppointmentForm />
           </Route>
+          <Route path="/appointment/:appointmentId/update">
+            <UpdateAppointmentForm />
+          </Route>
           <Route path="/physician/new">
             <CreatePhysicianForm />
           </Route>
           <Route path="/physician/:physicianId/update">
             <UpdatePhysicianForm />
           </Route>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">

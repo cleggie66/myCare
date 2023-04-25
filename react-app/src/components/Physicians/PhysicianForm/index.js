@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
@@ -19,7 +19,21 @@ const PhysicianForm = ({ physician, formType }) => {
   const [medicalEducation, setMedicalEducation] = useState(physician.medicalEducation);
   const [acceptsInsurance, setAcceptsInsurance] = useState(physician.acceptsInsurance);
   const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
+  useEffect(() => {
+    const errorsObj = {};
+    if (firstName.length === 0) {
+      errorsObj.firstName = "First Name is required";
+    };
+    if (lastName.length === 0) {
+      errorsObj.lastName = "Last Name is required";
+    };
+    if (medicalEducation === 0) {
+      errorsObj.medicalEducation = "Medical Education is required";
+    };
+    setErrors(errorsObj);
+  }, [firstName, lastName, medicalEducation]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,84 +49,104 @@ const PhysicianForm = ({ physician, formType }) => {
       accepts_insurance: acceptsInsurance
     }
 
-    if (formType === "Create Physician") {
-      await dispatch(createPhysicianThunk(physicianData))
+    if (Object.values(errors).length === 0) {
+
+      if (formType === "Create Physician") {
+        await dispatch(createPhysicianThunk(physicianData))
+      }
+
+      if (formType === "Update Physician") {
+        await dispatch(updatePhysicianThunk(physicianData))
+      }
+
+      return history.push("/dashboard");
     }
 
-    if (formType === "Update Physician") {
-      await dispatch(updatePhysicianThunk(physicianData))
-    }
-
-    return history.push("/dashboard");
-
+    setHasSubmitted(true)
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="physician-form">
-        <h2>{formType}</h2>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          First Name
-        </label>
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label>
-          Last Name
-        </label>
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <label>
-          Picture URL
-        </label>
-        <input
-          type="text"
-          value={picture}
-          onChange={(e) => setPicture(e.target.value)}
-        />
-        <label>
-          Hospital ID
-        </label>
-        <input
-          type="number"
-          value={hospitalId}
-          onChange={(e) => setHospitalId(e.target.value)}
-        />
-        <label>
-          Medical Speciality Id
-        </label>
-        <input
-          type="number"
-          value={medicalSpecialityId}
-          onChange={(e) => setMedicalSpecialityId(e.target.value)}
-        />
-        <label>
-          Medical Education
-        </label>
-        <input
-          type="text"
-          value={medicalEducation}
-          onChange={(e) => setMedicalEducation(e.target.value)}
-        />
-        <label>
-          Accepts Insurance?
-        </label>
-        <input
-          type="radio"
-          value={acceptsInsurance}
-          onChange={(e) => setAcceptsInsurance(e.target.value)}
-        />
-        <button type="submit">{formType}</button>
-      </form>
-    </>
+    <div className="physician-form-page">
+      <h2>{formType}</h2>
+      <div className="physician-form-container">
+        <div className="physician-form-preview">
+          <div className="image-container">
+            <img src={picture} alt="doctor" className="physician-profile-pic" />
+          </div>
+          <div className="physician-form-preview-details">
+            <h2>{firstName}</h2>
+            <h2>{lastName}</h2>
+            <h2>{medicalEducation}</h2>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit} className="physician-form" id="physician-form">
+          <label>
+            First Name
+          </label>
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.firstName}</p>)}
+          <label>
+            Last Name
+          </label>
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.lastName}</p>)}
+          <label>
+            Picture URL
+          </label>
+          <input
+            type="text"
+            value={picture}
+            onChange={(e) => setPicture(e.target.value)}
+          />
+          <label>
+            Hospital ID
+          </label>
+          <input
+            type="number"
+            value={hospitalId}
+            onChange={(e) => setHospitalId(e.target.value)}
+          />
+          <label>
+            Medical Speciality Id
+          </label>
+          <input
+            type="number"
+            value={medicalSpecialityId}
+            onChange={(e) => setMedicalSpecialityId(e.target.value)}
+          />
+          <label>
+            Medical Education
+          </label>
+          <input
+            type="text"
+            value={medicalEducation}
+            onChange={(e) => setMedicalEducation(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.medicalEducation}</p>)}
+          <label>
+            Accepts Insurance?
+          </label>
+          <input
+            type="checkbox"
+            checked={acceptsInsurance}
+            onChange={(e) => setAcceptsInsurance(!acceptsInsurance)}
+          />
+        </form>
+      </div>
+      <button
+        type="submit"
+        form="physician-form"
+        disabled={hasSubmitted && Object.values(errors).length !== 0}
+      >{formType}</button>
+    </div>
   );
 }
 

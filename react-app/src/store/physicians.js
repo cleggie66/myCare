@@ -47,6 +47,8 @@ export const deletePhysician = (physician) => {
 // THUNKS
 export const createPhysicianThunk = (physicianData) => async (dispatch) => {
     try {
+        console.log("DATA", physicianData)
+        console.log("DATA2", JSON.stringify(physicianData))
         const response = await fetch("/api/physicians", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -67,7 +69,6 @@ export const setAllPhysiciansThunk = () => async (dispatch) => {
     return physicians;
 };
 export const updatePhysicianThunk = (physicianData) => async (dispatch) => {
-    console.log(physicianData)
     try {
         const response = await fetch(`/api/physicians/${physicianData.id}`, {
             method: "PUT",
@@ -88,6 +89,7 @@ export const deletePhysicianThunk = (physicianData) => async (dispatch) => {
     if (response.ok) {
         dispatch(deletePhysician(physicianData))
     }
+    return response
 };
 
 

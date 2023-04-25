@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
-import PhysicianForm from ".";
 import { useParams } from "react-router-dom";
+import PhysicianForm from ".";
 
 
 const UpdatePhysicianForm = () => {

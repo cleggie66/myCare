@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
 import PhysicianForm from ".";
-import { createPhysician } from "../../../store/physicians";
+import defaultImage from "../../../media/default-user-icon.jpg"
 
 
 const CreatePhysicianForm = () => {
@@ -9,7 +7,7 @@ const CreatePhysicianForm = () => {
     const physician = {
         firstName: "",
         lastName: "",
-        picture: "",
+        picture: defaultImage,
         hospitalId: 1,
         medicalSpecialityId: 1,
         medicalEducation: "",

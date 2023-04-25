@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
 		<div className='navbar'>
 			<NavLink exact to="/dashboard">
 				<span className='home-icon'>
-					<i class="fa-solid fa-house" />
+					<i className="fa-solid fa-house" />
 				</span>
 			</NavLink>
 			{isLoaded && (

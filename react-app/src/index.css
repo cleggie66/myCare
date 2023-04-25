@@ -21,3 +21,30 @@ button:hover {
     background-color: #615A99;
     color: white;
 }
+
+button:disabled {
+    background-color: #e8e8e8;
+    color: #b0b0b0;
+    cursor: default;
+}
+
+label {
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    background-color: #EAEAEA;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+.hidden-icons {
+    color: white;
+    transition: all 1s ease-out;
+}
