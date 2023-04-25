@@ -1,11 +1,13 @@
+import { useParams } from "react-router-dom"
 import AppointmentForm from "."
 
-
-
 const CreateAppointmentForm = () => {
+    const { physicianId } = useParams()
+
+    console.log("ID", physicianId)
 
     const appointment = {
-        physicianId: 0,
+        physicianId: physicianId || 0,
         hospitalId: 0,
         reasonForVisit: "",
         startTime: "",
