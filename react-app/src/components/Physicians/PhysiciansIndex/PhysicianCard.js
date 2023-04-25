@@ -26,7 +26,9 @@ const PhysicianCard = ({ physician }) => {
                 <h3>{physician.hospital.name}</h3>
                 <div className="physician-card-buttons">
                     <button>Add to MyCare team</button>
-                    <button>Book an Appointment</button>
+                    <button
+                    onClick={() => history.push(`/appointment/new/${physician.id}`)}
+                    >Book an Appointment</button>
                 </div>
             </div>
             <div className="physician-card-icons">

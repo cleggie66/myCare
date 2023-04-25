@@ -29,6 +29,9 @@ function App() {
           <Route path="/dashboard" >
             <Dashboard />
           </Route>
+          <Route path="/appointment/new/:physicianId">
+            <CreateAppointmentForm />
+          </Route>
           <Route path="/appointment/new">
             <CreateAppointmentForm />
           </Route>
