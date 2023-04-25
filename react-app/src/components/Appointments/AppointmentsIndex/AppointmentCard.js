@@ -7,6 +7,14 @@ import DeleteAppointmentModal from "../DeleteAppointmentModal"
 const AppointmentCard = ({ appointment }) => {
     const history = useHistory()
     const [iconVisibility, setIconVisibility] = useState("hidden-icons")
+    const monthArray = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    const year = appointment.start_time.slice(0, 4)
+    const monthNum = Number(appointment.start_time.slice(5, 7))
+    const month = monthArray[monthNum - 1]
+    const day = appointment.start_time.slice(8, 10)
+    const hour = appointment.start_time.slice(11, 13)
+    const minute = appointment.start_time.slice(14)
+    const time = `${hour}:${minute} AM`
 
     return (
         <div
@@ -15,13 +23,18 @@ const AppointmentCard = ({ appointment }) => {
             onMouseOver={() => setIconVisibility("")}
             onMouseLeave={() => setIconVisibility("hidden-icons")}
         >
-            <div className="appointment-card-content">
-                <div className="appointment-card-date">
-                    <h3>{appointment.start_time}</h3>
-                </div>
+            <div className="appointment-card-date">
+                <h3 className="month">{month}</h3>
+                <h3 className="day">{day}</h3>
+                <h3 className="year">{year}</h3>
+                <h3 className="time">{time}</h3>
+            </div>
+            <div className="appointment-card-details">
+                <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
+                <hr className="appointment-hr"/>
                 <h2>{appointment.hospital.name}</h2>
                 <h3>{appointment.hospital.address}</h3>
-                <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
+                <hr className="appointment-hr" />
                 <h3>{appointment.reason_for_visit}</h3>
             </div>
             <div className="appointment-card-icons">
