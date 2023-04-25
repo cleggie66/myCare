@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
-import PhysicianForm from "./components/Physicians/PhysicianForm";
 import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhysicianForm";
 import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
 import Dashboard from "./components/Dashboard";
 import CreateAppointmentForm from "./components/Appointments/AppointmentForm/CreateAppointmentForm";
 import UpdateAppointmentForm from "./components/Appointments/AppointmentForm/UpdateAppointmentForm";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +48,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="">
+            <LandingPage />
           </Route>
         </Switch>
       )}

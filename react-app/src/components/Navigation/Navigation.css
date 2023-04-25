@@ -8,6 +8,29 @@
 
 .profile-dropdown {
   position: absolute;
+  height: auto;
+  width: 150px;
+  top: 40px;
+  right: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 2px solid #59538D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.nav-button {
+  width: 100%;
+  margin: 5px;
+}
+
+.nav-hr {
+  width: 90%;
+  margin: 10px 0;
+  border: 1px solid #e5e5e5;
 }
 
 .hidden {

@@ -42,14 +42,13 @@ function ProfileButton({ user }) {
       <span onClick={openMenu} className="profile-icon">
         <i className="fas fa-user-circle" />
       </span>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <h3>{user.username}</h3>
+            <h3>{user.email}</h3>
+            <hr className="nav-hr" />
+            <button onClick={handleLogout} className="nav-button">Log Out</button>
           </>
         ) : (
           <>
@@ -57,16 +56,19 @@ function ProfileButton({ user }) {
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
+              className="nav-button"
             />
-
+              <button className="nav-button">Demo User</button>
+            <hr className="nav-hr" />
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
+              className="nav-button"
             />
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }
