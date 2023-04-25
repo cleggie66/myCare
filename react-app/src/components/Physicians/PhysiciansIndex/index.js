@@ -1,10 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { deletePhysicianThunk, setAllPhysiciansThunk } from "../../../store/physicians"
+import { setAllPhysiciansThunk } from "../../../store/physicians"
+import { useHistory } from "react-router-dom"
 import "./PhysiciansIndex.css"
-import { Redirect, useHistory } from "react-router-dom"
-import OpenModalButton from "../../OpenModalButton"
-import DeletePhysicianModal from "../DeletePhysicianModal"
+import PhysicianCard from "./PhysicianCard"
 
 
 const PhysiciansIndex = () => {
@@ -23,29 +22,7 @@ const PhysiciansIndex = () => {
         <>
             <div className="physician-cards-index">
                 {physicians.map((physician) => {
-                    return (
-                        <div className="physician-card" key={physician.id}>
-                            <div className="image-container">
-                                <img src={physician.picture} alt="doctor" className="physician-profile-pic" />
-                            </div>
-                            <h2>{`${physician.first_name} ${physician.last_name} ${physician.medical_education}`}</h2>
-                            <h3>{physician.medical_speciality.name}</h3>
-                            <h3>{physician.hospital.name}</h3>
-                            <div>
-                                <button>Add to MyCare team</button>
-                                <button>Book an Appointment</button>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-pen-to-square"
-                                    onClick={() => history.push(`/physician/${physician.id}/update`)}
-                                />
-                                <OpenModalButton
-                                    buttonText={<i class="fa-solid fa-trash-can"></i>}
-                                    modalComponent={<DeletePhysicianModal physician={physician}/>}
-                                />
-                            </div>
-                        </div>
-                    )
+                    return <PhysicianCard physician={physician} />
                 })}
             </div>
             <button

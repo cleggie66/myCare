@@ -8,7 +8,42 @@
     width: 600px;
     flex-shrink: 1;
     flex-grow: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
     border: 2px solid rgb(160, 160, 160);
     border-radius: 10px;
     margin: 5px;
 }
+
+.appointment-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.appointment-card-icons {
+    position: relative;
+    height: fit-content;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.appointment-card-icon {
+    font-size: 24px;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: all .1s ease-out;
+}
+.appointment-card-icon:hover {
+    background-color: white;
+    color: #615A99;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+

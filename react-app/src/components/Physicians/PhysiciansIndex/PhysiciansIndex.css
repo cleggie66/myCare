@@ -5,18 +5,19 @@
 }
 
 .physician-card {
-    height: 300px;
+    height: auto;
     flex-shrink: 1;
     flex-grow: 2;
     flex-basis: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
     border: 2px solid rgb(160, 160, 160);
     border-radius: 10px;
     margin: 5px;
 }
 
 .image-container {
-    /* position: relative; */
-    /* bottom: 50px; */
     width: 120px;
     height: 120px;
     overflow: hidden;
@@ -32,4 +33,43 @@
     height: 100%;
     object-fit: cover;
     background-color: white;
+}
+
+.physician-card-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.physician-card-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.physician-card-icons {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.physician-card-icon {
+    font-size: 24px;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: all .1s ease-out;
+}
+
+.physician-card-icon:hover {
+    background-color: white;
+    color: #615A99;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
