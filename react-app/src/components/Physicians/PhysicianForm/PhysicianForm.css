@@ -12,7 +12,8 @@
 }
 
 .physician-form-preview {
-    width: 300px;
+    min-width: 300px;
+    width: auto;
     background-color: #f7f7f7;
     border: 3px solid #e4e4e4;
     padding: 20px;

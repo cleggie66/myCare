@@ -1,13 +1,11 @@
 import PhysicianForm from ".";
-import defaultImage from "../../../media/default-user-icon.jpg"
-
 
 const CreatePhysicianForm = () => {
 
     const physician = {
         firstName: "",
         lastName: "",
-        picture: defaultImage,
+        picture: "",
         hospitalId: 1,
         medicalSpecialityId: 1,
         medicalEducation: "",

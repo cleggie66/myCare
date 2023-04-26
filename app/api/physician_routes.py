@@ -3,9 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import Physician, db
 from app.forms import PhysicianForm
 
-
 physician_routes = Blueprint('physicians', __name__)
-
 
 
 # -----------  POST  --------------

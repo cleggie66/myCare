@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
 import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
+import defaultImage from "../../../media/default-user-icon.jpg"
 import "./PhysicianForm.css"
 
 const PhysicianForm = ({ physician, formType }) => {
@@ -42,7 +43,7 @@ const PhysicianForm = ({ physician, formType }) => {
       id: physicianId,
       first_name: firstName,
       last_name: lastName,
-      picture: picture,
+      picture: picture || defaultImage,
       hospital_id: hospitalId,
       medical_speciality_id: medicalSpecialityId,
       medical_education: medicalEducation,
@@ -71,7 +72,7 @@ const PhysicianForm = ({ physician, formType }) => {
       <div className="physician-form-container">
         <div className="physician-form-preview">
           <div className="image-container">
-            <img src={picture} alt="doctor" className="physician-profile-pic" />
+            <img src={picture || defaultImage} alt="doctor" className="physician-profile-pic" />
           </div>
           <div className="physician-form-preview-details">
             <h2>{firstName}</h2>
