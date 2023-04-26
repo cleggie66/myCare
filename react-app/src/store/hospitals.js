@@ -1,0 +1,1 @@
+const CREATE_HOSPITAL = "hospitals/CREATE_HOSPITAL";
