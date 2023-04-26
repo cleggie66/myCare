@@ -25,6 +25,11 @@ const LandingPage = () => {
         }
     };
 
+    const loginDemo = async (e) => {
+        e.preventDefault();
+        await dispatch(login("demo@aa.io", "password"));
+    }
+
 
     return (
         <div className="welcome-page">
@@ -102,7 +107,9 @@ const LandingPage = () => {
                         className="landing-button"
                     >Log In</button>
                     <button
+                        type="button"
                         className="landing-button"
+                        onClick={loginDemo}
                     >Demo User</button>
                 </form>
                 <h2>New Here?</h2>
