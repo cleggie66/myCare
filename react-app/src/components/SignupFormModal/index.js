@@ -71,7 +71,6 @@ function SignupFormModal() {
 					type="text"
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
-					required
 				/>
 				<label>
 					Last Name
@@ -80,7 +79,6 @@ function SignupFormModal() {
 					type="text"
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
-					required
 				/>
 				<label>
 					Username
@@ -89,7 +87,6 @@ function SignupFormModal() {
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
-					required
 				/>
 				<label>
 					Email
@@ -98,7 +95,6 @@ function SignupFormModal() {
 					type="text"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-					required
 				/>
 				<label>
 					Date of Birth
@@ -107,7 +103,6 @@ function SignupFormModal() {
 					type="date"
 					value={dateOfBirth}
 					onChange={(e) => setDateOfBirth(e.target.value)}
-					required
 				/>
 				<label>
 					Blood Type
@@ -132,7 +127,6 @@ function SignupFormModal() {
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
-					required
 				/>
 				<label>
 					Confirm Password
@@ -141,7 +135,6 @@ function SignupFormModal() {
 					type="password"
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
-					required
 				/>
 				<button type="submit">Sign Up</button>
 				<button onClick={autoFill} type="button">Auto Fill</button>
