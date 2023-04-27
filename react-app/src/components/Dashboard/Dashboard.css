@@ -5,7 +5,18 @@
 }
 
 .side-bar {
-    width: 100px;
+    width: 500px;
     height: 100vh;
     background-color: #615A99;
+}
+
+.profile-image-container {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 10px;
 }

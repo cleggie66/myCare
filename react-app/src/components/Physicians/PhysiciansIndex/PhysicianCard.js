@@ -21,8 +21,8 @@ const PhysicianCard = ({ physician }) => {
             onMouseLeave={() => setIconVisibility("hidden-physician-icons")}
         >
             <div className="physician-card-header">
-                <div className="image-container">
-                    <img src={physician.picture} alt="doctor" className="physician-profile-pic" />
+                <div className="physician-image-container">
+                    <img src={physician.picture} alt="doctor" className="profile-pic" />
                 </div>
                 <div className="physician-card-icons">
                     <div className={`physician-card-icon ${iconVisibility}`}>
