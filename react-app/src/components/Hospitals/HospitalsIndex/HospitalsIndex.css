@@ -1,0 +1,37 @@
+.hospitals-index {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.hospital-card {
+    width: auto;
+    background-color: white;
+    flex-shrink: 1;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.hospital-card-icon {
+    font-size: 24px;
+    background-color: white;
+    color: #59538D;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: all .1s ease-out;
+    cursor: pointer;
+}
+
+.hospital-card-icon:hover {
+    background-color: #ffffff;
+    color: #615A99;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}

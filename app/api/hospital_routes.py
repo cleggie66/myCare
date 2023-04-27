@@ -14,6 +14,7 @@ hospital_routes = Blueprint('hospitals', __name__)
 def create_hospital():
     form = HospitalForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
         new_hospital = Hospital(
             name=form.data["name"],
@@ -24,6 +25,7 @@ def create_hospital():
             lat=form.data["lat"],
             lng=form.data["lng"]
         )
+        print("MADE IT")
         db.session.add(new_hospital)
         db.session.commit()
         return new_hospital.to_dict()

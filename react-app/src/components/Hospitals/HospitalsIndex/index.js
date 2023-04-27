@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { setHospitalsThunk } from "../../../store/hospitals";
 import OpenModalButton from "../../OpenModalButton";
-import DeleteAppointmentModal from "../../Appointments/DeleteAppointmentModal";
+import CreateHospitalModal from "../HospitalModal/CreateHospitalModal";
+import UpdateHospitalModal from "../HospitalModal/UpdateHospitalModal";
+import DeleteHospitalModal from "../HospitalModal/DeleteHospitalModal";
+import "./HospitalsIndex.css"
 
 const HospitalsIndex = () => {
     const dispatch = useDispatch();
@@ -33,19 +36,23 @@ const HospitalsIndex = () => {
                             <h2>{hospital.state}</h2>
                             <h2>{hospital.country}</h2>
                             <OpenModalButton
-                                buttonText={<i className="fa-solid fa-trash-can"></i>}
-                                modalComponent={<DeleteAppointmentModal hospital={hospital} />}
-                                className="appointment-card-icon"
+                                buttonText={<i className="fa-solid fa-pen-to-square"></i>}
+                                modalComponent={<UpdateHospitalModal hospital={hospital}/>}
+                                className="hospital-card-icon"
                             />
                             <OpenModalButton
                                 buttonText={<i className="fa-solid fa-trash-can"></i>}
-                                modalComponent={<DeleteAppointmentModal hospital={hospital} />}
-                                className="appointment-card-icon"
+                                modalComponent={<DeleteHospitalModal hospital={hospital}/>}
+                                className="hospital-card-icon"
                             />
                         </div>
                     )
                 })}
             </div>
+            <OpenModalButton
+                buttonText="Create Hospital"
+                modalComponent={<CreateHospitalModal />}
+            />
         </>
     )
 }

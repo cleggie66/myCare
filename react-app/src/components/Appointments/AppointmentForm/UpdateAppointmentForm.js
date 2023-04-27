@@ -1,16 +1,14 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import AppointmentForm from "."
 import { useParams } from "react-router-dom";
 
 
 
 const UpdateAppointmentForm = () => {
-    const dispatch = useDispatch();
     const { appointmentId } = useParams()
 
     const appointmentsState = useSelector(state => state.appointments)
     const appointmentData = appointmentsState[appointmentId]
-    console.log(appointmentData.start_time)
     const appointment = {
         id: appointmentData.id,
         physicianId: appointmentData.physician_id,
