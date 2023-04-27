@@ -81,8 +81,7 @@ export const deleteHospitalThunk = (hospitalData) => async (dispatch) => {
         dispatch(deleteHospital(hospitalData))
     }
     return response
-
-}
+};
 
 //REDUCER
 export default function reducer(state = {}, action) {
