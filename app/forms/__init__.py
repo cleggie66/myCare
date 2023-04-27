@@ -3,4 +3,4 @@ from .signup_form import SignUpForm
 from .physician_form import PhysicianForm
 from .appointment_form import AppointmentForm
 from .hospital_form import HospitalForm
-from .medical_speciality_form import MedicalSpecialityForm
+from .medical_specialties_form import MedicalSpecialtyForm

@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-class MedicalSpeciality(db.Model):
-    __tablename__ = 'medical_specialities'
+class MedicalSpecialty(db.Model):
+    __tablename__ = 'medical_specialties'
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
@@ -13,7 +13,7 @@ class MedicalSpeciality(db.Model):
 
     # RELATIONSHIPS
 
-    physicians = db.relationship("Physician", back_populates="medical_speciality")
+    physicians = db.relationship("Physician", back_populates="medical_specialty")
 
     # METHODS
 

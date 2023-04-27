@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .appointments import seed_appointments, undo_appointments 
 from .hospitals import seed_hospitals, undo_hospitals
-from .medical_specialities import seed_medical_specialities, undo_medical_specialities
+from .medical_specialties import seed_medical_specialties, undo_medical_specialties
 from .physicians import seed_physicians, undo_physicians
 from .users import seed_users, undo_users
 
@@ -23,12 +23,12 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_appointments()
         undo_physicians()
-        undo_medical_specialities()
+        undo_medical_specialties()
         undo_hospitals()
         undo_users()
     seed_users()
     seed_hospitals()
-    seed_medical_specialities()
+    seed_medical_specialties()
     seed_physicians()
     seed_appointments()
 
@@ -38,6 +38,6 @@ def seed():
 def undo():
     undo_appointments()
     undo_physicians()
-    undo_medical_specialities()
+    undo_medical_specialties()
     undo_hospitals()
     undo_users()

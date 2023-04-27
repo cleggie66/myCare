@@ -16,7 +16,7 @@ const PhysicianForm = ({ physician, formType }) => {
   const [lastName, setLastName] = useState(physician.lastName);
   const [picture, setPicture] = useState(physician.picture);
   const [hospitalId, setHospitalId] = useState(physician.hospitalId);
-  const [medicalSpecialityId, setMedicalSpecialityId] = useState(physician.medicalSpecialityId);
+  const [medicalSpecialtyId, setMedicalSpecialtyId] = useState(physician.medicalSpecialtyId);
   const [medicalEducation, setMedicalEducation] = useState(physician.medicalEducation);
   const [acceptsInsurance, setAcceptsInsurance] = useState(physician.acceptsInsurance);
   const [errors, setErrors] = useState([]);
@@ -45,7 +45,7 @@ const PhysicianForm = ({ physician, formType }) => {
       last_name: lastName,
       picture: picture || defaultImage,
       hospital_id: hospitalId,
-      medical_speciality_id: medicalSpecialityId,
+      medical_specialty_id: medicalSpecialtyId,
       medical_education: medicalEducation,
       accepts_insurance: acceptsInsurance
     }
@@ -116,12 +116,12 @@ const PhysicianForm = ({ physician, formType }) => {
             onChange={(e) => setHospitalId(e.target.value)}
           />
           <label>
-            Medical Speciality Id
+            Medical Specialty Id
           </label>
           <input
             type="number"
-            value={medicalSpecialityId}
-            onChange={(e) => setMedicalSpecialityId(e.target.value)}
+            value={medicalSpecialtyId}
+            onChange={(e) => setMedicalSpecialtyId(e.target.value)}
           />
           <label>
             Medical Education

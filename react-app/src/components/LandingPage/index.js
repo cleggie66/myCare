@@ -59,7 +59,7 @@ const LandingPage = () => {
                             <i class="fa-solid fa-pills"></i>
                         </div>
                         <div className="info-card-details">
-                            <h4>Research medical specialities</h4>
+                            <h4>Research medical specialties</h4>
                             <p>Details</p>
                         </div>
                     </div>

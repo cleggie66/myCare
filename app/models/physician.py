@@ -11,14 +11,14 @@ class Physician(db.Model):
     last_name = db.Column(db.String(100), nullable=False)
     picture = db.Column(db.String)
     hospital_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("hospitals.id"))) 
-    medical_speciality_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("medical_specialities.id")))
+    medical_specialty_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("medical_specialties.id")))
     medical_education  = db.Column(db.String)
     accepts_insurance = db.Column(db.Boolean, default=True)
 
     # RELATIONSHIPS
 
     hospital = db.relationship("Hospital", back_populates="physicians")
-    medical_speciality = db.relationship("MedicalSpeciality", back_populates="physicians")
+    medical_specialty = db.relationship("MedicalSpecialty", back_populates="physicians")
     appointments = db.relationship("Appointment", back_populates="physician", cascade="all,delete")
 
     # METHODS
@@ -30,11 +30,11 @@ class Physician(db.Model):
             "last_name": self.last_name,
             "picture": self.picture,
             "hospital_id": self.hospital_id,
-            "medical_speciality_id": self.medical_speciality_id,
+            "medical_specialty_id": self.medical_specialty_id,
             "medical_education": self.medical_education,
             "accepts_insurance": self.accepts_insurance,
             "hospital": self.hospital.to_dict_simple(),
-            "medical_speciality": self.medical_speciality.to_dict_simple(),
+            "medical_specialty": self.medical_specialty.to_dict_simple(),
             "appointments": [appointment.to_dict_simple() for appointment in self.appointments]
         }
     
@@ -45,7 +45,7 @@ class Physician(db.Model):
             "last_name": self.last_name,
             "picture": self.picture,
             "hospital_id": self.hospital_id,
-            "medical_speciality_id": self.medical_speciality_id,
+            "medical_specialty_id": self.medical_specialty_id,
             "medical_education": self.medical_education,
             "accepts_insurance": self.accepts_insurance
         }

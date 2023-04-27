@@ -37,7 +37,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE hospitals SET SCHEMA {SCHEMA};")
 
-    op.create_table('medical_specialities',
+    op.create_table('medical_specialties',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(), nullable=True),
@@ -45,7 +45,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE medical_specialities SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE medical_specialties SET SCHEMA {SCHEMA};")
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -71,11 +71,11 @@ def upgrade():
     sa.Column('last_name', sa.String(length=100), nullable=False),
     sa.Column('picture', sa.String(), nullable=True),
     sa.Column('hospital_id', sa.Integer(), nullable=True),
-    sa.Column('medical_speciality_id', sa.Integer(), nullable=True),
+    sa.Column('medical_specialty_id', sa.Integer(), nullable=True),
     sa.Column('medical_education', sa.String(), nullable=True),
     sa.Column('accepts_insurance', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['hospital_id'], ['hospitals.id'], ),
-    sa.ForeignKeyConstraint(['medical_speciality_id'], ['medical_specialities.id'], ),
+    sa.ForeignKeyConstraint(['medical_specialty_id'], ['medical_specialties.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
@@ -104,5 +104,5 @@ def downgrade():
     op.drop_table('appointments')
     op.drop_table('physicians')
     op.drop_table('users')
-    op.drop_table('medical_specialities')
+    op.drop_table('medical_specialties')
     op.drop_table('hospitals')

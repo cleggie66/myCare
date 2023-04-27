@@ -22,7 +22,7 @@ const PhysicianCard = ({ physician }) => {
                     <img src={physician.picture} alt="doctor" className="physician-profile-pic" />
                 </div>
                 <h2>{`${physician.first_name} ${physician.last_name} ${physician.medical_education}`}</h2>
-                <h3>{physician.medical_speciality.name}</h3>
+                <h3>{physician.medical_specialty.name}</h3>
                 <h3>{physician.hospital.name}</h3>
                 <div className="physician-card-buttons">
                     <button>Add to MyCare team</button>
