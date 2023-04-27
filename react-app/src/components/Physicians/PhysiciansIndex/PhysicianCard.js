@@ -21,6 +21,7 @@ const PhysicianCard = ({ physician }) => {
                 <div className="image-container">
                     <img src={physician.picture} alt="doctor" className="physician-profile-pic" />
                 </div>
+                <a href={physician.video}>Meet the Doctor</a>
                 <h2>{`${physician.first_name} ${physician.last_name} ${physician.medical_education}`}</h2>
                 <h3>{physician.medical_specialty.name}</h3>
                 <h3>{physician.hospital.name}</h3>

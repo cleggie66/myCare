@@ -74,6 +74,7 @@ def upgrade():
     sa.Column('medical_specialty_id', sa.Integer(), nullable=True),
     sa.Column('medical_education', sa.String(), nullable=True),
     sa.Column('accepts_insurance', sa.Boolean(), nullable=True),
+    sa.Column('video', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['hospital_id'], ['hospitals.id'], ),
     sa.ForeignKeyConstraint(['medical_specialty_id'], ['medical_specialties.id'], ),
     sa.PrimaryKeyConstraint('id')

@@ -10,6 +10,7 @@ const CreatePhysicianForm = () => {
         medicalSpecialtyId: 1,
         medicalEducation: "",
         acceptsInsurance: true,
+        video: ""
     }
     // const physician = {
     //     firstName: "Dr.",
@@ -19,6 +20,7 @@ const CreatePhysicianForm = () => {
     //     medicalSpecialtyId: 3,
     //     medicalEducation: "PhD",
     //     acceptsInsurance: true,
+    //     video: ""
     // }
 
     return (
