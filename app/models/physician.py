@@ -14,6 +14,7 @@ class Physician(db.Model):
     medical_specialty_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("medical_specialties.id")))
     medical_education  = db.Column(db.String)
     accepts_insurance = db.Column(db.Boolean, default=True)
+    video = db.Column(db.String)
 
     # RELATIONSHIPS
 
@@ -33,6 +34,7 @@ class Physician(db.Model):
             "medical_specialty_id": self.medical_specialty_id,
             "medical_education": self.medical_education,
             "accepts_insurance": self.accepts_insurance,
+            "video": self.video,
             "hospital": self.hospital.to_dict_simple(),
             "medical_specialty": self.medical_specialty.to_dict_simple(),
             "appointments": [appointment.to_dict_simple() for appointment in self.appointments]
@@ -47,7 +49,8 @@ class Physician(db.Model):
             "hospital_id": self.hospital_id,
             "medical_specialty_id": self.medical_specialty_id,
             "medical_education": self.medical_education,
-            "accepts_insurance": self.accepts_insurance
+            "accepts_insurance": self.accepts_insurance,
+            "video": self.video
         }
 
 

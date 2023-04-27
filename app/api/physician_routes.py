@@ -22,7 +22,8 @@ def create_physician():
             hospital_id=form.data["hospital_id"],
             medical_specialty_id=form.data["medical_specialty_id"],
             medical_education=form.data["medical_education"],
-            accepts_insurance=form.data["accepts_insurance"]
+            accepts_insurance=form.data["accepts_insurance"],
+            video=form.data["video"]
         )
         db.session.add(new_physician)
         db.session.commit()
@@ -89,6 +90,7 @@ def update_physician(physician_id):
         physician.medical_specialty_id=form.data["medical_specialty_id"]
         physician.medical_education=form.data["medical_education"]
         physician.accepts_insurance=form.data["accepts_insurance"]
+        physician.video=form.data["video"]
 
         db.session.commit()
         return physician.to_dict()

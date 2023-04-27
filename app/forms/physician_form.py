@@ -10,4 +10,5 @@ class PhysicianForm(FlaskForm):
     medical_specialty_id = IntegerField("Medical Specialty ID")
     medical_education = StringField("Medical Education")
     accepts_insurance = BooleanField("Accepts Insurance? (True or False)")
+    video = StringField("Video")
     
