@@ -40,8 +40,6 @@ export const deleteAppointment = (appointment) => {
 // THUNKS
 export const createAppointmentThunk = (appointmentData) => async (dispatch) => {
     try {
-        console.log("DATA", appointmentData)
-        console.log("DATA2", JSON.stringify(appointmentData))
         const response = await fetch("/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
