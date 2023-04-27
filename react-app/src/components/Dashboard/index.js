@@ -33,7 +33,9 @@ const Dashboard = () => {
                         <img src={sessionUser.profile_picture} alt="doctor" className="user-profile-pic" />
                     </div>
                     <h2>{`${sessionUser.first_name} ${sessionUser.last_name}`}</h2>
-                    <h3>{sessionUser.DOB.slice(0,10)}</h3>
+                    <h4>Date of Birth:</h4>
+                    <h3>{sessionUser.DOB.slice(0, 10)}</h3>
+                    <h4>Blood Type:</h4>
                     <h3>{sessionUser.blood_type}</h3>
                 </div>
                 <div className="dashboard-content">
