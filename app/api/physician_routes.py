@@ -3,9 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import Physician, db
 from app.forms import PhysicianForm
 
-
 physician_routes = Blueprint('physicians', __name__)
-
 
 
 # -----------  POST  --------------
@@ -22,9 +20,10 @@ def create_physician():
             last_name=form.data["last_name"],
             picture=form.data["picture"],
             hospital_id=form.data["hospital_id"],
-            medical_speciality_id=form.data["medical_speciality_id"],
+            medical_specialty_id=form.data["medical_specialty_id"],
             medical_education=form.data["medical_education"],
-            accepts_insurance=form.data["accepts_insurance"]
+            accepts_insurance=form.data["accepts_insurance"],
+            video=form.data["video"]
         )
         db.session.add(new_physician)
         db.session.commit()
@@ -88,13 +87,14 @@ def update_physician(physician_id):
         physician.last_name=form.data["last_name"]
         physician.picture=form.data["picture"]
         physician.hospital_id=form.data["hospital_id"]
-        physician.medical_speciality_id=form.data["medical_speciality_id"]
+        physician.medical_specialty_id=form.data["medical_specialty_id"]
         physician.medical_education=form.data["medical_education"]
         physician.accepts_insurance=form.data["accepts_insurance"]
+        physician.video=form.data["video"]
 
         db.session.commit()
         return physician.to_dict()
-    return {"Message": "Invalid Data"}
+    return {"message": "Invalid Data"}
 
 
 # -----------  DELETE  --------------
@@ -113,6 +113,6 @@ def delete_physician(physician_id):
     
     db.session.delete(physician)
     db.session.commit()
-    return {"Message": "Physician successfully deleted"}
+    return {"message": "Physician successfully deleted"}
 
     

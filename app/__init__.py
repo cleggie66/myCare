@@ -7,6 +7,8 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.appointment_routes import appointment_routes
 from .api.auth_routes import auth_routes
+from .api.hospital_routes import hospital_routes
+from .api.specialty_routes import specialty_routes
 from .api.physician_routes import physician_routes
 from .api.user_routes import user_routes
 from .seeds import seed_commands
@@ -30,6 +32,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(appointment_routes, url_prefix="/api/appointments")
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(hospital_routes, url_prefix="/api/hospitals")
+app.register_blueprint(specialty_routes, url_prefix="/api/specialties")
 app.register_blueprint(physician_routes, url_prefix="/api/physicians")
 app.register_blueprint(user_routes, url_prefix='/api/users')
 db.init_app(app)

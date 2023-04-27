@@ -15,9 +15,10 @@ const UpdatePhysicianForm = () => {
         lastName: physicianData.last_name,
         picture: physicianData.picture,
         hospitalId: physicianData.hospital_id,
-        medicalSpecialityId: physicianData.medical_speciality_id,
+        medicalSpecialtyId: physicianData.medical_specialty_id,
         medicalEducation: physicianData.medical_education,
-        acceptsInsurance: physicianData.accepts_insurance
+        acceptsInsurance: physicianData.accepts_insurance,
+        video: physicianData.video
     }
 
     return (

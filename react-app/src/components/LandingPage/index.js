@@ -25,6 +25,11 @@ const LandingPage = () => {
         }
     };
 
+    const loginDemo = async (e) => {
+        e.preventDefault();
+        await dispatch(login("demo@aa.io", "password"));
+    }
+
 
     return (
         <div className="welcome-page">
@@ -54,7 +59,7 @@ const LandingPage = () => {
                             <i class="fa-solid fa-pills"></i>
                         </div>
                         <div className="info-card-details">
-                            <h4>Research medical specialities</h4>
+                            <h4>Research medical specialties</h4>
                             <p>Details</p>
                         </div>
                     </div>
@@ -102,7 +107,9 @@ const LandingPage = () => {
                         className="landing-button"
                     >Log In</button>
                     <button
+                        type="button"
                         className="landing-button"
+                        onClick={loginDemo}
                     >Demo User</button>
                 </form>
                 <h2>New Here?</h2>

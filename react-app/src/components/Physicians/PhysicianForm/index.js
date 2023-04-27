@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './PhysicianForm.css';
 import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
+import defaultImage from "../../../media/default-user-icon.jpg"
 import "./PhysicianForm.css"
 
 const PhysicianForm = ({ physician, formType }) => {
@@ -15,9 +16,10 @@ const PhysicianForm = ({ physician, formType }) => {
   const [lastName, setLastName] = useState(physician.lastName);
   const [picture, setPicture] = useState(physician.picture);
   const [hospitalId, setHospitalId] = useState(physician.hospitalId);
-  const [medicalSpecialityId, setMedicalSpecialityId] = useState(physician.medicalSpecialityId);
+  const [medicalSpecialtyId, setMedicalSpecialtyId] = useState(physician.medicalSpecialtyId);
   const [medicalEducation, setMedicalEducation] = useState(physician.medicalEducation);
   const [acceptsInsurance, setAcceptsInsurance] = useState(physician.acceptsInsurance);
+  const [video, setVideo] = useState(physician.video)
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -42,11 +44,12 @@ const PhysicianForm = ({ physician, formType }) => {
       id: physicianId,
       first_name: firstName,
       last_name: lastName,
-      picture: picture,
+      picture: picture || defaultImage,
       hospital_id: hospitalId,
-      medical_speciality_id: medicalSpecialityId,
+      medical_specialty_id: medicalSpecialtyId,
       medical_education: medicalEducation,
-      accepts_insurance: acceptsInsurance
+      accepts_insurance: acceptsInsurance,
+      video: video || "https://youtu.be/dQw4w9WgXcQ"
     }
 
     if (Object.values(errors).length === 0) {
@@ -71,7 +74,7 @@ const PhysicianForm = ({ physician, formType }) => {
       <div className="physician-form-container">
         <div className="physician-form-preview">
           <div className="image-container">
-            <img src={picture} alt="doctor" className="physician-profile-pic" />
+            <img src={picture || defaultImage} alt="doctor" className="physician-profile-pic" />
           </div>
           <div className="physician-form-preview-details">
             <h2>{firstName}</h2>
@@ -115,12 +118,12 @@ const PhysicianForm = ({ physician, formType }) => {
             onChange={(e) => setHospitalId(e.target.value)}
           />
           <label>
-            Medical Speciality Id
+            Medical Specialty Id
           </label>
           <input
             type="number"
-            value={medicalSpecialityId}
-            onChange={(e) => setMedicalSpecialityId(e.target.value)}
+            value={medicalSpecialtyId}
+            onChange={(e) => setMedicalSpecialtyId(e.target.value)}
           />
           <label>
             Medical Education
@@ -139,6 +142,16 @@ const PhysicianForm = ({ physician, formType }) => {
             checked={acceptsInsurance}
             onChange={(e) => setAcceptsInsurance(!acceptsInsurance)}
           />
+          {hasSubmitted && (<p className="error">{errors.acceptsInsurance}</p>)}
+          <label>
+            Video
+          </label>
+          <input
+            type="checkbox"
+            checked={video}
+            onChange={(e) => setVideo(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.video}</p>)}
         </form>
       </div>
       <button

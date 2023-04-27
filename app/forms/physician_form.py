@@ -7,7 +7,8 @@ class PhysicianForm(FlaskForm):
     last_name = StringField("Last Name", validators=[DataRequired()])
     picture = StringField("Picture URL")
     hospital_id = IntegerField("Hospital ID")
-    medical_speciality_id = IntegerField("Medical Speciality ID")
+    medical_specialty_id = IntegerField("Medical Specialty ID")
     medical_education = StringField("Medical Education")
     accepts_insurance = BooleanField("Accepts Insurance? (True or False)")
+    video = StringField("Video")
     

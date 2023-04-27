@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
-    DOB = db.Column(db.Date, nullable=False)
+    DOB = db.Column(db.String, nullable=False)
     blood_type = db.Column(db.String)
     profile_picture = db.Column(db.String)
 
