@@ -50,7 +50,7 @@ const HospitalsIndex = () => {
                 })}
             </div>
             <OpenModalButton
-                buttonText="Create Hospital"
+                buttonText="Add Hospital"
                 modalComponent={<CreateHospitalModal />}
             />
         </>

@@ -28,7 +28,7 @@ const PhysiciansIndex = () => {
             <button
                 onClick={() => history.push("/physician/new")}
             >
-                Add a Physician
+                Add Physician
             </button>
         </>
     )

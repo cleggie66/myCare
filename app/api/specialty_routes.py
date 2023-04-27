@@ -22,7 +22,7 @@ def create_specialty():
         db.session.add(new_specialty)
         db.session.commit()
         return new_specialty.to_dict()
-    return{"Message": "Invalid Data"}
+    return{"message": "Invalid Data"}
 
 
 # -----------  GET  --------------
@@ -39,7 +39,7 @@ def get_all_medical_specialties():
             "status_code": 404
         }, 404
 
-    return {"Medical specialties": [specialty.to_dict() for specialty in medical_specialties]}
+    return {"specialties": [specialty.to_dict() for specialty in medical_specialties]}
 
 
 # -----------  GET  --------------
@@ -82,7 +82,7 @@ def update_specialty(specialty_id):
 
         db.session.commit()
         return specialty.to_dict()
-    return {"Message": "Invalid Data"}
+    return {"message": "Invalid Data"}
 
 
 # -----------  DELETE  --------------
@@ -101,4 +101,4 @@ def delete_specialty(specialty_id):
     
     db.session.delete(specialty)
     db.session.commit()
-    return {"Message": "Medical specialty successfully deleted"}
+    return {"message": "Medical specialty successfully deleted"}

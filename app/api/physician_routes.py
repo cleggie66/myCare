@@ -92,7 +92,7 @@ def update_physician(physician_id):
 
         db.session.commit()
         return physician.to_dict()
-    return {"Message": "Invalid Data"}
+    return {"message": "Invalid Data"}
 
 
 # -----------  DELETE  --------------
@@ -111,6 +111,6 @@ def delete_physician(physician_id):
     
     db.session.delete(physician)
     db.session.commit()
-    return {"Message": "Physician successfully deleted"}
+    return {"message": "Physician successfully deleted"}
 
     

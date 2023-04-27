@@ -4,6 +4,7 @@ import PhysiciansIndex from "../Physicians/PhysiciansIndex"
 import { Redirect } from "react-router-dom";
 import "./Dashboard.css"
 import HospitalsIndex from "../Hospitals/HospitalsIndex";
+import SpecialtiesIndex from "../Specalties/SpecaltiesIndex";
 
 const Dashboard = () => {
     const sessionUser = useSelector((state) => state.session.user);
@@ -19,6 +20,7 @@ const Dashboard = () => {
                     <PhysiciansIndex />
                     <AppointmentsIndex />
                     <HospitalsIndex />
+                    <SpecialtiesIndex />
                 </div>
             </div>
         </>
