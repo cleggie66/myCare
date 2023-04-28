@@ -9,6 +9,8 @@ import Dashboard from "./components/Dashboard";
 import CreateAppointmentForm from "./components/Appointments/AppointmentForm/CreateAppointmentForm";
 import UpdateAppointmentForm from "./components/Appointments/AppointmentForm/UpdateAppointmentForm";
 import LandingPage from "./components/LandingPage";
+import HospitalsIndex from "./components/Hospitals/HospitalsIndex";
+import SpecialtiesIndex from "./components/Specialties/SpecialtiesIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,11 +37,17 @@ function App() {
           <Route path="/appointment/:appointmentId/update">
             <UpdateAppointmentForm />
           </Route>
+          <Route path="/hospitals">
+            <HospitalsIndex />
+          </Route>
           <Route path="/physician/new">
             <CreatePhysicianForm />
           </Route>
           <Route path="/physician/:physicianId/update">
             <UpdatePhysicianForm />
+          </Route>
+          <Route path="/specialties">
+            <SpecialtiesIndex />
           </Route>
           <Route path="">
             <LandingPage />

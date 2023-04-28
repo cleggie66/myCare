@@ -22,8 +22,6 @@ const Dashboard = () => {
 
     if (!sessionUser) return <Redirect to="/" />;
 
-    console.log(sessionUser)
-
     return (
         <>
             <LoadingPage visibility={loadingVisibility} />
@@ -41,8 +39,6 @@ const Dashboard = () => {
                 <div className="dashboard-content">
                     <PhysiciansIndex />
                     <AppointmentsIndex />
-                    <HospitalsIndex />
-                    <SpecialtiesIndex />
                 </div>
             </div>
         </>

@@ -1,0 +1,19 @@
+.hospital-modal {
+    width: 25vw;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hospital-form>input {
+    margin-bottom: 10px;
+}
+
+.hospital-modal>button {
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+}

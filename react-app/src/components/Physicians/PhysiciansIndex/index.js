@@ -27,6 +27,7 @@ const PhysiciansIndex = () => {
             </div>
             <button
                 onClick={() => history.push("/physician/new")}
+                className="add-physician-button"
             >
                 Add Physician
             </button>

@@ -27,17 +27,18 @@ const PhysicianForm = ({ physician, formType }) => {
 
   useEffect(() => {
     const errorsObj = {};
-    if (firstName.length === 0) {
-      errorsObj.firstName = "First Name is required";
-    };
-    if (lastName.length === 0) {
-      errorsObj.lastName = "Last Name is required";
-    };
-    if (medicalEducation === 0) {
-      errorsObj.medicalEducation = "Medical Education is required";
-    };
+    if (firstName.length === 0) errorsObj.firstName = "First Name is required";
+    if (firstName.length > 100) errorsObj.firstName = "First Name cannot exceed 100 characters";
+    if (firstName === "Hubert") errorsObj.firstName = "The name Hubert will not be allowed and I will not elaborate further";
+    if (lastName.length === 0) errorsObj.lastName = "Last Name is required";
+    if (lastName.length > 100) errorsObj.lastName = "Last Name cannot exceed 100 characters";
+    if (hospitalId === 0) errorsObj.hospitalId = "Hospital is required";
+    if (medicalSpecialtyId === 0) errorsObj.medicalSpecialtyId = "Medical Specialty is required";
+    if (medicalEducation === "") errorsObj.medicalEducation = "Medical Education is required";
+    if (medicalEducation.length > 50) errorsObj.medicalEducation = "Medical Education cannot exceed 50 characters";
+
     setErrors(errorsObj);
-  }, [firstName, lastName, medicalEducation]);
+  }, [firstName, lastName, hospitalId, medicalSpecialtyId, medicalEducation]);
 
   useEffect(() => {
     dispatch(setHospitalsThunk())
@@ -50,7 +51,6 @@ const PhysicianForm = ({ physician, formType }) => {
   if (!specialtiesState) return <h1>Loading...</h1>
   const hospitals = Object.values(hospitalsState)
   const specialties = Object.values(specialtiesState)
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,22 +65,19 @@ const PhysicianForm = ({ physician, formType }) => {
       medical_education: medicalEducation,
       accepts_insurance: acceptsInsurance,
       video: video || "https://youtu.be/dQw4w9WgXcQ"
-    }
+    };
 
     if (Object.values(errors).length === 0) {
-
       if (formType === "Create Physician") {
         await dispatch(createPhysicianThunk(physicianData))
       }
-
       if (formType === "Update Physician") {
         await dispatch(updatePhysicianThunk(physicianData))
       }
-
       return history.push("/dashboard");
-    }
+    };
 
-    setHasSubmitted(true)
+    setHasSubmitted(true);
   };
 
   return (
@@ -130,26 +127,28 @@ const PhysicianForm = ({ physician, formType }) => {
           <select
             value={hospitalId}
             onChange={e => setHospitalId(e.target.value)}>
-            <option value="">Select an Option</option>
+            <option value={0}>Select an Option</option>
             {hospitals.map((hospital) => (
               <option value={hospital.id} key={hospital.id}>
                 {hospital.name}
               </option>
             ))}
           </select>
+          {hasSubmitted && (<p className="error">{errors.hospitalId}</p>)}
           <label>
             Medical Specialty
           </label>
           <select
             value={medicalSpecialtyId}
             onChange={e => setMedicalSpecialtyId(e.target.value)}>
-            <option value="">Select an Option</option>
+            <option value={0}>Select an Option</option>
             {specialties.map((specialty) => (
               <option value={specialty.id} key={specialty.id}>
                 {specialty.name}
               </option>
             ))}
           </select>
+          {hasSubmitted && (<p className="error">{errors.medicalSpecialtyId}</p>)}
           <label>
             Medical Education
           </label>

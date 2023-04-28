@@ -12,18 +12,18 @@ const DeleteHospitalModal = ({ hospital }) => {
     }
 
     return (
-        <div>
+        <div className="delete-modal">
             <h2>Confirm Delete</h2>
             <p>Are you sure you want to delete this hospital?</p>
             <button
                 onClick={handleDelete}
-                // className="confirm-delete-spot-button"
+                className="confirm-delete-button"
             >
                 Yes (Delete Hospital)
             </button>
             <button
                 onClick={closeModal}
-                // className="cancel-delete-spot"
+                className="cancel-delete-button"
             >
                 No (Keep Hospital)
             </button>

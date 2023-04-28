@@ -20,7 +20,7 @@ const AppointmentsIndex = () => {
 
     return (
         <>
-            <h2>Appointments</h2>
+            <h2 className="appointments-title">Appointments</h2>
             <div className="appointment-cards-index">
                 {appointments.map((appointment) => {
                     return <AppointmentCard appointment={appointment}/>
@@ -28,6 +28,7 @@ const AppointmentsIndex = () => {
             </div>
             <button
                 onClick={() => history.push("/appointment/new")}
+                className="book-appointment-button"
             >Book an Appointment</button>
         </>
     )

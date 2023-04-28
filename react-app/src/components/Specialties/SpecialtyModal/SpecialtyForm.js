@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { createSpecialtyThunk, updateSpecialtyThunk } from "../../../store/specialties";
+import "./SpecialtyModal.css"
 
 const SpecialtyForm = ({ specialty, formType }) => {
     const dispatch = useDispatch();
@@ -35,9 +36,9 @@ const SpecialtyForm = ({ specialty, formType }) => {
         setHasSubmitted(true);
     }
     return (
-        <>
+        <div className="specialty-modal">
             <h2>{formType}</h2>
-            <form onSubmit={handleSubmit} id="specialty-form">
+            <form onSubmit={handleSubmit} id="specialty-form" className="specialty-form">
                 <label>
                     Name
                 </label>
@@ -50,11 +51,12 @@ const SpecialtyForm = ({ specialty, formType }) => {
                 <label>
                     Description
                 </label>
-                <input
-                    type="text"
+                <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                />
+                    rows="5" cols="33"
+                >
+                </textarea>
                 {hasSubmitted && (<p className="error">{errors.description}</p>)}
             </form>
             <button
@@ -62,7 +64,7 @@ const SpecialtyForm = ({ specialty, formType }) => {
                 form="specialty-form"
                 disabled={hasSubmitted && Object.values(errors).length !== 0}
             >{formType}</button>
-        </>
+        </div>
     )
 }
 

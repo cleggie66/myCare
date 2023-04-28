@@ -5,8 +5,9 @@
 }
 
 .side-bar {
-    width: 450px;
-    height: 100vh;
+    width: 200px;
+    height: inherit;
+    min-height: 100vh;
     color: white;
     background-color: #615A99;
 }
