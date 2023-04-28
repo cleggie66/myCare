@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { createHospitalThunk, updateHospitalThunk } from "../../../store/hospitals";
+import "./HospitalModal.css"
 
 const HospitalForm = ({ hospital, formType }) => {
     const dispatch = useDispatch();
@@ -46,9 +47,9 @@ const HospitalForm = ({ hospital, formType }) => {
         setHasSubmitted(true);
     }
     return (
-        <>
+        <div className="hospital-modal">
             <h2>{formType}</h2>
-            <form onSubmit={handleSubmit} id="hospital-form">
+            <form onSubmit={handleSubmit} id="hospital-form" className="hospital-form">
                 <label>
                     Name
                 </label>
@@ -118,7 +119,7 @@ const HospitalForm = ({ hospital, formType }) => {
                 form="hospital-form"
                 disabled={hasSubmitted && Object.values(errors).length !== 0}
             >{formType}</button>
-        </>
+        </div>
     )
 }
 

@@ -13,6 +13,7 @@
 
 .physician-form-preview {
     min-width: 300px;
+    max-width: 700px;
     width: auto;
     background-color: #f7f7f7;
     border: 3px solid #e4e4e4;
@@ -21,6 +22,17 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
+}
+
+.physician-form-preview-details {
+    max-width: 500px;
+}
+
+.physician-form-preview-details>h2 {
+    max-height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .physician-form {

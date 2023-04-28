@@ -4,6 +4,16 @@
     flex-wrap: wrap;
 }
 
+.add-physician-button {
+    position: relative;
+    color: #615A99;
+    font-size: 14px;
+    width: 200px;
+    height: 40px;
+    background-color: #ffffff;
+    margin: 0 25px;
+}
+
 .physician-card {
     height: auto;
     width: 280px;
@@ -49,12 +59,12 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    margin: 10px;
+    margin-left: 20px;
 }
 
 .physician-card-video {
     align-self: flex-end;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     display: flex;
     align-items: center;
     gap: 5px;

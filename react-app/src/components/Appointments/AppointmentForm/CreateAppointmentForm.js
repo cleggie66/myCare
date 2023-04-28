@@ -4,11 +4,9 @@ import AppointmentForm from "."
 const CreateAppointmentForm = () => {
     const { physicianId } = useParams()
 
-    console.log("ID", physicianId)
-
     const appointment = {
-        physicianId: physicianId || 0,
-        hospitalId: 0,
+        physicianId: physicianId || "",
+        hospitalId: "",
         reasonForVisit: "",
         startTime: "",
         endTime: "",

@@ -12,18 +12,18 @@ const DeleteSpecialtyModal = ({ specialty }) => {
     }
 
     return (
-        <div>
+        <div className="delete-modal">
             <h2>Confirm Delete</h2>
             <p>Are you sure you want to delete this specialty?</p>
             <button
                 onClick={handleDelete}
-            // className="confirm-delete-spot-button"
+                className="confirm-delete-button"
             >
                 Yes (Delete Specialty)
             </button>
             <button
                 onClick={closeModal}
-            // className="cancel-delete-spot"
+                className="cancel-delete-button"
             >
                 No (Keep Specialty)
             </button>

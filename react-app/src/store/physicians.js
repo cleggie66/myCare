@@ -46,22 +46,23 @@ export const deletePhysician = (physician) => {
 
 // THUNKS
 export const createPhysicianThunk = (physicianData) => async (dispatch) => {
-    try {
-        console.log("DATA", physicianData)
-        console.log("DATA2", JSON.stringify(physicianData))
-        const response = await fetch("/api/physicians", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(physicianData)
-        })
-        const data = await response.json()
+    const response = await fetch("/api/physicians", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(physicianData)
+    })
+    const data = await response.json()
+    console.log("DATA", data)
+
+    if (response.ok) {
         dispatch(createPhysician(data))
-        return data
-    } catch (error) {
-        console.log(error)
+        return null
+    } else if (data.errors) {
+        return data.errors;
     }
+    return data
 };
-export const setAllPhysiciansThunk = () => async (dispatch) => {
+export const setPhysiciansThunk = () => async (dispatch) => {
     const response = await fetch("/api/physicians");
     const data = await response.json();
     const physicians = normalizer(data.physicians);

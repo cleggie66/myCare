@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import './PhysicianForm.css';
 import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
+import { setHospitalsThunk } from "../../../store/hospitals";
+import { setSpecialtiesThunk } from "../../../store/specialties";
 import defaultImage from "../../../media/default-user-icon.jpg"
 import "./PhysicianForm.css"
+
 
 const PhysicianForm = ({ physician, formType }) => {
   const dispatch = useDispatch();
@@ -25,17 +27,30 @@ const PhysicianForm = ({ physician, formType }) => {
 
   useEffect(() => {
     const errorsObj = {};
-    if (firstName.length === 0) {
-      errorsObj.firstName = "First Name is required";
-    };
-    if (lastName.length === 0) {
-      errorsObj.lastName = "Last Name is required";
-    };
-    if (medicalEducation === 0) {
-      errorsObj.medicalEducation = "Medical Education is required";
-    };
+    if (firstName.length === 0) errorsObj.firstName = "First Name is required";
+    if (firstName.length > 100) errorsObj.firstName = "First Name cannot exceed 100 characters";
+    if (firstName === "Hubert") errorsObj.firstName = "The name Hubert will not be allowed and I will not elaborate further";
+    if (lastName.length === 0) errorsObj.lastName = "Last Name is required";
+    if (lastName.length > 100) errorsObj.lastName = "Last Name cannot exceed 100 characters";
+    if (hospitalId === 0) errorsObj.hospitalId = "Hospital is required";
+    if (medicalSpecialtyId === 0) errorsObj.medicalSpecialtyId = "Medical Specialty is required";
+    if (medicalEducation === "") errorsObj.medicalEducation = "Medical Education is required";
+    if (medicalEducation.length > 50) errorsObj.medicalEducation = "Medical Education cannot exceed 50 characters";
+
     setErrors(errorsObj);
-  }, [firstName, lastName, medicalEducation]);
+  }, [firstName, lastName, hospitalId, medicalSpecialtyId, medicalEducation]);
+
+  useEffect(() => {
+    dispatch(setHospitalsThunk())
+    dispatch(setSpecialtiesThunk())
+  }, [dispatch])
+
+  const hospitalsState = useSelector((state) => state.hospitals)
+  const specialtiesState = useSelector((state) => state.specialties)
+  if (!hospitalsState) return <h1>Loading...</h1>
+  if (!specialtiesState) return <h1>Loading...</h1>
+  const hospitals = Object.values(hospitalsState)
+  const specialties = Object.values(specialtiesState)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,22 +65,19 @@ const PhysicianForm = ({ physician, formType }) => {
       medical_education: medicalEducation,
       accepts_insurance: acceptsInsurance,
       video: video || "https://youtu.be/dQw4w9WgXcQ"
-    }
+    };
 
     if (Object.values(errors).length === 0) {
-
       if (formType === "Create Physician") {
         await dispatch(createPhysicianThunk(physicianData))
       }
-
       if (formType === "Update Physician") {
         await dispatch(updatePhysicianThunk(physicianData))
       }
-
       return history.push("/dashboard");
-    }
+    };
 
-    setHasSubmitted(true)
+    setHasSubmitted(true);
   };
 
   return (
@@ -73,8 +85,8 @@ const PhysicianForm = ({ physician, formType }) => {
       <h2>{formType}</h2>
       <div className="physician-form-container">
         <div className="physician-form-preview">
-          <div className="image-container">
-            <img src={picture || defaultImage} alt="doctor" className="physician-profile-pic" />
+          <div className="physician-image-container">
+            <img src={picture || defaultImage} alt="doctor" className="profile-pic" />
           </div>
           <div className="physician-form-preview-details">
             <h2>{firstName}</h2>
@@ -105,26 +117,38 @@ const PhysicianForm = ({ physician, formType }) => {
             Picture URL
           </label>
           <input
-            type="text"
+            type="url"
             value={picture}
             onChange={(e) => setPicture(e.target.value)}
           />
           <label>
-            Hospital ID
+            Hospital
           </label>
-          <input
-            type="number"
+          <select
             value={hospitalId}
-            onChange={(e) => setHospitalId(e.target.value)}
-          />
+            onChange={e => setHospitalId(e.target.value)}>
+            <option value={0}>Select an Option</option>
+            {hospitals.map((hospital) => (
+              <option value={hospital.id} key={hospital.id}>
+                {hospital.name}
+              </option>
+            ))}
+          </select>
+          {hasSubmitted && (<p className="error">{errors.hospitalId}</p>)}
           <label>
-            Medical Specialty Id
+            Medical Specialty
           </label>
-          <input
-            type="number"
+          <select
             value={medicalSpecialtyId}
-            onChange={(e) => setMedicalSpecialtyId(e.target.value)}
-          />
+            onChange={e => setMedicalSpecialtyId(e.target.value)}>
+            <option value={0}>Select an Option</option>
+            {specialties.map((specialty) => (
+              <option value={specialty.id} key={specialty.id}>
+                {specialty.name}
+              </option>
+            ))}
+          </select>
+          {hasSubmitted && (<p className="error">{errors.medicalSpecialtyId}</p>)}
           <label>
             Medical Education
           </label>
@@ -135,6 +159,15 @@ const PhysicianForm = ({ physician, formType }) => {
           />
           {hasSubmitted && (<p className="error">{errors.medicalEducation}</p>)}
           <label>
+            Video URL
+          </label>
+          <input
+            type="url"
+            checked={video}
+            onChange={(e) => setVideo(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.video}</p>)}
+          <label>
             Accepts Insurance?
           </label>
           <input
@@ -143,15 +176,6 @@ const PhysicianForm = ({ physician, formType }) => {
             onChange={(e) => setAcceptsInsurance(!acceptsInsurance)}
           />
           {hasSubmitted && (<p className="error">{errors.acceptsInsurance}</p>)}
-          <label>
-            Video
-          </label>
-          <input
-            type="checkbox"
-            checked={video}
-            onChange={(e) => setVideo(e.target.value)}
-          />
-          {hasSubmitted && (<p className="error">{errors.video}</p>)}
         </form>
       </div>
       <button

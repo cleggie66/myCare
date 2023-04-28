@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
+import logoGifPurple from "../../media/myCare-Logo-Purple.gif"
 import "./LandingPage.css"
 
 
@@ -34,7 +35,7 @@ const LandingPage = () => {
     return (
         <div className="welcome-page">
             <div className="landing-left-section">
-                <h2>Logo</h2>
+                <img src={logoGifPurple} alt="logo" className='logo-gif' />
                 <div className="info-cards-group">
                     <div className="info-card">
                         <div className="info-card-icon">

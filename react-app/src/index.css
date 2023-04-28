@@ -39,6 +39,19 @@ input {
     border-radius: 5px;
 }
 
+textarea {
+    width: 100%;
+    background-color: #EAEAEA;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+select {
+    width: 100%;
+    background-color: #EAEAEA;
+    padding: 3px;
+    border-radius: 5px;
+}
 
 .error {
     color: red;

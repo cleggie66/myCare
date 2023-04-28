@@ -12,7 +12,7 @@ class Physician(db.Model):
     picture = db.Column(db.String)
     hospital_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("hospitals.id"))) 
     medical_specialty_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("medical_specialties.id")))
-    medical_education  = db.Column(db.String)
+    medical_education  = db.Column(db.String(50))
     accepts_insurance = db.Column(db.Boolean, default=True)
     video = db.Column(db.String)
 

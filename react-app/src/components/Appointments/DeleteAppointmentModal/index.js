@@ -12,18 +12,18 @@ const DeleteAppointmentModal = ({ appointment }) => {
     }
 
     return (
-        <div className="delete-spot-modal">
+        <div className="delete-modal">
             <h2>Confirm Delete</h2>
             <p>Are you sure you want to delete this appointment?</p>
             <button
                 onClick={handleDelete}
-                // className="confirm-delete-spot-button"
+                className="confirm-delete-button"
             >
                 Yes (Delete Appointment)
             </button>
             <button
                 onClick={closeModal}
-                // className="cancel-delete-spot"
+                className="cancel-delete-button"
             >
                 No (Keep Appointment)
             </button>

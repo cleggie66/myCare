@@ -1,0 +1,27 @@
+.signup-modal{
+    width: 30vw;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.signup-form-buttons>button {
+    width: 100%;
+    height: 50px;
+    text-transform: uppercase;
+}

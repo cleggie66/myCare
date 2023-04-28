@@ -1,13 +1,24 @@
 .navbar {
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #59538D;
 }
 
+.navbar-links>.navlink {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.navbar-links>.navlink:hover {
+  font-weight: 500;
+}
+
 .profile-dropdown {
   position: absolute;
+  z-index: 1;
   height: auto;
   width: 150px;
   top: 40px;

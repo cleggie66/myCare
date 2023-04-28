@@ -1,5 +1,6 @@
 #modal {
   position: fixed;
+  z-index: 1;
   top: 0;
   right: 0;
   left: 0;
@@ -20,5 +21,32 @@
 
 #modal-content {
   position: absolute;
-  background-color:white;
+}
+
+.delete-modal {
+  width: 30vw;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-modal>p {
+  margin: 5px 0 15px 0;
+}
+
+.confirm-delete-button {
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+  background-color: #d74c4c;
+}
+
+.cancel-delete-button {
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+  background-color: #6f6f6f;
 }

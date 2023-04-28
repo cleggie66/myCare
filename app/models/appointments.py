@@ -11,7 +11,7 @@ class Appointment(db.Model):
     patient_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     physician_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("physicians.id")))
     hospital_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("hospitals.id")))
-    reason_for_visit = db.Column(db.String, nullable=False)
+    reason_for_visit = db.Column(db.String(255), nullable=False)
     start_time = db.Column(db.String, nullable=False)
     end_time = db.Column(db.String, nullable=False)
 

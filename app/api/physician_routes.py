@@ -5,6 +5,17 @@ from app.forms import PhysicianForm
 
 physician_routes = Blueprint('physicians', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+
 
 # -----------  POST  --------------
 # Creates a new physician
@@ -28,7 +39,7 @@ def create_physician():
         db.session.add(new_physician)
         db.session.commit()
         return new_physician.to_dict()
-    return {"Message": "Invalid Data"}
+    return {'errors': form.errors}, 401
 
 
 # -----------  GET  --------------
@@ -94,7 +105,7 @@ def update_physician(physician_id):
 
         db.session.commit()
         return physician.to_dict()
-    return {"message": "Invalid Data"}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # -----------  DELETE  --------------
@@ -113,6 +124,6 @@ def delete_physician(physician_id):
     
     db.session.delete(physician)
     db.session.commit()
-    return {"message": "Physician successfully deleted"}
+    return {"message": "physician successfully deleted"}
 
     
