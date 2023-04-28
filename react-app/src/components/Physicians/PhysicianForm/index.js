@@ -105,7 +105,7 @@ const PhysicianForm = ({ physician, formType }) => {
             Picture URL
           </label>
           <input
-            type="text"
+            type="url"
             value={picture}
             onChange={(e) => setPicture(e.target.value)}
           />
@@ -135,10 +135,10 @@ const PhysicianForm = ({ physician, formType }) => {
           />
           {hasSubmitted && (<p className="error">{errors.medicalEducation}</p>)}
           <label>
-            Video
+            Video URL
           </label>
           <input
-            type="text"
+            type="url"
             checked={video}
             onChange={(e) => setVideo(e.target.value)}
           />
