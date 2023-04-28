@@ -5,11 +5,10 @@
 }
 
 .appointment-card {
-    width: auto;
+    max-width: 620px;
     background-color: white;
-    flex-shrink: 1;
-    flex-grow: 2;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 10px;
     border-radius: 10px;
@@ -19,6 +18,21 @@
 .appointment-card-details {
     display: flex;
     flex-direction: column;
+    margin: 0 10px;
+}
+
+.appointment-card-details>h2 {
+    color: #615A99;
+}
+
+.appointment-card-details>h3 {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.appointment-card-details>p {
+    max-width: 480px;
+    overflow-wrap: break-word;
 }
 
 .appointment-card-date {
@@ -27,6 +41,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 10px;
 }
 
 .month {
@@ -52,24 +67,26 @@
 }
 
 .appointment-hr {
-    width: 70%;
-    margin: 5px 0;
+    width: 90%;
+    margin: 3px 0;
     border: 1px solid #e5e5e5;
 }
 
 .appointment-card-icons {
+    align-self: flex-start;
     position: relative;
     height: fit-content;
     right: 5px;
     top: 5px;
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
 .appointment-card-icon {
     font-size: 24px;
     background-color: white;
-    color: #59538D;
+    color: #A1A1A1;
     margin: 0;
     padding: 0;
     border: 0;

@@ -14,7 +14,7 @@ const AppointmentCard = ({ appointment }) => {
     const day = appointment.start_time.slice(8, 10)
     const hour = appointment.start_time.slice(11, 13)
     const minute = appointment.start_time.slice(14)
-    const time = `${hour}:${minute} AM`
+    const time = `${hour > 12 ? hour - 12 : hour}:${minute} ${hour > 12 ? "PM" : "AM"}`
 
     return (
         <div
@@ -30,12 +30,12 @@ const AppointmentCard = ({ appointment }) => {
                 <h3 className="time">{time}</h3>
             </div>
             <div className="appointment-card-details">
-                <h2>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h2>
+                <h3>{`${appointment.physician.first_name} ${appointment.physician.last_name} ${appointment.physician.medical_education}`}</h3>
                 <hr className="appointment-hr"/>
                 <h2>{appointment.hospital.name}</h2>
-                <h3>{appointment.hospital.address}</h3>
+                <h4>{appointment.hospital.address}</h4>
                 <hr className="appointment-hr" />
-                <h3>{appointment.reason_for_visit}</h3>
+                <p>{appointment.reason_for_visit}</p>
             </div>
             <div className="appointment-card-icons">
                 <div className={`appointment-card-icon ${iconVisibility}`}>
