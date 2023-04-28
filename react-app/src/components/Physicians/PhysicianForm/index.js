@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import './PhysicianForm.css';
 import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
+import { setHospitalsThunk } from "../../../store/hospitals";
+import { setSpecialtiesThunk } from "../../../store/specialties";
 import defaultImage from "../../../media/default-user-icon.jpg"
 import "./PhysicianForm.css"
+
 
 const PhysicianForm = ({ physician, formType }) => {
   const dispatch = useDispatch();
@@ -36,6 +38,19 @@ const PhysicianForm = ({ physician, formType }) => {
     };
     setErrors(errorsObj);
   }, [firstName, lastName, medicalEducation]);
+
+  useEffect(() => {
+    dispatch(setHospitalsThunk())
+    dispatch(setSpecialtiesThunk())
+  }, [dispatch])
+
+  const hospitalsState = useSelector((state) => state.hospitals)
+  const specialtiesState = useSelector((state) => state.specialties)
+  if (!hospitalsState) return <h1>Loading...</h1>
+  if (!specialtiesState) return <h1>Loading...</h1>
+  const hospitals = Object.values(hospitalsState)
+  const specialties = Object.values(specialtiesState)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,21 +125,31 @@ const PhysicianForm = ({ physician, formType }) => {
             onChange={(e) => setPicture(e.target.value)}
           />
           <label>
-            Hospital ID
+            Hospital
           </label>
-          <input
-            type="number"
+          <select
             value={hospitalId}
-            onChange={(e) => setHospitalId(e.target.value)}
-          />
+            onChange={e => setHospitalId(e.target.value)}>
+            <option value="">Select an Option</option>
+            {hospitals.map((hospital) => (
+              <option value={hospital.id} key={hospital.id}>
+                {hospital.name}
+              </option>
+            ))}
+          </select>
           <label>
-            Medical Specialty Id
+            Medical Specialty
           </label>
-          <input
-            type="number"
+          <select
             value={medicalSpecialtyId}
-            onChange={(e) => setMedicalSpecialtyId(e.target.value)}
-          />
+            onChange={e => setMedicalSpecialtyId(e.target.value)}>
+            <option value="">Select an Option</option>
+            {specialties.map((specialty) => (
+              <option value={specialty.id} key={specialty.id}>
+                {specialty.name}
+              </option>
+            ))}
+          </select>
           <label>
             Medical Education
           </label>

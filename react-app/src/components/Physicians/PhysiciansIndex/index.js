@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setAllPhysiciansThunk } from "../../../store/physicians"
+import { setPhysiciansThunk } from "../../../store/physicians"
 import { useHistory } from "react-router-dom"
 import "./PhysiciansIndex.css"
 import PhysicianCard from "./PhysicianCard"
@@ -11,7 +11,7 @@ const PhysiciansIndex = () => {
     const history = useHistory()
 
     useEffect(() => {
-        dispatch(setAllPhysiciansThunk())
+        dispatch(setPhysiciansThunk())
     }, [dispatch])
 
     const physiciansState = useSelector(state => state.physicians.allPhysicians)

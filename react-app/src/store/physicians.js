@@ -61,7 +61,7 @@ export const createPhysicianThunk = (physicianData) => async (dispatch) => {
         console.log(error)
     }
 };
-export const setAllPhysiciansThunk = () => async (dispatch) => {
+export const setPhysiciansThunk = () => async (dispatch) => {
     const response = await fetch("/api/physicians");
     const data = await response.json();
     const physicians = normalizer(data.physicians);

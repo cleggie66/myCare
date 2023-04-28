@@ -18,6 +18,8 @@ function SignupFormModal() {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
+	const options = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
+
 	const autoFill = () => {
 		setFirstName("John");
 		setLastName("Doe");
@@ -56,9 +58,9 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className="signup-modal">
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="signup-form">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx} className="error">{error}</li>
@@ -107,11 +109,16 @@ function SignupFormModal() {
 				<label>
 					Blood Type
 				</label>
-				<input
-					type="text"
+				<select
 					value={bloodType}
-					onChange={(e) => setBloodType(e.target.value)}
-				/>
+					onChange={e => setBloodType(e.target.value)}>
+					{options.map((value) => (
+						<option value={value} key={value}>
+							{value}
+						</option>
+					))}
+					<option value="">Select an Option</option>
+				</select>
 				<label>
 					Profile Picture URL
 				</label>
@@ -136,10 +143,12 @@ function SignupFormModal() {
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
-				<button type="submit">Sign Up</button>
-				<button onClick={autoFill} type="button">Auto Fill</button>
+				<div className="signup-form-buttons">
+					<button type="submit">Sign Up</button>
+					<button onClick={autoFill} type="button">Auto Fill</button>
+				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

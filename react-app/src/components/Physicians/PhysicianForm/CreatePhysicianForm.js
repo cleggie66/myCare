@@ -6,8 +6,8 @@ const CreatePhysicianForm = () => {
         firstName: "",
         lastName: "",
         picture: "",
-        hospitalId: 1,
-        medicalSpecialtyId: 1,
+        hospitalId: "",
+        medicalSpecialtyId: "",
         medicalEducation: "",
         acceptsInsurance: true,
         video: ""

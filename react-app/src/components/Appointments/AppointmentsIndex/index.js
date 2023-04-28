@@ -18,7 +18,6 @@ const AppointmentsIndex = () => {
     if (!appointmentsState) return <h1>LOADING...</h1>
     const appointments = Object.values(appointmentsState)
 
-
     return (
         <>
             <h2>Appointments</h2>
