@@ -73,8 +73,8 @@ const PhysicianForm = ({ physician, formType }) => {
       <h2>{formType}</h2>
       <div className="physician-form-container">
         <div className="physician-form-preview">
-          <div className="image-container">
-            <img src={picture || defaultImage} alt="doctor" className="physician-profile-pic" />
+          <div className="physician-image-container">
+            <img src={picture || defaultImage} alt="doctor" className="profile-pic" />
           </div>
           <div className="physician-form-preview-details">
             <h2>{firstName}</h2>
@@ -135,6 +135,15 @@ const PhysicianForm = ({ physician, formType }) => {
           />
           {hasSubmitted && (<p className="error">{errors.medicalEducation}</p>)}
           <label>
+            Video
+          </label>
+          <input
+            type="text"
+            checked={video}
+            onChange={(e) => setVideo(e.target.value)}
+          />
+          {hasSubmitted && (<p className="error">{errors.video}</p>)}
+          <label>
             Accepts Insurance?
           </label>
           <input
@@ -143,15 +152,6 @@ const PhysicianForm = ({ physician, formType }) => {
             onChange={(e) => setAcceptsInsurance(!acceptsInsurance)}
           />
           {hasSubmitted && (<p className="error">{errors.acceptsInsurance}</p>)}
-          <label>
-            Video
-          </label>
-          <input
-            type="checkbox"
-            checked={video}
-            onChange={(e) => setVideo(e.target.value)}
-          />
-          {hasSubmitted && (<p className="error">{errors.video}</p>)}
         </form>
       </div>
       <button
