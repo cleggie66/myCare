@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import DeletePhysicianModal from "../DeletePhysicianModal"
 import "./PhysiciansIndex.css"
+import VideoModal from "../../VideoModal"
 
 
 const PhysicianCard = ({ physician }) => {
@@ -38,6 +39,10 @@ const PhysicianCard = ({ physician }) => {
                 </div>
             </div>
             <div className="physician-card-content">
+                <OpenModalButton 
+                    buttonText="TEST"
+                    modalComponent={<VideoModal />}
+                />
                 <div
                     onClick={playVideo(physician.video)}
                     className="physician-card-video"

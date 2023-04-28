@@ -1,0 +1,13 @@
+.video-player {
+    width: 70vw;
+    height: 39.375vw;
+}
+
+.close-player-icon {
+    position: relative;
+    left: 72vw;
+    bottom: 40vw;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
