@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import AppointmentForm from "."
 
-const CreateAppointmentForm = () => {
+const CreateAppointmentModal = () => {
     const { physicianId } = useParams()
 
     const appointment = {
@@ -17,4 +17,4 @@ const CreateAppointmentForm = () => {
     )
 }
 
-export default CreateAppointmentForm
+export default CreateAppointmentModal

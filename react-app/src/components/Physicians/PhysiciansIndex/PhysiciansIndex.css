@@ -38,16 +38,25 @@
 
 .physician-card-content>h2 {
     font-size: 26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .physician-card-content>h3 {
     font-size: 18px;
     font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .physician-card-content>h4 {
     font-size: 16px;
     margin-bottom: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .physician-image-container {
@@ -63,12 +72,21 @@
 }
 
 .physician-card-video {
+    color: #615A99;
+    background-color: white;
+    font-weight: 500;
+    font-size: 14px;
     align-self: flex-end;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     gap: 5px;
     cursor: pointer;
+}
+
+.physician-card-video:hover {
+    color: #615A99;
+    background-color: white;
 }
 
 .physician-card-video>p {

@@ -20,7 +20,7 @@
   position: absolute;
   z-index: 1;
   height: auto;
-  width: 150px;
+  width: auto;
   top: 40px;
   right: 50px;
   background-color: rgb(255, 255, 255);

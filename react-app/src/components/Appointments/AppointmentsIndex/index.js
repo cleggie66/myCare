@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
 import "./AppointmentsIndex.css"
 import AppointmentCard from "./AppointmentCard"
+import CreateAppointmentModal from "../AppointmentForm/CreateAppointmentModal"
+import OpenModalButton from "../../OpenModalButton"
 
 
 const AppointmentsIndex = () => {
@@ -26,6 +28,12 @@ const AppointmentsIndex = () => {
                     return <AppointmentCard appointment={appointment}/>
                 })}
             </div>
+            <OpenModalButton
+                buttonText={<i class="fa-solid fa-trash-can"></i>}
+                modalComponent={<DeletePhysicianModal physician={physician} />}
+                className={`physician-card-icon ${iconVisibility}`}
+            />
+            
             <button
                 onClick={() => history.push("/appointment/new")}
                 className="book-appointment-button"
