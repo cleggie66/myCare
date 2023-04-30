@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -13,24 +13,39 @@ const LandingPage = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [backendErrors, setBackendErrors] = useState([]);
     const [errors, setErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    useEffect(() => {
+        const errorsObj = {};
+        if (email.length === 0) {
+            errorsObj.email = "Email required";
+        };
+        if (password.length === 0) {
+            errorsObj.password = "Password required";
+        };
+        setErrors(errorsObj);
+    }, [email, password]);
 
     // Directs user to dashboard if already logged in ▼
     if (sessionUser) return <Redirect to="/dashboard" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
-        if (data) {
-            setErrors(data);
+        if (Object.values(errors).length === 0) {
+            const data = await dispatch(login(email, password));
+            if (data) {
+                setBackendErrors(data);
+            }
         }
+        setHasSubmitted(true)
     };
 
     const loginDemo = async (e) => {
         e.preventDefault();
         await dispatch(login("demo@aa.io", "password"));
     }
-
 
     return (
         <div className="welcome-page">
@@ -77,12 +92,7 @@ const LandingPage = () => {
             </div>
             <div className="landing-right-section">
                 <h2>Welcome Back</h2>
-                <form onSubmit={handleSubmit} className="landing-login-form">
-                    <ul>
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}
-                    </ul>
+                <form onSubmit={handleSubmit} className="landing-login-form" id="login-form">
                     <label>
                         Email
                     </label>
@@ -91,8 +101,8 @@ const LandingPage = () => {
                         type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
                     />
+                    {hasSubmitted && (<p className="error">{errors.email}</p>)}
                     <label>
                         Password
                     </label>
@@ -101,18 +111,21 @@ const LandingPage = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                     />
-                    <button
-                        type="submit"
-                        className="landing-button"
-                    >Log In</button>
-                    <button
-                        type="button"
-                        className="landing-button"
-                        onClick={loginDemo}
-                    >Demo User</button>
+                    {hasSubmitted && (<p className="error">{errors.password}</p>)}
+                    {hasSubmitted && (<p className="error">{backendErrors.password}</p>)}
                 </form>
+                <button
+                    type="submit"
+                    className="landing-button"
+                    form="login-form"
+                    disabled={hasSubmitted && Object.values(errors).length !== 0}
+                >Log In</button>
+                <button
+                    type="button"
+                    className="landing-button"
+                    onClick={loginDemo}
+                >Demo User</button>
                 <h2>New Here?</h2>
                 <OpenModalButton
                     modalComponent={<SignupFormModal />}

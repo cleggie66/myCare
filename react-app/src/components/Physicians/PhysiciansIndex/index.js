@@ -1,16 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setPhysiciansThunk } from "../../../store/physicians"
-import { useHistory } from "react-router-dom"
-import "./PhysiciansIndex.css"
 import PhysicianCard from "./PhysicianCard"
 import OpenModalButton from "../../OpenModalButton"
 import CreatePhysicianModal from "../PhysicianModal/CreatePhysicianModal"
+import "./PhysiciansIndex.css"
 
 
 const PhysiciansIndex = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(setPhysiciansThunk())

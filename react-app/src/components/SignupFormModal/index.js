@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -6,6 +6,8 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
+	const { closeModal } = useModal();
+
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [username, setUsername] = useState("");
@@ -15,10 +17,46 @@ function SignupFormModal() {
 	const [profilePicture, setProfilePicture] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [backendErrors, setBackendErrors] = useState([]);
 	const [errors, setErrors] = useState([]);
-	const { closeModal } = useModal();
+	const [hasSubmitted, setHasSubmitted] = useState(false)
 
 	const options = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
+
+	useEffect(() => {
+		const errorsObj = {};
+		if (firstName.trim().length === 0) {
+			errorsObj.first_name = "First name required";
+		};
+		if (firstName.length > 50) {
+			errorsObj.first_name = "50 character limit";
+		};
+		if (lastName.trim().length === 0) {
+			errorsObj.last_name = "Last name required";
+		};
+		if (lastName.length > 50) {
+			errorsObj.last_name = "50 character limit";
+		};
+		if (username.trim().length === 0) {
+			errorsObj.username = "Username required";
+		};
+		if (username.length > 50) {
+			errorsObj.username = "50 character limit";
+		};
+		if (email.trim().length === 0) {
+			errorsObj.email = "Email required";
+		};
+		if (email.length > 255) {
+			errorsObj.email = "255 character limit";
+		};
+		if (dateOfBirth === "") {
+			errorsObj.DOB = "Date of Birth required";
+		};
+		if (password !== confirmPassword) {
+			errorsObj.confirmPassword = "Passwords must match";
+		};
+		setErrors(errorsObj);
+	}, [firstName, lastName, username, email, dateOfBirth, password, confirmPassword]);
 
 	const autoFill = () => {
 		setFirstName("John");
@@ -34,7 +72,7 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
+		if (Object.values(errors).length === 0) {
 			const data = await dispatch(signUp({
 				first_name: firstName,
 				last_name: lastName,
@@ -46,26 +84,18 @@ function SignupFormModal() {
 				password: password
 			}));
 			if (data) {
-				setErrors(data);
+				setBackendErrors(data);
 			} else {
 				closeModal();
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
+		setHasSubmitted(true)
 	};
 
 	return (
 		<div className="signup-modal">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit} className="signup-form">
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx} className="error">{error}</li>
-					))}
-				</ul>
 				<label>
 					First Name
 				</label>
@@ -74,6 +104,7 @@ function SignupFormModal() {
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.first_name}</p>)}
 				<label>
 					Last Name
 				</label>
@@ -82,6 +113,7 @@ function SignupFormModal() {
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.last_name}</p>)}
 				<label>
 					Username
 				</label>
@@ -90,6 +122,8 @@ function SignupFormModal() {
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.username}</p>)}
+				{hasSubmitted && (<p className="error">{backendErrors.username}</p>)}
 				<label>
 					Email
 				</label>
@@ -98,6 +132,8 @@ function SignupFormModal() {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.email}</p>)}
+				{hasSubmitted && (<p className="error">{backendErrors.email}</p>)}
 				<label>
 					Date of Birth
 				</label>
@@ -106,6 +142,7 @@ function SignupFormModal() {
 					value={dateOfBirth}
 					onChange={(e) => setDateOfBirth(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.DOB}</p>)}
 				<label>
 					Blood Type
 				</label>
@@ -144,8 +181,14 @@ function SignupFormModal() {
 					onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
 				<div className="signup-form-buttons">
-					<button type="submit">Sign Up</button>
-					<button onClick={autoFill} type="button">Auto Fill</button>
+					<button
+						type="submit"
+						disabled={hasSubmitted && Object.values(errors).length !== 0}
+					>Sign Up</button>
+					<button
+					onClick={autoFill}
+					type="button"
+					>Auto Fill</button>
 				</div>
 			</form>
 		</div>
