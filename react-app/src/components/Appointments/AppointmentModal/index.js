@@ -76,6 +76,8 @@ const AppointmentForm = ({ appointment, formType }) => {
         setHasSubmitted(true);
     };
 
+    console.log(appointment)
+
     return (
         <div className="appointment-form-modal">
             <h2>{formType}</h2>
