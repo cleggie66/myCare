@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
-import DeleteAppointmentModal from "../DeleteAppointmentModal"
+import DeleteAppointmentModal from "../AppointmentModal/DeleteAppointmentModal"
 
 
 const AppointmentCard = ({ appointment }) => {

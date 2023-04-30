@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 import CreatePhysicianForm from "./components/Physicians/PhysicianForm/CreatePhysicianForm";
 import UpdatePhysicianForm from "./components/Physicians/PhysicianForm/UpdatePhysicianForm";
 import Dashboard from "./components/Dashboard";
-import UpdateAppointmentForm from "./components/Appointments/AppointmentForm/UpdateAppointmentForm";
+import UpdateAppointmentForm from "./components/Appointments/AppointmentModal/UpdateAppointmentModal";
 import LandingPage from "./components/LandingPage";
 import HospitalsIndex from "./components/Hospitals/HospitalsIndex";
 import SpecialtiesIndex from "./components/Specialties/SpecialtiesIndex";

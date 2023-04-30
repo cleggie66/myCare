@@ -1,4 +1,7 @@
-.appointment-form-page {
+.appointment-form-modal {
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
     flex-direction: column;
     display: flex;
     align-items: center;

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 
 
-const UpdateAppointmentForm = () => {
+const UpdateAppointmentModal = () => {
     const { appointmentId } = useParams()
 
     const appointmentsState = useSelector(state => state.appointments)
@@ -23,4 +23,4 @@ const UpdateAppointmentForm = () => {
     )
 }
 
-export default UpdateAppointmentForm
+export default UpdateAppointmentModal
