@@ -28,11 +28,11 @@ const AppointmentForm = ({ appointment, formType }) => {
         if (hospitalId === "") {
             errorsObj.hospitalId = "Hospital is required";
         };
-        if (reasonForVisit === "") {
-            errorsObj.reasonForVisit = "Reason for visit is required";
-        };
         if (reasonForVisit.trim().length === 0) {
             errorsObj.reasonForVisit = "Cannot only be whitespace";
+        };
+        if (reasonForVisit === "") {
+            errorsObj.reasonForVisit = "Reason for visit is required";
         };
         if (startTime.length === 0) {
             errorsObj.startTime = "Start Time is required";

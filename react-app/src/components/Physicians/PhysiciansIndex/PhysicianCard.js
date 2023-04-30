@@ -1,13 +1,16 @@
 import { useState } from "react"
-import { useHistory } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
-import DeletePhysicianModal from "../DeletePhysicianModal"
+import DeletePhysicianModal from "../PhysicianModal/DeletePhysicianModal"
 import "./PhysiciansIndex.css"
+import UpdatePhysicianModal from "../PhysicianModal/UpdatePhysicianModal"
 import VideoModal from "../../VideoModal"
+import CreateAppointmentModal from "../../Appointments/AppointmentModal/CreateAppointmentModal"
+import { useModal } from "../../../context/Modal"
+
 
 
 const PhysicianCard = ({ physician }) => {
-    const history = useHistory();
+    const { setModalContent } = useModal();
     const [iconVisibility, setIconVisibility] = useState("hidden-physician-icons")
     const [calendarIcon, setCalendarIcon] = useState("fa-solid")
 
@@ -26,13 +29,13 @@ const PhysicianCard = ({ physician }) => {
                     />
                 </div>
                 <div className="physician-card-icons">
-                    <div className={`physician-card-icon ${iconVisibility}`}>
-                        <i class="fa-solid fa-pen-to-square"
-                            onClick={() => history.push(`/physician/${physician.id}/update`)}
-                        />
-                    </div>
                     <OpenModalButton
-                        buttonText={<i class="fa-solid fa-trash-can"></i>}
+                        buttonText={<i className="fa-solid fa-pen-to-square"></i>}
+                        modalComponent={<UpdatePhysicianModal physician={physician} />}
+                        className={`physician-card-icon ${iconVisibility}`}
+                    />
+                    <OpenModalButton
+                        buttonText={<i className="fa-solid fa-trash-can"></i>}
                         modalComponent={<DeletePhysicianModal physician={physician} />}
                         className={`physician-card-icon ${iconVisibility}`}
                     />
@@ -57,13 +60,14 @@ const PhysicianCard = ({ physician }) => {
                 </div> */}
                 <div
                     className="physician-card-buttons"
-                    onClick={() => history.push(`/appointment/new/${physician.id}`)}
+                    onClick={() => setModalContent(<CreateAppointmentModal physician={physician}/>)}
                     onMouseEnter={(() => setCalendarIcon("fa-regular"))}
                     onMouseLeave={(() => setCalendarIcon("fa-solid"))}
                 >
                     <i className={`${calendarIcon} fa-calendar-check`}></i>
                     <button>Book an Appointment</button>
                 </div>
+                
             </div>
         </div>
     )

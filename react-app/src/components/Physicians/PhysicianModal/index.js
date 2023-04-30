@@ -5,7 +5,7 @@ import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physi
 import { setHospitalsThunk } from "../../../store/hospitals";
 import { setSpecialtiesThunk } from "../../../store/specialties";
 import defaultImage from "../../../media/default-user-icon.jpg"
-import "./PhysicianForm.css"
+import "./PhysicianModal.css"
 
 
 const PhysicianForm = ({ physician, formType }) => {
@@ -81,11 +81,11 @@ const PhysicianForm = ({ physician, formType }) => {
   };
 
   return (
-    <div className="physician-form-page">
+    <div className="physician-modal">
       <h2>{formType}</h2>
       <div className="physician-form-container">
         <div className="physician-form-preview">
-          <div className="physician-image-container">
+          <div className="physician-preview-image-container">
             <img
               src={picture || defaultImage}
               onError={() => setErrors({ ...errors, picture: "Picture URL is not valid" })}

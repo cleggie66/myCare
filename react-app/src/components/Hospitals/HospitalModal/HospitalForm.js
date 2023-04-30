@@ -36,7 +36,6 @@ const HospitalForm = ({ hospital, formType }) => {
 
         if (Object.values(errors).length === 0) {
             if (formType === "Create Hospital") {
-                console.log("IN FORM", hospitalData)
                 await dispatch(createHospitalThunk(hospitalData))
             };
             if (formType === "Update Hospital") {

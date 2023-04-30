@@ -4,6 +4,8 @@ import { setPhysiciansThunk } from "../../../store/physicians"
 import { useHistory } from "react-router-dom"
 import "./PhysiciansIndex.css"
 import PhysicianCard from "./PhysicianCard"
+import OpenModalButton from "../../OpenModalButton"
+import CreatePhysicianModal from "../PhysicianModal/CreatePhysicianModal"
 
 
 const PhysiciansIndex = () => {
@@ -25,12 +27,12 @@ const PhysiciansIndex = () => {
                     return <PhysicianCard physician={physician} />
                 })}
             </div>
-            <button
-                onClick={() => history.push("/physician/new")}
+            <OpenModalButton
+                buttonText="Add Physician"
+                modalComponent={<CreatePhysicianModal />}
                 className="add-physician-button"
-            >
-                Add Physician
-            </button>
+            />
+            
         </>
     )
 }

@@ -101,6 +101,10 @@
     cursor: pointer;
 }
 
+.clear-button {
+    background-color: white;
+}
+
 .physician-card-buttons>i {
     color: #59538D;
     font-size: 24px;

@@ -1,6 +1,6 @@
 import PhysicianForm from ".";
 
-const CreatePhysicianForm = () => {
+const CreatePhysicianModal = () => {
 
     const physician = {
         firstName: "",
@@ -29,4 +29,4 @@ const CreatePhysicianForm = () => {
 
 }
 
-export default CreatePhysicianForm
+export default CreatePhysicianModal
