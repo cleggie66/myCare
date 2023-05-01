@@ -52,7 +52,6 @@ export const createPhysicianThunk = (physicianData) => async (dispatch) => {
         body: JSON.stringify(physicianData)
     })
     const data = await response.json()
-    console.log("DATA", data)
 
     if (response.ok) {
         dispatch(createPhysician(data))

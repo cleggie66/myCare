@@ -29,7 +29,7 @@ const SpecialtiesIndex = () => {
                     return (
                         <div className="specialty-card" key={specialty.id}>
                             <span>
-                                <i class="fa-solid fa-books-medical"></i>
+                                <i className="fa-solid fa-books-medical"></i>
                             </span>
                             <h2>{specialty.name}</h2>
                             <h2>{specialty.description}</h2>

@@ -54,7 +54,7 @@ const LandingPage = () => {
                 <div className="info-cards-group">
                     <div className="info-card">
                         <div className="info-card-icon">
-                            <i class="fa-solid fa-user-doctor"></i>
+                            <i className="fa-solid fa-user-doctor"></i>
                         </div>
                         <div className="info-card-details">
                             <h4>Find physicians suited for you</h4>
@@ -63,7 +63,7 @@ const LandingPage = () => {
                     </div>
                     <div className="info-card">
                         <div className="info-card-icon">
-                            <i class="fa-regular fa-calendar-days"></i>
+                            <i className="fa-regular fa-calendar-days"></i>
                         </div>
                         <div className="info-card-details">
                             <h4>Book appointments</h4>
@@ -72,7 +72,7 @@ const LandingPage = () => {
                     </div>
                     <div className="info-card">
                         <div className="info-card-icon">
-                            <i class="fa-solid fa-pills"></i>
+                            <i className="fa-solid fa-pills"></i>
                         </div>
                         <div className="info-card-details">
                             <h4>Research medical specialties</h4>
@@ -81,7 +81,7 @@ const LandingPage = () => {
                     </div>
                     <div className="info-card">
                         <div className="info-card-icon">
-                            <i class="fa-solid fa-hospital"></i>
+                            <i className="fa-solid fa-hospital"></i>
                         </div>
                         <div className="info-card-details">
                             <h4>Locate hospitals</h4>
