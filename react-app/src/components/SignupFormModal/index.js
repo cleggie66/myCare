@@ -52,6 +52,9 @@ function SignupFormModal() {
 		if (dateOfBirth === "") {
 			errorsObj.DOB = "Date of Birth required";
 		};
+		if (password === "") {
+			errorsObj.password = "Password required";
+		};
 		if (password !== confirmPassword) {
 			errorsObj.confirmPassword = "Passwords must match";
 		};
@@ -172,6 +175,7 @@ function SignupFormModal() {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.password}</p>)}
 				<label>
 					Confirm Password
 				</label>
@@ -180,6 +184,7 @@ function SignupFormModal() {
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 				/>
+				{hasSubmitted && (<p className="error">{errors.confirmPassword}</p>)}
 				<div className="signup-form-buttons">
 					<button
 						type="submit"
