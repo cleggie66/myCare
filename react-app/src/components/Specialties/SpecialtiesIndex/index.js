@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import { setSpecialtiesThunk } from "../../../store/specialties";
 import OpenModalButton from "../../OpenModalButton";
 import UpdateSpecialtyModal from "../SpecialtyModal/UpdateSpecialtyModal";
@@ -10,13 +10,14 @@ import "./SpecialtiesIndex.css"
 
 const SpecialtiesIndex = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(setSpecialtiesThunk())
     }, [dispatch])
 
     const specialtiesState = useSelector(state => state.specialties)
+    if (!sessionUser) return <Redirect to="/" />;
     if (!specialtiesState) return <h1>LOADING...</h1>
     const specialties = Object.values(specialtiesState)
 

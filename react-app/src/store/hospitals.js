@@ -1,6 +1,6 @@
 const normalizer = (arr) => {
     const obj = {};
-    arr.forEach((el) => {
+    arr?.forEach((el) => {
         obj[el.id] = el
     })
     return obj;

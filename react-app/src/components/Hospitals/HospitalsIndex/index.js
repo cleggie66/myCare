@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import { setHospitalsThunk } from "../../../store/hospitals";
 import OpenModalButton from "../../OpenModalButton";
 import CreateHospitalModal from "../HospitalModal/CreateHospitalModal";
@@ -10,13 +10,14 @@ import "./HospitalsIndex.css"
 
 const HospitalsIndex = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(setHospitalsThunk())
     }, [dispatch])
 
     const hospitalsState = useSelector(state => state.hospitals)
+    if (!sessionUser) return <Redirect to="/" />;
     if (!hospitalsState) return <h1>LOADING...</h1>
     const hospitals = Object.values(hospitalsState)
 

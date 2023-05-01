@@ -47,7 +47,7 @@ const PhysicianCard = ({ physician }) => {
                         <i className="fa-solid fa-circle-play"></i>
                         <p>Meet the Doctor</p>
                     </>}
-                    modalComponent={<VideoModal />}
+                    modalComponent={<VideoModal video={physician.video}/>}
                     className="physician-card-video"
                 />
                 <h2>{`${physician.first_name} ${physician.last_name} ${physician.medical_education}`}</h2>
