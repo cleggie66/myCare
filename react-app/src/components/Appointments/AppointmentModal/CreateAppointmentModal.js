@@ -3,8 +3,8 @@ import AppointmentForm from "."
 const CreateAppointmentModal = ({ physician }) => {
 
     const appointment = {
-        physicianId: physician.id || "",
-        hospitalId: physician.hospital.id || "",
+        physicianId: physician?.id || "",
+        hospitalId: physician?.hospital.id || "",
         reasonForVisit: "",
         startTime: "",
         endTime: "",
