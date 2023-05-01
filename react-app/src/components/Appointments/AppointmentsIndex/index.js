@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
 import "./AppointmentsIndex.css"
 import AppointmentCard from "./AppointmentCard"
+import CreateAppointmentModal from "../AppointmentModal/CreateAppointmentModal"
+import OpenModalButton from "../../OpenModalButton"
 
 
 const AppointmentsIndex = () => {
@@ -26,10 +28,11 @@ const AppointmentsIndex = () => {
                     return <AppointmentCard appointment={appointment}/>
                 })}
             </div>
-            <button
-                onClick={() => history.push("/appointment/new")}
+            <OpenModalButton
+                buttonText="Book an Appointment"
+                modalComponent={<CreateAppointmentModal />}
                 className="book-appointment-button"
-            >Book an Appointment</button>
+            />
         </>
     )
 

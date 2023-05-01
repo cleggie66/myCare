@@ -14,14 +14,16 @@ function Navigation({ isLoaded }) {
 					<i className="fa-solid fa-house" />
 				</span>
 			</NavLink>
-			<div className='navbar-links'>
-				<NavLink exact to="/hospitals" className="navlink">
-					Hospitals
-				</NavLink>
-				<NavLink exact to="/specialties" className="navlink">
-					Specialties
-				</NavLink>
-			</div>
+			{sessionUser && (
+				<div className='navbar-links'>
+					<NavLink exact to="/hospitals" className="navlink">
+						Hospitals
+					</NavLink>
+					<NavLink exact to="/specialties" className="navlink">
+						Specialties
+					</NavLink>
+				</div>
+			)}
 			{isLoaded && (
 				<ProfileButton user={sessionUser} />
 			)}

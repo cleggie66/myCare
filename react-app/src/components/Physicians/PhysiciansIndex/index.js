@@ -1,14 +1,14 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setPhysiciansThunk } from "../../../store/physicians"
-import { useHistory } from "react-router-dom"
-import "./PhysiciansIndex.css"
 import PhysicianCard from "./PhysicianCard"
+import OpenModalButton from "../../OpenModalButton"
+import CreatePhysicianModal from "../PhysicianModal/CreatePhysicianModal"
+import "./PhysiciansIndex.css"
 
 
 const PhysiciansIndex = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
 
     useEffect(() => {
         dispatch(setPhysiciansThunk())
@@ -25,12 +25,12 @@ const PhysiciansIndex = () => {
                     return <PhysicianCard physician={physician} />
                 })}
             </div>
-            <button
-                onClick={() => history.push("/physician/new")}
+            <OpenModalButton
+                buttonText="Add Physician"
+                modalComponent={<CreatePhysicianModal />}
                 className="add-physician-button"
-            >
-                Add Physician
-            </button>
+            />
+            
         </>
     )
 }

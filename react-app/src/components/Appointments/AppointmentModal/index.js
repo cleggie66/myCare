@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useModal } from "../../../context/Modal";
 import { createAppointmentThunk, updateAppointmentThunk } from "../../../store/appointments";
-import "./AppointmentForm.css"
 import { setHospitalsThunk } from "../../../store/hospitals";
 import { setPhysiciansThunk } from "../../../store/physicians";
+import "./AppointmentModal.css"
 
 const AppointmentForm = ({ appointment, formType }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const { closeModal } = useModal();
     let appointmentId;
     if (appointment.id) appointmentId = appointment.id;
 
@@ -28,7 +28,10 @@ const AppointmentForm = ({ appointment, formType }) => {
         if (hospitalId === "") {
             errorsObj.hospitalId = "Hospital is required";
         };
-        if (reasonForVisit.length === 0) {
+        if (reasonForVisit.trim().length === 0) {
+            errorsObj.reasonForVisit = "Cannot only be whitespace";
+        };
+        if (reasonForVisit === "") {
             errorsObj.reasonForVisit = "Reason for visit is required";
         };
         if (startTime.length === 0) {
@@ -49,8 +52,6 @@ const AppointmentForm = ({ appointment, formType }) => {
     const hospitals = Object.values(hospitalsState)
     const physicians = Object.values(physiciansState)
 
-    console.log(hospitalsState)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -70,13 +71,15 @@ const AppointmentForm = ({ appointment, formType }) => {
             if (formType === "Update Appointment") {
                 await dispatch(updateAppointmentThunk(appointmentData))
             };
-            return history.push("/dashboard");
+            closeModal()
         }
         setHasSubmitted(true);
     };
 
+    console.log(appointment)
+
     return (
-        <div className="appointment-form-page">
+        <div className="appointment-form-modal">
             <h2>{formType}</h2>
             <div className="appointment-form-container">
                 <form onSubmit={handleSubmit} className="appointment-form" id="appointment-form">

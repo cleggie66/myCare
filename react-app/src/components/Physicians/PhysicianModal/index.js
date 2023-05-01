@@ -5,7 +5,7 @@ import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physi
 import { setHospitalsThunk } from "../../../store/hospitals";
 import { setSpecialtiesThunk } from "../../../store/specialties";
 import defaultImage from "../../../media/default-user-icon.jpg"
-import "./PhysicianForm.css"
+import "./PhysicianModal.css"
 
 
 const PhysicianForm = ({ physician, formType }) => {
@@ -38,7 +38,7 @@ const PhysicianForm = ({ physician, formType }) => {
     if (medicalEducation.length > 50) errorsObj.medicalEducation = "Medical Education cannot exceed 50 characters";
 
     setErrors(errorsObj);
-  }, [firstName, lastName, hospitalId, medicalSpecialtyId, medicalEducation]);
+  }, [firstName, lastName, hospitalId, medicalSpecialtyId, medicalEducation, picture]);
 
   useEffect(() => {
     dispatch(setHospitalsThunk())
@@ -81,12 +81,17 @@ const PhysicianForm = ({ physician, formType }) => {
   };
 
   return (
-    <div className="physician-form-page">
+    <div className="physician-modal">
       <h2>{formType}</h2>
       <div className="physician-form-container">
         <div className="physician-form-preview">
-          <div className="physician-image-container">
-            <img src={picture || defaultImage} alt="doctor" className="profile-pic" />
+          <div className="physician-preview-image-container">
+            <img
+              src={picture || defaultImage}
+              onError={() => setErrors({ ...errors, picture: "Picture URL is not valid" })}
+              alt="doctor"
+              className="profile-pic"
+            />
           </div>
           <div className="physician-form-preview-details">
             <h2>{firstName}</h2>
@@ -121,6 +126,7 @@ const PhysicianForm = ({ physician, formType }) => {
             value={picture}
             onChange={(e) => setPicture(e.target.value)}
           />
+          {hasSubmitted && (<p className="error">{errors.picture}</p>)}
           <label>
             Hospital
           </label>

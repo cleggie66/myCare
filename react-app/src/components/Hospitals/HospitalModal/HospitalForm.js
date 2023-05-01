@@ -6,6 +6,7 @@ import "./HospitalModal.css"
 
 const HospitalForm = ({ hospital, formType }) => {
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
     let id;
     if (hospital.id) id = hospital.id;
 
@@ -18,7 +19,6 @@ const HospitalForm = ({ hospital, formType }) => {
     const [lng, setLng] = useState(hospital.lng);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
-    const { closeModal } = useModal();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +36,6 @@ const HospitalForm = ({ hospital, formType }) => {
 
         if (Object.values(errors).length === 0) {
             if (formType === "Create Hospital") {
-                console.log("IN FORM", hospitalData)
                 await dispatch(createHospitalThunk(hospitalData))
             };
             if (formType === "Update Hospital") {
