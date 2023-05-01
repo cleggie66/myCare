@@ -7,7 +7,7 @@
 
 .landing-left-section {
     background-color: white;
-    width: 600px;
+    width: 650px;
     height: 400px;
     padding: 20px;
     margin-top: 100px;
@@ -31,19 +31,28 @@
 }
 
 .info-cards-group {
+    height: 250px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.info-card{
+.info-card {
+    width: 320px;
     display: flex;
     align-items: center;
 }
 
-.info-card-icon{
+.info-card-icon {
     font-size: 36px;
     color: #615A99;
     margin: 20px;
+}
+
+.info-card-details {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .landing-login-form {

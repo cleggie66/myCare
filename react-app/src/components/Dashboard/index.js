@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import AppointmentsIndex from "../Appointments/AppointmentsIndex"
 import PhysiciansIndex from "../Physicians/PhysiciansIndex"
-import HospitalsIndex from "../Hospitals/HospitalsIndex";
-import SpecialtiesIndex from "../Specialties/SpecialtiesIndex";
 import LoadingPage from "../LoadingPage";
 import "./Dashboard.css"
 
