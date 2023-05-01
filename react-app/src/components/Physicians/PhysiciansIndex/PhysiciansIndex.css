@@ -37,7 +37,7 @@
 }
 
 .physician-card-content>h2 {
-    font-size: 26px;
+    font-size: 24px;
     text-overflow: ellipsis;
     overflow: hidden;
     overflow-wrap: break-word;
@@ -66,8 +66,8 @@
     overflow: hidden;
     border-radius: 50%;
     display: flex;
-    align-content: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-left: 20px;
 }
 

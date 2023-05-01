@@ -35,8 +35,8 @@
     overflow: hidden;
     border-radius: 50%;
     display: flex;
-    align-content: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .physician-form-preview-details {

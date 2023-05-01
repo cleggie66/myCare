@@ -4,13 +4,14 @@ import { Redirect, useHistory } from "react-router-dom";
 import { createPhysicianThunk, updatePhysicianThunk } from "../../../store/physicians";
 import { setHospitalsThunk } from "../../../store/hospitals";
 import { setSpecialtiesThunk } from "../../../store/specialties";
+import { useModal } from "../../../context/Modal";
 import defaultImage from "../../../media/default-user-icon.jpg"
 import "./PhysicianModal.css"
 
 
 const PhysicianForm = ({ physician, formType }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const { closeModal } = useModal();
   let physicianId;
   if (physician.id) physicianId = physician.id;
 
@@ -74,7 +75,7 @@ const PhysicianForm = ({ physician, formType }) => {
       if (formType === "Update Physician") {
         await dispatch(updatePhysicianThunk(physicianData))
       }
-      return history.push("/dashboard");
+      closeModal();
     };
 
     setHasSubmitted(true);

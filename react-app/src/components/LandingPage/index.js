@@ -58,7 +58,7 @@ const LandingPage = () => {
                         </div>
                         <div className="info-card-details">
                             <h4>Find physicians suited for you</h4>
-                            <p>Details</p>
+                            <p>Browse a doctor that fits your needs. Or even add your own!</p>
                         </div>
                     </div>
                     <div className="info-card">
@@ -67,7 +67,7 @@ const LandingPage = () => {
                         </div>
                         <div className="info-card-details">
                             <h4>Book appointments</h4>
-                            <p>Details</p>
+                            <p>Schedule your next appointment, or view details of your past and upcoming appointments</p>
                         </div>
                     </div>
                     <div className="info-card">
@@ -76,7 +76,7 @@ const LandingPage = () => {
                         </div>
                         <div className="info-card-details">
                             <h4>Research medical specialties</h4>
-                            <p>Details</p>
+                            <p>Discover and learn about common practices that our doctors are experts in</p>
                         </div>
                     </div>
                     <div className="info-card">
@@ -85,7 +85,7 @@ const LandingPage = () => {
                         </div>
                         <div className="info-card-details">
                             <h4>Locate hospitals</h4>
-                            <p>Details</p>
+                            <p>Find nearby hospitals and get directions</p>
                         </div>
                     </div>
                 </div>
