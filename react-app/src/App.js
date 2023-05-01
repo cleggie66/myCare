@@ -21,7 +21,6 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {console.log(isLoaded)}
       {isLoaded && (
         <Switch>
           <Route path="/dashboard" >
