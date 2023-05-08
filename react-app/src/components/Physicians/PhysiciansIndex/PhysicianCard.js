@@ -67,7 +67,6 @@ const PhysicianCard = ({ physician }) => {
                     <i className={`${calendarIcon} fa-calendar-check`}></i>
                     <button>Book an Appointment</button>
                 </div>
-                
             </div>
         </div>
     )
