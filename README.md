@@ -5,7 +5,7 @@
 
 
 ## Intro
-* This application is a mockup medical portal for patients to pick out docotrs, book appointments, find hospitals, and research medical specalties
+* This application is a mockup medical portal for patients to pick out doctors, book appointments, find hospitals, and research medical specalties
 
 ## Technologies used on this project
 * Python
