@@ -1,5 +1,9 @@
 # myCare
 
+<img src="https://github.com/cleggie66/myCare/assets/117665526/325f5152-aac8-4c89-992c-7b822391e880" align="right"
+     alt="myCare logo by Caleb Cleghorn" height="170">
+
+
 ## Intro
 * This application is a mockup medical portal for patients to pick out docotrs, book appointments, find hospitals, and research medical specalties
 
