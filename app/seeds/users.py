@@ -10,7 +10,6 @@ def seed_users():
         username='tony', email='tony@aa.io', password='password', first_name="Tony", last_name="Soprano", DOB=(datetime(1959, 8, 22)), blood_type="AB+", profile_picture="https://static.wikia.nocookie.net/sopranos/images/c/c2/Tony_Soprano.jpg/revision/latest/scale-to-width-down/700?cb=20211117185559")
     bobby = User(
         username='bobby', email='bobby@aa.io', password='password', first_name="Bobby", last_name="Baccalieri", DOB=(datetime(1959, 6, 12)), blood_type="AB+", profile_picture="https://static.wikia.nocookie.net/sopranos/images/5/5f/Bacala.jpg/revision/latest?cb=20091216120453")
-
     db.session.add(demo)
     db.session.add(tony)
     db.session.add(bobby)
