@@ -15,6 +15,8 @@ class Hospital(db.Model):
     country = db.Column(db.String(100))
     lat = db.Column(db.Numeric)
     lng = db.Column(db.Numeric)
+    map_picture = db.Column(db.String)
+    website_url = db.Column(db.String)
 
     # RELATIONSHIPS
 
@@ -34,6 +36,8 @@ class Hospital(db.Model):
             "lng": self.lng,
             "physicians": [physician.to_dict_simple() for physician in self.physicians],
             "appointments": [appointment.to_dict_simple() for appointment in self.appointments],
+            "map_picture": self.map_picture,
+            "website_url": self.website_url
         }
 
     def to_dict_simple(self):
@@ -44,5 +48,7 @@ class Hospital(db.Model):
             "city": self.city,
             "country": self.country,
             "lat": self.lat,
-            "lng": self.lng
+            "lng": self.lng,
+            "map_picture": self.map_picture,
+            "website_url": self.website_url
         }
