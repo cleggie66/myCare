@@ -25,7 +25,6 @@ const HospitalsIndex = () => {
 
     return (
         <div className="page">
-            <h2>Hospitals</h2>
             <div className="hospitals-index">
                 {hospitals.map((hospital) => {
                     return (
@@ -44,10 +43,17 @@ const HospitalsIndex = () => {
                                     <h2>{hospital.name}</h2>
                                 </div>
                                 <div className="hospital-card-address">
-                                    <h4>{hospital.address}</h4>
-                                    <h4>{hospital.city}</h4>
-                                    <h4>{hospital.state}</h4>
+                                    <h4>{`${hospital.address}, ${hospital.city}, ${hospital.state}`}</h4>
                                 </div>
+                                <a
+                                    href={hospital.website_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <button className="hospital-site-button">
+                                        Visit Site
+                                    </button>
+                                </a>
                             </div>
                             <div className="hospital-card-icons">
                                 <OpenModalButton
@@ -68,6 +74,7 @@ const HospitalsIndex = () => {
             <OpenModalButton
                 buttonText="Add Hospital"
                 modalComponent={<CreateHospitalModal />}
+                className="add-hospital-button"
             />
         </div>
     )

@@ -1,7 +1,8 @@
 .hospitals-index {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
+    margin: 20px;
 }
 
 .hospital-card {
@@ -16,10 +17,29 @@
     margin: 5px;
 }
 
-.hospital-card-title,
+.hospital-card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.hospital-card-title>span>i {
+    color: #615A99;
+}
+
+.hospital-card-title>h2 {
+    color: #615A99;
+}
+
 .hospital-card-address {
     display: flex;
     align-items: center;
+}
+
+.hospital-card-address>h4 {
+    color: #615A99;
+    font-weight: normal;
 }
 
 .map-preview-container {
@@ -36,6 +56,18 @@
     height: 100%;
     object-fit: cover;
     background-color: white;
+}
+
+.hospital-card-details {
+    margin-left: 20px;
+}
+
+.hospital-site-button {
+    width: 250px;
+    height: 30px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: 10px;
 }
 
 .hospital-card-icons {
@@ -62,4 +94,12 @@
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.add-hospital-button {
+    width: 60%;
+    height: 50px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-bottom: 30px;
 }

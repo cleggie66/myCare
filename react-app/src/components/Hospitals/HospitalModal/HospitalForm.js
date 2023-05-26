@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { createHospitalThunk, updateHospitalThunk } from "../../../store/hospitals";
@@ -17,8 +17,22 @@ const HospitalForm = ({ hospital, formType }) => {
     const [country, setCountry] = useState(hospital.country);
     const [lat, setLat] = useState(hospital.lat);
     const [lng, setLng] = useState(hospital.lng);
+    const [mapPicture, setMapPicture] = useState(hospital.mapPicture);
+    const [websiteUrl, setWebsiteUrl] = useState(hospital.websiteUrl);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        const errorsObj = {};
+        if (name.length === 0) errorsObj.name = "Name is required";
+        if (name.length > 100) errorsObj.name = "100 character limit";
+        if (address.length > 100) errorsObj.address = "100 character limit";
+        if (city.length > 100) errorsObj.city = "100 character limit";
+        if (state.length > 100) errorsObj.state = "100 character limit";
+        if (country.length > 100) errorsObj.country = "100 character limit";
+
+        setErrors(errorsObj);
+    }, [name, address, city, state, country]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +45,9 @@ const HospitalForm = ({ hospital, formType }) => {
             state,
             country,
             lat,
-            lng
+            lng,
+            map_picture: mapPicture,
+            website_url: websiteUrl
         };
 
         if (Object.values(errors).length === 0) {
@@ -112,6 +128,24 @@ const HospitalForm = ({ hospital, formType }) => {
                     onChange={(e) => setLng(e.target.value)}
                 />
                 {hasSubmitted && (<p className="error">{errors.lng}</p>)}
+                <label>
+                    Preview Image URL
+                </label>
+                <input
+                    type="text"
+                    value={mapPicture}
+                    onChange={(e) => setMapPicture(e.target.value)}
+                />
+                {hasSubmitted && (<p className="error">{errors.map_picture}</p>)}
+                <label>
+                    Website URL
+                </label>
+                <input
+                    type="text"
+                    value={websiteUrl}
+                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                />
+                {hasSubmitted && (<p className="error">{errors.website_url}</p>)}
             </form>
             <button
                 type="submit"
