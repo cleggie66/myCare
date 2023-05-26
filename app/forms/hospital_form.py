@@ -10,3 +10,5 @@ class HospitalForm(FlaskForm):
     country = StringField("Country")
     lat = DecimalField("lat", validators=[Optional()])
     lng = DecimalField("lng", validators=[Optional()])
+    map_picture = StringField("Map Picture")
+    website_url = StringField("Website URL")

@@ -22,7 +22,9 @@ def create_hospital():
             state=form.data["state"],
             country=form.data["country"],
             lat=form.data["lat"],
-            lng=form.data["lng"]
+            lng=form.data["lng"],
+            map_picture=form.data["map_picture"],
+            website_url=form.data["website_url"]
         )
         db.session.add(new_hospital)
         db.session.commit()
@@ -89,6 +91,8 @@ def update_hospital(hospital_id):
         hospital.country=form.data["country"]
         hospital.lat=form.data["lat"]
         hospital.lng=form.data["lng"]
+        hospital.map_picture=form.data["map_picture"]
+        hospital.website_url=form.data["website_url"]
 
         db.session.commit()
         return hospital.to_dict()
