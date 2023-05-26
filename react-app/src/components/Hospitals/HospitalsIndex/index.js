@@ -51,7 +51,7 @@ const HospitalsIndex = () => {
                                     rel="noopener noreferrer"
                                 >
                                     <button className="hospital-site-button">
-                                        Visit Site
+                                        Visit Website
                                     </button>
                                 </a>
                             </div>
