@@ -31,6 +31,8 @@ def upgrade():
     sa.Column('country', sa.String(length=100), nullable=True),
     sa.Column('lat', sa.Numeric(), nullable=True),
     sa.Column('lng', sa.Numeric(), nullable=True),
+    sa.Column('map_picture', sa.String(), nullable=False),
+    sa.Column('website_url', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
 
