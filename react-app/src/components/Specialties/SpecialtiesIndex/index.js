@@ -7,6 +7,7 @@ import UpdateSpecialtyModal from "../SpecialtyModal/UpdateSpecialtyModal";
 import DeleteSpecialtyModal from "../SpecialtyModal/DeleteSpecialtyModal";
 import CreateSpecialtyModal from "../SpecialtyModal/CreateSpecialtyModal";
 import "./SpecialtiesIndex.css"
+import ShowSpecialtyModal from "../SpecialtyModal/ShowSpecialtyModal";
 
 const SpecialtiesIndex = () => {
     const dispatch = useDispatch();
@@ -22,36 +23,31 @@ const SpecialtiesIndex = () => {
     const specialties = Object.values(specialtiesState)
 
     return (
-        <>
-            <h2>Specialties</h2>
-            <div className="specialties-index">
-                {specialties.map((specialty) => {
-                    return (
-                        <div className="specialty-card" key={specialty.id}>
-                            <span>
-                                <i className="fa-solid fa-books-medical"></i>
-                            </span>
-                            <h2>{specialty.name}</h2>
-                            <h2>{specialty.description}</h2>
-                            <OpenModalButton
-                                buttonText={<i className="fa-solid fa-pen-to-square"></i>}
-                                modalComponent={<UpdateSpecialtyModal specialty={specialty} />}
-                                className="specialty-card-icon"
-                            />
-                            <OpenModalButton
-                                buttonText={<i className="fa-solid fa-trash-can"></i>}
-                                modalComponent={<DeleteSpecialtyModal specialty={specialty} />}
-                                className="specialty-card-icon"
-                            />
-                        </div>
-                    )
-                })}
-            </div>
-            <OpenModalButton
-                buttonText="Add Specialty"
-                modalComponent={<CreateSpecialtyModal />}
-            />
-        </>
+        <div className="page">
+                <div className="specialties-title">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <h2>Medical Specialties and Services</h2>
+                </div>
+                <div className="specialties-index">
+                    {specialties.map((specialty) => {
+                        return (
+                            // <ShowSpecialtyModal specialty={specialty} />
+                            <div className="specialty-card" key={specialty.id}>
+                                <OpenModalButton
+                                    buttonText={specialty.name}
+                                    modalComponent={<ShowSpecialtyModal specialty={specialty} />}
+                                    className="specialty-list-item"
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
+                <OpenModalButton
+                    buttonText="Add A Specialty"
+                    modalComponent={<CreateSpecialtyModal />}
+                    className="add-specialty-button"
+                />
+        </div>
     )
 }
 

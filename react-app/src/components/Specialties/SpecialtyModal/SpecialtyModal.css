@@ -1,8 +1,8 @@
 .specialty-modal {
-    width: 25vw;
+    width: 30vw;
     padding: 30px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,8 +12,26 @@
     margin-bottom: 10px;
 }
 
+.show-specialty-title {
+    color: #615A99;
+}
+
+.show-specialty-description {
+    color: #565656;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    margin: 20px 0;
+}
+
 .specialty-modal>button {
     width: 200px;
     height: 40px;
+    margin-top: 10px;
+}
+
+.specialty-buttons {
+    display: flex;
+    gap: 20px;
     margin-top: 20px;
 }

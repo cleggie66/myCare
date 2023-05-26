@@ -1,20 +1,29 @@
-.specialties-index {
+.specialties-title {
+    color: #615A99;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-.specialty-card {
-    width: auto;
-    background-color: white;
-    flex-shrink: 1;
-    flex-grow: 2;
+.specialties-index {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px;
+    align-items: center;
+    column-count: 3;
+}
+
+.specialty-list-item {
+    font-size: 18px;
+    font-weight: normal;
+    color: #615A99;
+    background-color: white;
+}
+
+.specialty-list-item:hover {
+    color: #615A99;
+    background-color: white;
+    text-decoration: underline;
 }
 
 .specialty-card-icon {
@@ -34,4 +43,12 @@
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.add-specialty-button {
+    width: 250px;
+    height: 30px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: 10px;
 }
