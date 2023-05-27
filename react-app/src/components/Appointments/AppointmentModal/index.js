@@ -23,8 +23,10 @@ const AppointmentForm = ({ appointment, formType }) => {
     const [startTime, setStartTime] = useState(appointment.startTime);
     const [startDate, setStartDate] = useState(new Date());
     const [appointmentTime, setAppointmentTime] = useState(appointment.startTime);
+    const [unavailableTimes, setUnavailableTimes] = useState([]);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
     const times = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 
     useEffect(() => {
@@ -150,6 +152,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                 type="submit"
                 form="appointment-form"
                 disabled={hasSubmitted && Object.values(errors).length !== 0}
+                className="appointment-submit-button"
             >{`${formType} Appointment`}</button>
         </div>
     )

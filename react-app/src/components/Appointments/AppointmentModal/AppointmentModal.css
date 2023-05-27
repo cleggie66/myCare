@@ -9,6 +9,10 @@
     justify-content: center;
 }
 
+.appointment-form-modal>h2 {
+    margin-bottom: 30px;
+}
+
 .appointment-form-container {
     display: flex;
     align-items: center;
@@ -58,4 +62,10 @@
 
 .appointment-time>h2 {
     font-size: 16px;
+}
+
+.appointment-submit-button {
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
 }
