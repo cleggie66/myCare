@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
 import { setAppointmentsThunk } from "../../../store/appointments"
 import "./AppointmentsIndex.css"
 import AppointmentCard from "./AppointmentCard"
@@ -10,7 +9,6 @@ import OpenModalButton from "../../OpenModalButton"
 
 const AppointmentsIndex = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
 
     useEffect(() => {
         dispatch(setAppointmentsThunk())

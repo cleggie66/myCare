@@ -4,7 +4,12 @@ import { useModal } from "../../../context/Modal";
 import { createAppointmentThunk, updateAppointmentThunk } from "../../../store/appointments";
 import { setHospitalsThunk } from "../../../store/hospitals";
 import { setPhysiciansThunk } from "../../../store/physicians";
+import DatePicker from "react-datepicker"
 import "./AppointmentModal.css"
+import "./react-datepicker.css"
+
+
+
 
 const AppointmentForm = ({ appointment, formType }) => {
     const dispatch = useDispatch();
@@ -16,9 +21,11 @@ const AppointmentForm = ({ appointment, formType }) => {
     const [hospitalId, setHospitalId] = useState(appointment.hospitalId);
     const [reasonForVisit, setReasonForVisit] = useState(appointment.reasonForVisit);
     const [startTime, setStartTime] = useState(appointment.startTime);
+    const [startDate, setStartDate] = useState(new Date());
+    const [appointmentTime, setAppointmentTime] = useState(appointment.startTime);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false)
-    // const times = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
+    const times = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 
     useEffect(() => {
         const errorsObj = {};
@@ -45,6 +52,8 @@ const AppointmentForm = ({ appointment, formType }) => {
         dispatch(setPhysiciansThunk())
     }, [dispatch])
 
+
+
     const hospitalsState = useSelector((state) => state.hospitals)
     const physiciansState = useSelector((state) => state.physicians.allPhysicians)
     if (!hospitalsState) return <h1>Loading...</h1>
@@ -65,10 +74,10 @@ const AppointmentForm = ({ appointment, formType }) => {
         };
 
         if (Object.values(errors).length === 0) {
-            if (formType === "Create Appointment") {
+            if (formType === "Book") {
                 await dispatch(createAppointmentThunk(appointmentData))
             };
-            if (formType === "Update Appointment") {
+            if (formType === "Update") {
                 await dispatch(updateAppointmentThunk(appointmentData))
             };
             closeModal()
@@ -76,12 +85,20 @@ const AppointmentForm = ({ appointment, formType }) => {
         setHasSubmitted(true);
     };
 
-    console.log(appointment)
+    const appointmentCheck = (time) => {
+        if (appointmentTime === time) return "appointment-time selected-time";
+        else return "appointment-time";
+    }
 
     return (
         <div className="appointment-form-modal">
-            <h2>{formType}</h2>
+            <h2>{`${formType} Your Appointment`}</h2>
             <div className="appointment-form-container">
+                <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    inline
+                />
                 <form onSubmit={handleSubmit} className="appointment-form" id="appointment-form">
                     <label>
                         Physician
@@ -90,7 +107,8 @@ const AppointmentForm = ({ appointment, formType }) => {
                         value={physicianId}
                         onChange={e => {
                             setHospitalId(physiciansState[e.target.value]?.hospital.id || "")
-                            setPhysicianId(e.target.value)}
+                            setPhysicianId(e.target.value)
+                        }
                         }>
                         <option value="">Select an Option</option>
                         {physicians.map((physician) => (
@@ -128,22 +146,28 @@ const AppointmentForm = ({ appointment, formType }) => {
                     >
                     </textarea>
                     {hasSubmitted && (<p className="error">{errors.reasonForVisit}</p>)}
-                    <label>
-                        Appointment Time
-                    </label>
-                    <input
-                        type="datetime-local"
-                        value={startTime}
-                        onChange={(e) => setStartTime(e.target.value)}
-                    />
-                    {hasSubmitted && (<p className="error">{errors.startTime}</p>)}
                 </form>
             </div>
+            <label>
+                Appointment Time
+            </label>
+            <div className="appointment-times-grid">
+                {times.map((time) => (
+                    <div
+                        onClick={() => setAppointmentTime(time)}
+                        className={appointmentCheck(time)}
+                    >
+                        <h2>{time}</h2>
+                    </div>
+                )
+                )}
+            </div>
+            {hasSubmitted && (<p className="error">{errors.startTime}</p>)}
             <button
                 type="submit"
                 form="appointment-form"
                 disabled={hasSubmitted && Object.values(errors).length !== 0}
-            >{formType}</button>
+            >{`${formType} Appointment`}</button>
         </div>
     )
 }

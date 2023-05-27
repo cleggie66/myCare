@@ -1,4 +1,5 @@
 .appointment-form-modal {
+    width: 40vw;
     padding: 30px;
     background-color: white;
     border-radius: 10px;
@@ -21,4 +22,40 @@
     align-items: flex-start;
     justify-content: center;
     margin: 20px;
+}
+
+.appointment-times-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.appointment-time {
+    color: #000000;
+    background-color: #EAEAEA;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.appointment-time:hover {
+    color: #ffffff;
+    background-color: #615A99;
+}
+
+.selected-time {
+    color: #ffffff;
+    background-color: #59538D;
+}
+
+.disabled-time {
+    color: #505050;
+    background-color: #AEAEAE;
+}
+
+.appointment-time>h2 {
+    font-size: 16px;
 }

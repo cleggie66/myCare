@@ -14,7 +14,7 @@ const UpdateAppointmentModal = ({ appointment }) => {
     }
 
     return (
-        <AppointmentForm appointment={convAppointment} formType="Update Appointment" />
+        <AppointmentForm appointment={convAppointment} formType="Update" />
     )
 }
 

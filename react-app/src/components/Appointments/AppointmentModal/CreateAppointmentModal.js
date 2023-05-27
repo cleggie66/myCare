@@ -11,7 +11,7 @@ const CreateAppointmentModal = ({ physician }) => {
     }
 
     return (
-        <AppointmentForm appointment={appointment} formType="Create Appointment" />
+        <AppointmentForm appointment={appointment} formType="Book" />
     )
 }
 
