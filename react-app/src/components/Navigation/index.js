@@ -16,11 +16,17 @@ function Navigation({ isLoaded }) {
 			</NavLink>
 			{sessionUser && (
 				<div className='navbar-links'>
+					<NavLink exact to="/physicians" className="navlink">
+						Physicians
+					</NavLink>
 					<NavLink exact to="/hospitals" className="navlink">
 						Hospitals
 					</NavLink>
 					<NavLink exact to="/specialties" className="navlink">
 						Specialties
+					</NavLink>
+					<NavLink exact to="/about" className="navlink">
+						About
 					</NavLink>
 				</div>
 			)}
