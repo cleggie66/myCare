@@ -118,23 +118,6 @@ const AppointmentForm = ({ appointment, formType }) => {
                         ))}
                     </select>
                     {hasSubmitted && (<p className="error">{errors.physicianId}</p>)}
-                    <label>
-                        Hospital
-                    </label>
-                    <select
-                        value={hospitalId}
-                        onChange={e => {
-                            setPhysicianId(hospitalsState[e.target.value].physicians[0]?.id || "")
-                            setHospitalId(e.target.value)
-                        }
-                        }>
-                        <option value="">Select an Option</option>
-                        {hospitals.map((hospital) => (
-                            <option value={hospital.id} key={hospital.id}>
-                                {hospital.name}
-                            </option>
-                        ))}
-                    </select>
                     {hasSubmitted && (<p className="error">{errors.hospitalId}</p>)}
                     <label>
                         Reason For Visit
