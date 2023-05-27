@@ -17,12 +17,13 @@ const AppointmentForm = ({ appointment, formType }) => {
     let appointmentId;
     if (appointment.id) appointmentId = appointment.id;
 
-    const [physicianId, setPhysicianId] = useState(appointment.physicianId);
+    const [physicianId, setPhysicianId] = useState(appointment.physician?.id);
     const [hospitalId, setHospitalId] = useState(appointment.hospitalId);
     const [reasonForVisit, setReasonForVisit] = useState(appointment.reasonForVisit);
     const [startTime, setStartTime] = useState(appointment.startTime);
     const [startDate, setStartDate] = useState(new Date());
     const [appointmentTime, setAppointmentTime] = useState(appointment.startTime);
+    const [physician, setPhysician] = useState(appointment.physician);
     const [unavailableTimes, setUnavailableTimes] = useState([]);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -43,39 +44,83 @@ const AppointmentForm = ({ appointment, formType }) => {
         if (reasonForVisit === "") {
             errorsObj.reasonForVisit = "Reason for visit is required";
         };
-        if (startTime.length === 0) {
-            errorsObj.startTime = "Start Time is required";
+        if (appointmentTime.length === 0) {
+            errorsObj.appointmentTime = "Appointment time is required";
         };
         setErrors(errorsObj);
-    }, [physicianId, hospitalId, reasonForVisit, startTime]);
+    }, [physicianId, hospitalId, reasonForVisit, appointmentTime, startDate]);
 
     useEffect(() => {
         dispatch(setHospitalsThunk())
         dispatch(setPhysiciansThunk())
     }, [dispatch])
 
+    useEffect(() => {
+        const dateCheck = (appointment) => {
+            const month = startDate.getMonth() + 1 < 10 ? `0${startDate.getMonth() + 1}` : startDate.getMonth() + 1;
+            const day = startDate.getDate() < 10 ? `0${startDate.getDate()}` : startDate.getDate();
+            const selectedDate = `${startDate.getFullYear()}-${month}-${day}`;
+            const appointmentDate = appointment.start_time.slice(0, 10);
 
+            if (selectedDate === appointmentDate) return true;
+            return false;
+        }
 
-    const hospitalsState = useSelector((state) => state.hospitals)
-    const physiciansState = useSelector((state) => state.physicians.allPhysicians)
-    if (!hospitalsState) return <h1>Loading...</h1>
-    if (!physiciansState) return <h1>Loading...</h1>
-    const hospitals = Object.values(hospitalsState)
-    const physicians = Object.values(physiciansState)
+        const appointments = Object.values(physician?.appointments);
+        console.log("AA", appointments)
+
+        if (appointments.length) {
+            const times = [];
+            physician.appointments.forEach((appointment) => {
+                if (dateCheck(appointment)) {
+                    const hour = appointment.start_time.slice(11, 13);
+                    const time = `${hour > 12 ? hour - 12 : hour}${hour > 12 ? "PM" : "AM"}`;
+                    console.log(time)
+                    times.push(time);
+                };
+            });
+            setUnavailableTimes(times);
+        };
+    }, [physician, startDate]);
+
+    const hospitalsState = useSelector((state) => state.hospitals);
+    const physiciansState = useSelector((state) => state.physicians.allPhysicians);
+
+    if (!hospitalsState) return <h1>Loading...</h1>;
+    if (!physiciansState) return <h1>Loading...</h1>;
+    const physicians = Object.values(physiciansState);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const month = startDate.getMonth() + 1 < 10 ? `0${startDate.getMonth() + 1}` : startDate.getMonth() + 1;
+        const day = startDate.getDate() < 10 ? `0${startDate.getDate()}` : startDate.getDate();
+        const hour = () => {
+            if (appointmentTime.length === 3) {
+                if (appointmentTime.slice(1) === "PM") {
+                    const num = Number(appointmentTime.slice(0, 1));
+                    return String(num + 12);
+                } else {
+                    return `0${appointmentTime.slice(0, 1)}`
+                };
+            };
+            if (appointmentTime.length === 4) {
+                return appointmentTime.slice(0, 2);
+            };
+        };
+        const date = `${startDate.getFullYear()}-${month}-${day}T${hour()}:00`;
 
         const appointmentData = {
             id: appointmentId,
             physician_id: physicianId,
             hospital_id: hospitalId,
             reason_for_visit: reasonForVisit,
-            start_time: startTime,
-            end_time: startTime
+            start_time: date,
+            end_time: date
         };
 
         if (Object.values(errors).length === 0) {
+            console.log("WHAT")
             if (formType === "Book") {
                 await dispatch(createAppointmentThunk(appointmentData))
             };
@@ -89,6 +134,7 @@ const AppointmentForm = ({ appointment, formType }) => {
 
     const appointmentCheck = (time) => {
         if (appointmentTime === time) return "appointment-time selected-time";
+        if (unavailableTimes.includes(time)) return "disabled-time"
         else return "appointment-time";
     }
 
@@ -98,7 +144,12 @@ const AppointmentForm = ({ appointment, formType }) => {
             <div className="appointment-form-container">
                 <DatePicker
                     selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    onChange={(date) => {
+                        setAppointmentTime("")
+                        setStartDate(date)
+                        setErrors({})
+                        setHasSubmitted(false)
+                    }}
                     inline
                 />
                 <form onSubmit={handleSubmit} className="appointment-form" id="appointment-form">
@@ -139,7 +190,9 @@ const AppointmentForm = ({ appointment, formType }) => {
             <div className="appointment-times-grid">
                 {times.map((time) => (
                     <div
-                        onClick={() => setAppointmentTime(time)}
+                        onClick={() => {
+                            if (appointmentCheck(time) !== "disabled-time") setAppointmentTime(time)
+                        }}
                         className={appointmentCheck(time)}
                     >
                         <h2>{time}</h2>
@@ -147,7 +200,7 @@ const AppointmentForm = ({ appointment, formType }) => {
                 )
                 )}
             </div>
-            {hasSubmitted && (<p className="error">{errors.startTime}</p>)}
+            {hasSubmitted && (<p className="error">{errors.appointmentTime}</p>)}
             <button
                 type="submit"
                 form="appointment-form"
