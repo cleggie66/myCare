@@ -8,9 +8,6 @@ import DatePicker from "react-datepicker"
 import "./AppointmentModal.css"
 import "./react-datepicker.css"
 
-
-
-
 const AppointmentForm = ({ appointment, formType }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -20,13 +17,16 @@ const AppointmentForm = ({ appointment, formType }) => {
     const [physicianId, setPhysicianId] = useState(appointment.physician?.id);
     const [hospitalId, setHospitalId] = useState(appointment.hospitalId);
     const [reasonForVisit, setReasonForVisit] = useState(appointment.reasonForVisit);
-    const [startTime, setStartTime] = useState(appointment.startTime);
     const [startDate, setStartDate] = useState(new Date());
     const [appointmentTime, setAppointmentTime] = useState(appointment.startTime);
-    const [physician, setPhysician] = useState(appointment.physician);
     const [unavailableTimes, setUnavailableTimes] = useState([]);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    const hospitalsState = useSelector((state) => state.hospitals);
+    const physiciansState = useSelector((state) => state.physicians.allPhysicians);
+    const physicians = Object.values(physiciansState);
+    const physician = physiciansState[physicianId];
 
     const times = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 
@@ -56,10 +56,8 @@ const AppointmentForm = ({ appointment, formType }) => {
     }, [dispatch])
 
     useEffect(() => {
-        const dateCheck = (appointment) => {
-            const month = startDate.getMonth() + 1 < 10 ? `0${startDate.getMonth() + 1}` : startDate.getMonth() + 1;
-            const day = startDate.getDate() < 10 ? `0${startDate.getDate()}` : startDate.getDate();
-            const selectedDate = `${startDate.getFullYear()}-${month}-${day}`;
+        const sameDateCheck = (appointment) => {
+            const selectedDate = startDate.toISOString().slice(0, 10);
             const appointmentDate = appointment.start_time.slice(0, 10);
 
             if (selectedDate === appointmentDate) return true;
@@ -67,28 +65,40 @@ const AppointmentForm = ({ appointment, formType }) => {
         }
 
         const appointments = Object.values(physician?.appointments);
-        console.log("AA", appointments)
+        const timeCheck = new Date(startDate.toISOString().slice(0, 10)) - new Date().getTime()
+        let bookedTimes = [];
+        let timeOptions = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
+
+        // Voids any past dates
+        if (timeCheck < -86400000) {
+            bookedTimes = timeOptions;
+        }
+
+        // ACT OF GOD INSURANCE: Blocks out random time-slots for current date
+        if (timeCheck > -86400000 && timeCheck < 0) {
+            let num = (physician.first_name.charCodeAt(0) + physician.last_name.charCodeAt(0)) % timeOptions.length;
+            while (num >= 0) {
+                bookedTimes.push(timeOptions[num]);
+                num = Math.floor(num / 2) - 1;
+            }
+        }
 
         if (appointments.length) {
-            const times = [];
             physician.appointments.forEach((appointment) => {
-                if (dateCheck(appointment)) {
-                    const hour = appointment.start_time.slice(11, 13);
-                    const time = `${hour > 12 ? hour - 12 : hour}${hour > 12 ? "PM" : "AM"}`;
-                    console.log(time)
-                    times.push(time);
+                if (sameDateCheck(appointment)) {
+                    const hour = appointment.start_time[11] === "0" ? appointment.start_time.slice(12, 13) : appointment.start_time.slice(11, 13);
+                    const time = `${hour > 12 ? hour - 12 : hour}${hour >= 12 ? "PM" : "AM"}`;
+                    bookedTimes.push(time);
                 };
             });
-            setUnavailableTimes(times);
         };
-    }, [physician, startDate]);
 
-    const hospitalsState = useSelector((state) => state.hospitals);
-    const physiciansState = useSelector((state) => state.physicians.allPhysicians);
+        setUnavailableTimes(bookedTimes);
+
+    }, [physician, startDate]);
 
     if (!hospitalsState) return <h1>Loading...</h1>;
     if (!physiciansState) return <h1>Loading...</h1>;
-    const physicians = Object.values(physiciansState);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -110,6 +120,9 @@ const AppointmentForm = ({ appointment, formType }) => {
         };
         const date = `${startDate.getFullYear()}-${month}-${day}T${hour()}:00`;
 
+        console.log(startDate.toISOString().slice(0,16))
+        console.log(date)
+
         const appointmentData = {
             id: appointmentId,
             physician_id: physicianId,
@@ -120,7 +133,6 @@ const AppointmentForm = ({ appointment, formType }) => {
         };
 
         if (Object.values(errors).length === 0) {
-            console.log("WHAT")
             if (formType === "Book") {
                 await dispatch(createAppointmentThunk(appointmentData))
             };
