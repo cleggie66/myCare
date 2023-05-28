@@ -25,9 +25,14 @@ function Navigation({ isLoaded }) {
 					<NavLink exact to="/specialties" className="navlink">
 						Specialties
 					</NavLink>
-					<NavLink exact to="/about" className="navlink">
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						className="navlink"
+						href="https://cleggie66.github.io/"
+					>
 						About
-					</NavLink>
+					</a>
 				</div>
 			)}
 			{isLoaded && (
