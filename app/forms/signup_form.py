@@ -5,7 +5,7 @@ from app.models import User
 
 
 def email_exists(form, field):
-    # Checking if user exists
+    # Checking if email is already in use
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:

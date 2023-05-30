@@ -1,20 +1,80 @@
 .hospitals-index {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 60%;
+    margin: 20px;
 }
 
 .hospital-card {
     width: auto;
+    height: 150px;
+    border: 2px solid #615A99;
     background-color: white;
-    flex-shrink: 1;
-    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.hospital-card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.hospital-card-title>span>i {
+    color: #615A99;
+}
+
+.hospital-card-title>h2 {
+    color: #615A99;
+}
+
+.hospital-card-address {
+    display: flex;
+    align-items: center;
+}
+
+.hospital-card-address>h4 {
+    color: #615A99;
+    font-weight: normal;
+}
+
+.map-preview-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px;
+    justify-content: center;
+}
+
+.map-preview {
+    height: 100%;
+    object-fit: cover;
+    background-color: white;
+}
+
+.hospital-card-details {
+    margin-left: 20px;
+}
+
+.hospital-site-button {
+    width: 250px;
+    height: 30px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.hospital-card-icons {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hospital-card-icon {
@@ -34,4 +94,12 @@
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.add-hospital-button {
+    width: 60%;
+    height: 50px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-bottom: 30px;
 }

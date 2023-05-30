@@ -8,4 +8,3 @@ class AppointmentForm(FlaskForm):
     reason_for_visit = StringField("Reason for visit", validators=[DataRequired()])
     start_time = StringField("Start Time", validators=[DataRequired()])
     end_time = StringField("End Time", validators=[DataRequired()])
-    

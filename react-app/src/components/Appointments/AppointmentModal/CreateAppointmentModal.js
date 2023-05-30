@@ -3,7 +3,7 @@ import AppointmentForm from "."
 const CreateAppointmentModal = ({ physician }) => {
 
     const appointment = {
-        physicianId: physician?.id || "",
+        physician: physician || {},
         hospitalId: physician?.hospital.id || "",
         reasonForVisit: "",
         startTime: "",
@@ -11,7 +11,7 @@ const CreateAppointmentModal = ({ physician }) => {
     }
 
     return (
-        <AppointmentForm appointment={appointment} formType="Create Appointment" />
+        <AppointmentForm appointment={appointment} formType="Book" />
     )
 }
 

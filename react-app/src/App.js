@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import CreatePhysicianForm from "./components/Physicians/PhysicianModal/CreatePhysicianModal";
-import UpdatePhysicianForm from "./components/Physicians/PhysicianModal/UpdatePhysicianModal";
 import Dashboard from "./components/Dashboard";
-import UpdateAppointmentForm from "./components/Appointments/AppointmentModal/UpdateAppointmentModal";
 import LandingPage from "./components/LandingPage";
 import HospitalsIndex from "./components/Hospitals/HospitalsIndex";
 import SpecialtiesIndex from "./components/Specialties/SpecialtiesIndex";
+import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
+import AboutPage from "./components/AboutPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,11 +25,17 @@ function App() {
           <Route path="/dashboard" >
             <Dashboard />
           </Route>
+          <Route path="/physicians" >
+            <PhysiciansIndex />
+          </Route>
           <Route path="/hospitals">
             <HospitalsIndex />
           </Route>
           <Route path="/specialties">
             <SpecialtiesIndex />
+          </Route>
+          <Route path="/about" >
+            <AboutPage />
           </Route>
           <Route exact path="/">
             <LandingPage />

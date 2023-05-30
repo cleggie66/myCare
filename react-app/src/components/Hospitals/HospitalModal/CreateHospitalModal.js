@@ -9,7 +9,9 @@ const CreateHospitalModal = () => {
         state: "",
         country: "",
         lat: 0,
-        lng: 0
+        lng: 0,
+        map_picture: "",
+        website_url: ""
     };
 
     return (
