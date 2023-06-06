@@ -5,16 +5,15 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import AboutModal from '../AboutModal';
+import logoGif from "../../media/myCare-Icon.gif"
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
 		<div className='navbar'>
-			<NavLink exact to="/dashboard">
-				<span className='home-icon'>
-					<i className="fa-solid fa-house" />
-				</span>
+			<NavLink exact to="/dashboard" className="home-logo-link">
+					<img src={logoGif} alt="logo" className='home-logo-gif' />
 			</NavLink>
 			{sessionUser && (
 				<div className='navbar-links'>

@@ -64,9 +64,14 @@
   display: none;
 }
 
-.home-icon {
+.home-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.home-logo-gif {
   color: white;
-  font-size: 25px;
+  height: 50px;
   margin-left: 20px;
 }
 
