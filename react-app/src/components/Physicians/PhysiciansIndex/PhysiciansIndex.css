@@ -3,6 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #f5f5f5;
+    margin: 10px 0;
 }
 
 .add-physician-button {
@@ -18,7 +19,7 @@
 .physician-card {
     height: auto;
     width: 280px;
-    margin: 25px;
+    margin: 10px 25px;
 }
 
 .physician-card-header {
