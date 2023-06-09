@@ -3,16 +3,17 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import OpenModalButton from '../OpenModalButton';
+import AboutModal from '../AboutModal';
+import logoGif from "../../media/myCare-Icon.gif"
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
 		<div className='navbar'>
-			<NavLink exact to="/dashboard">
-				<span className='home-icon'>
-					<i className="fa-solid fa-house" />
-				</span>
+			<NavLink exact to="/dashboard" className="home-logo-link">
+					<img src={logoGif} alt="logo" className='home-logo-gif' />
 			</NavLink>
 			{sessionUser && (
 				<div className='navbar-links'>
@@ -25,14 +26,11 @@ function Navigation({ isLoaded }) {
 					<NavLink exact to="/specialties" className="navlink">
 						Specialties
 					</NavLink>
-					<a
-						target="_blank"
-						rel="noopener noreferrer"
-						className="navlink"
-						href="https://cleggie66.github.io/"
-					>
-						About
-					</a>
+					<OpenModalButton
+						className={"about-nav-link"}
+						buttonText="About"
+						modalComponent={<AboutModal />}
+					/>
 				</div>
 			)}
 			{isLoaded && (

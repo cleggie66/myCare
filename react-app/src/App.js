@@ -9,6 +9,7 @@ import HospitalsIndex from "./components/Hospitals/HospitalsIndex";
 import SpecialtiesIndex from "./components/Specialties/SpecialtiesIndex";
 import PhysiciansIndex from "./components/Physicians/PhysiciansIndex";
 import AboutPage from "./components/AboutPage";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
