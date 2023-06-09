@@ -9,44 +9,44 @@
 
 ## Technologies used on this project
 
-<img src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png" align="center"
+<img src="https://skillicons.dev/icons?i=py" align="center"
 alt="REST Logo" height="30"> **Python**
 
-<img src="https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png" align="center"
+<img src="https://skillicons.dev/icons?i=js" align="center"
 alt="REST Logo" height="30"> **Javascript**
 
-<img src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" align="center"
+<img src="https://skillicons.dev/icons?i=react" align="center"
 alt="REST Logo" height="30"> **React**
 
-<img src="https://user-images.githubusercontent.com/25181517/187896150-cc1dcb12-d490-445c-8e4d-1275cd2388d6.png" align="center"
+<img src="https://skillicons.dev/icons?i=redux" align="center"
 alt="REST Logo" height="30"> **Redux**
 
-<img src="https://user-images.githubusercontent.com/25181517/183423775-2276e25d-d43d-4e58-890b-edbc88e915f7.png" align="center"
+<img src="https://skillicons.dev/icons?i=flask" align="center"
 alt="REST Logo" height="30"> **Flask**
+
+<img src="https://skillicons.dev/icons?i=postgres" align="center"
+alt="REST Logo" height="30"> **PostgreSQL**
+
+<img src="https://skillicons.dev/icons?i=nodejs" align="center"
+alt="REST Logo" height="30"> **Node.js**
+
+<img src="https://skillicons.dev/icons?i=html" align="center"
+alt="REST Logo" height="30"> **HTML**
+
+<img src="https://skillicons.dev/icons?i=css" align="center"
+alt="REST Logo" height="30"> **CSS**
+
+<img src="https://skillicons.dev/icons?i=figma" align="center"
+alt="REST Logo" height="30"> **Figma**
+
+<img src="https://skillicons.dev/icons?i=postman" align="center"
+alt="REST Logo" height="30"> **Postman**
 
 <img src="https://avatars.githubusercontent.com/u/6043126?s=200&v=4" align="center"
 alt="REST Logo" height="30"> **SQLAlchemy**
 
-<img src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" align="center"
-alt="REST Logo" height="30"> **PostgreSQL**
-
-<img src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png" align="center"
-alt="REST Logo" height="30"> **Node.js**
-
-<img src="https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png" align="center"
-alt="REST Logo" height="30"> **HTML**
-
-<img src="https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png" align="center"
-alt="REST Logo" height="30"> **CSS**
-
 <img src="https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png" align="center"
 alt="REST Logo" height="30"> **REST API**
-
-<img src="https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png" align="center"
-alt="REST Logo" height="30"> **Figma**
-
-<img src="https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png" align="center"
-alt="REST Logo" height="30"> **Postman**
 
 ## Preview
 
