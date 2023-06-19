@@ -120,9 +120,6 @@ const AppointmentForm = ({ appointment, formType }) => {
         };
         const date = `${startDate.getFullYear()}-${month}-${day}T${hour()}:00`;
 
-        console.log(startDate.toISOString().slice(0,16))
-        console.log(date)
-
         const appointmentData = {
             id: appointmentId,
             physician_id: physicianId,

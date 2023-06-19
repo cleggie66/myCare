@@ -21,8 +21,6 @@ const HospitalsIndex = () => {
     if (!hospitalsState) return <h1>LOADING...</h1>
     const hospitals = Object.values(hospitalsState)
 
-    console.log(hospitals[0])
-
     return (
         <div className="page">
             <div className="hospitals-index">
