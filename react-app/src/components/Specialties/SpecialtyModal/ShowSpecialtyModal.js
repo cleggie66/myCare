@@ -10,11 +10,11 @@ const ShowSpecialtyModal = ({ specialty }) => {
         <div className="specialty-modal">
             <h2 className="show-specialty-title">{specialty.name}</h2>
             <h4 className="show-specialty-description">{specialty.description}</h4>
-            <button
+            {/* <button
                 onClick={() => {
                     history.push('/')
                 }}
-            >Find Physicians</button>
+            >Find Physicians</button> */}
             <div className="specialty-buttons">
                 <OpenModalButton
                     buttonText={<i className="fa-solid fa-pen-to-square"></i>}

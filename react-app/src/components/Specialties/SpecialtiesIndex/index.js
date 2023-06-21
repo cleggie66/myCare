@@ -24,29 +24,29 @@ const SpecialtiesIndex = () => {
 
     return (
         <div className="page">
-                <div className="specialties-title">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <h2>Medical Specialties and Services</h2>
-                </div>
-                <div className="specialties-index">
-                    {specialties.map((specialty) => {
-                        return (
-                            // <ShowSpecialtyModal specialty={specialty} />
-                            <div className="specialty-card" key={specialty.id}>
-                                <OpenModalButton
-                                    buttonText={specialty.name}
-                                    modalComponent={<ShowSpecialtyModal specialty={specialty} />}
-                                    className="specialty-list-item"
-                                />
-                            </div>
-                        )
-                    })}
-                </div>
-                <OpenModalButton
-                    buttonText="Add A Specialty"
-                    modalComponent={<CreateSpecialtyModal />}
-                    className="add-specialty-button"
-                />
+            <div className="specialties-title">
+                <i className="fa-solid fa-book-medical"></i>
+                <h2>Medical Specialties and Services</h2>
+            </div>
+            <div className="specialties-index">
+                {specialties.map((specialty) => {
+                    return (
+                        // <ShowSpecialtyModal specialty={specialty} />
+                        <div className="specialty-card" key={specialty.id}>
+                            <OpenModalButton
+                                buttonText={specialty.name}
+                                modalComponent={<ShowSpecialtyModal specialty={specialty} />}
+                                className="specialty-list-item"
+                            />
+                        </div>
+                    )
+                })}
+            </div>
+            <OpenModalButton
+                buttonText="Add A Specialty"
+                modalComponent={<CreateSpecialtyModal />}
+                className="add-specialty-button"
+            />
         </div>
     )
 }

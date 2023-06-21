@@ -14,7 +14,7 @@ const AppointmentForm = ({ appointment, formType }) => {
     let appointmentId;
     if (appointment.id) appointmentId = appointment.id;
 
-    const [physicianId, setPhysicianId] = useState(appointment.physician?.id);
+    const [physicianId, setPhysicianId] = useState(appointment.physicianId);
     const [hospitalId, setHospitalId] = useState(appointment.hospitalId);
     const [reasonForVisit, setReasonForVisit] = useState(appointment.reasonForVisit);
     const [startDate, setStartDate] = useState(new Date());
@@ -64,7 +64,6 @@ const AppointmentForm = ({ appointment, formType }) => {
             return false;
         }
 
-        const appointments = Object.values(physician?.appointments);
         const timeCheck = new Date(startDate.toISOString().slice(0, 10)) - new Date().getTime()
         let bookedTimes = [];
         let timeOptions = ["8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
@@ -83,7 +82,7 @@ const AppointmentForm = ({ appointment, formType }) => {
             }
         }
 
-        if (appointments.length) {
+        if (Object.values(physician?.appointments).length) {
             physician.appointments.forEach((appointment) => {
                 if (sameDateCheck(appointment)) {
                     const hour = appointment.start_time[11] === "0" ? appointment.start_time.slice(12, 13) : appointment.start_time.slice(11, 13);
@@ -119,9 +118,6 @@ const AppointmentForm = ({ appointment, formType }) => {
             };
         };
         const date = `${startDate.getFullYear()}-${month}-${day}T${hour()}:00`;
-
-        console.log(startDate.toISOString().slice(0,16))
-        console.log(date)
 
         const appointmentData = {
             id: appointmentId,

@@ -6,7 +6,6 @@ import UpdateAppointmentModal from "../AppointmentModal/UpdateAppointmentModal"
 
 
 const AppointmentCard = ({ appointment }) => {
-    const history = useHistory()
     const [iconVisibility, setIconVisibility] = useState("hidden-icons")
     const monthArray = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     const year = appointment.start_time.slice(0, 4)
