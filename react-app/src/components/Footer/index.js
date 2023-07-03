@@ -1,6 +1,5 @@
 import OpenModalButton from '../OpenModalButton';
 import AboutModal from '../AboutModal';
-import resume from "../../media/caleb-cleghorn-resume.pdf"
 import './Footer.css';
 
 
@@ -18,7 +17,7 @@ function Footer({ isLoaded }) {
             />
             <p>•</p>
             <div className='footer-icons'>
-                <a href="https://cleggie66.github.io/" target="_blank" rel="noopener noreferrer">
+                <a href="https://caleb-cleghorn.onrender.com/" target="_blank" rel="noopener noreferrer">
                     <i className="fa-solid fa-globe"></i>
                 </a>
                 <a href="https://github.com/cleggie66" target="_blank" rel="noopener noreferrer">
@@ -30,7 +29,7 @@ function Footer({ isLoaded }) {
                 <a href="mailto: caleb@cleghorn.org" target="_blank" rel="noopener noreferrer">
                     <i className="fa-solid fa-envelope" />
                 </a>
-                <a href={resume} target="_blank" rel="noopener noreferrer">
+                <a href="https://drive.google.com/file/d/1Q1Iqbwz_Q2xbUBHG_nfkTLyb-bDS0tYe/view?usp=sharing" target="_blank" rel="noopener noreferrer"> 
                     <i className="fa-solid fa-file" />
                 </a>
             </div>
