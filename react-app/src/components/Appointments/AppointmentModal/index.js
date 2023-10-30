@@ -96,8 +96,8 @@ const AppointmentForm = ({ appointment, formType }) => {
 
     }, [physician, startDate]);
 
-    if (!hospitalsState) return <h1>Loading...</h1>;
-    if (!physiciansState) return <h1>Loading...</h1>;
+    if (!hospitalsState) return <h1>Loading...</h1>
+    if (!physiciansState) return <h1>Loading...</h1>
 
     const handleSubmit = async (e) => {
         e.preventDefault();

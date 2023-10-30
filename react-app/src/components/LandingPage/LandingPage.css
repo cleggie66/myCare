@@ -1,16 +1,22 @@
 .welcome-page {
-    height: 100vh;
-    display: flex;
+    min-height: calc(100vh - 140px);
     background-color: #615A99;
+    display: flex;
     justify-content: center;
+}
+
+.landing-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .landing-left-section {
     background-color: white;
     width: 650px;
-    height: 400px;
+    height: 450px;
     padding: 20px;
-    margin-top: 100px;
     border-radius: 10px 0 0 10px;
     display: flex;
     flex-direction: column;
@@ -20,9 +26,8 @@
 .landing-right-section {
     background-color: #CECECE;
     width: 300px;
-    height: 400px;
+    height: 450px;
     padding: 20px;
-    margin-top: 100px;
     border-radius: 0 10px 10px 0;
     display: flex;
     flex-direction: column;
@@ -31,14 +36,13 @@
 }
 
 .info-cards-group {
-    height: 250px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .info-card {
-    width: 320px;
     display: flex;
     align-items: center;
 }
@@ -75,4 +79,68 @@
 
 .logo-gif {
     width: 200px;
+}
+
+/* iPad Pro and Small Screens */
+@media (max-width: 1024px) {
+    .landing-section {
+        width: 90%;
+        min-height: 450px;
+    }
+
+    .landing-left-section {
+        width: 50%;
+    }
+
+    .landing-right-section {
+        width: 30%;
+    }
+
+    .info-cards-group {}
+
+    .info-card-icon {
+        min-width: 40px;
+    }
+}
+
+/* iPads and Tablets */
+@media (max-width: 768px) {}
+
+/* iPhones and Phones */
+@media (max-width: 480px) {
+    .landing-section {
+        flex-direction: column;
+    }
+
+    .landing-left-section {
+        width: 90%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .landing-right-section {
+        width: 90%;
+        height: auto;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .logo-gif {
+        width: 150px;
+    }
+
+    .info-card-details>h4 {
+        font-size: 14px;
+    }
+
+    .info-card-details>p {
+        font-size: 12px;
+    }
+
+    .info-card-icon {
+        margin: 10px;
+    }
+
+    .landing-login-form>label {
+        margin-top: 5px;
+    }
 }

@@ -72,11 +72,22 @@
 .home-logo-gif {
   color: white;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .profile-icon {
   color: white;
   font-size: 25px;
   margin-right: 20px;
+}
+
+/* iPad Pro and Small Screens */
+@media (max-width: 1024px) {}
+
+/* iPads and Tablets */
+@media (max-width: 768px) {}
+
+/* iPhones and Phones */
+@media (max-width: 480px) {
+
 }

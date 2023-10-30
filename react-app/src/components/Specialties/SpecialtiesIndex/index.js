@@ -18,7 +18,7 @@ const SpecialtiesIndex = () => {
     }, [dispatch])
 
     const specialtiesState = useSelector(state => state.specialties)
-    if (!sessionUser) return <Redirect to="/" />;
+    if (!sessionUser) return <Redirect to="/" />
     if (!specialtiesState) return <h1>LOADING...</h1>
     const specialties = Object.values(specialtiesState)
 
